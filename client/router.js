@@ -1,4 +1,3 @@
-
 FlowRouter.route('/', {
     action: function() {
         BlazeLayout.render("Layout", {content: "main"});
@@ -12,15 +11,15 @@ FlowRouter.route('/about', {
     }
 });
 
-FlowRouter.route('/sign-up', {
+FlowRouter.route('/register', {
     action: function() {
-        BlazeLayout.render("Layout", {content: "sign-up"});
+        BlazeLayout.render("Layout", {content: "register"});
     }
 });
 
 
-FlowRouter.route('/sign-in', {
+FlowRouter.route('/login', {
     action: function() {
-        BlazeLayout.render("Layout", {content: "sign-in"});
+        BlazeLayout.render("Layout", {content: "login"});
     }
 });

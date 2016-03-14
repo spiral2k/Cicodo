@@ -5,8 +5,17 @@
             </a>
             <a class="item" href="/">Home</a>
             <a class="item" href="/about">About</a>
-            <a class="item">menu 3</a>
-            <a class="item">menu 4</a>
+
+            {{#if currentUser}}
+
+                <a class="item" id="logout" href="#">logout</a>
+
+            {{else}}
+
+                <a class="item" href="/register">sign-up</a>
+                <a class="item" href="/login">sign-in</a>
+
+            {{/if}}
 
         </nav>
 </template>
