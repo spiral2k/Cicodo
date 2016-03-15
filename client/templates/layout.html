@@ -1,16 +1,27 @@
+<head>
+
+    <meta charset="utf-8">
+    <title>Cicodo</title>
+    <meta name="description" content="Cicodo - Social network for developers">
+    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+
+</head>
+
+<body></body>
+
 <template name="Layout">
-    <head>
-        {{>header}}
-    </head>
-        <body>
+
 
             {{>navbar}}
 
             <div class="ui container">
+
                 {{>Template.dynamic template=content}}
+
+
+                {{>footer}}
+
             </div>
 
-            {{>footer}}
-
-        </body>
 </template>
