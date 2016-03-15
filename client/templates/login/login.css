@@ -1,0 +1,10 @@
+.loginHeader{
+    margin-top:30px;
+}
+
+.loginHeader h1{
+    float: left;
+    width:100%;
+    text-align: center;
+    margin: 0;
+}

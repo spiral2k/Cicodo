@@ -1,15 +1,35 @@
 <template name="login">
-    <form>
+    <div class="ui three column grid">
 
-        <div>
-            email
-        <input type="email" id="email">
-        </div>
-        <div>
-            password
-        <input type="password" id="password">
+        <div class="column centered row loginHeader">
+            <img src="logos/small.png" width="310" height="92">
+            <h1>Login</h1>
         </div>
 
-        <button type="submit">Sign-in</button>
-    </form>
+        <form class="ui column centered form loginForm">
+
+            <div class="field">
+                <label>Email or username</label>
+                <input placeholder="Email or username" name="email" id="email" type="text">
+            </div>
+
+            <div class="field">
+                <label>Password</label>
+                <input placeholder="Password"  type="password" name="password" id="password">
+            </div>
+
+            <div class="ui error message"></div>
+
+            {{#if formErrors}}
+                <div class="ui negative message">
+                    <ul class="list">
+                        <li>{{formErrors}}</li>
+                    </ul>
+                </div>
+            {{/if}}
+
+            <button type="submit" class="ui primary button">Sign-in</button>
+        </form>
+
+    </div>
 </template>
