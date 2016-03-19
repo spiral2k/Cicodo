@@ -1,0 +1,19 @@
+<template name="mainPosts">
+    <div class="main-posts">
+        {{#each posts}}
+            <div class="main-post">
+
+                <img class="ui circular image main-posts-avatar" src="{{getAvatar userId}}">
+
+                <div class="post-content">
+                    <a class="post-author">{{username userId}}</a>
+                    <div class="post-date">{{createdAt.displayDate}}</div>
+                    <div class="post-text">
+                        {{content}}
+                    </div>
+                </div>
+
+            </div>
+        {{/each}}
+    </div>
+</template>

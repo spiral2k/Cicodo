@@ -1,0 +1,48 @@
+.main-posts{
+    float:left;
+    width: 100%;
+    margin-top:20px;
+}
+
+.main-post{
+    float:left;
+    width:100%;
+    border-bottom: 1px solid #CACBCD;
+    padding-bottom:10px;
+    margin-bottom: 10px;
+}
+
+
+.main-post:last-child{
+    border:0;
+}
+.post-content{
+    float:left;
+    width: 90%;
+    margin: 6px 0 0 10px;
+}
+
+.post-author{
+    font-size: 14px;
+}
+
+.post-date{
+    font-size:11px;
+    color:#9197a3;
+}
+
+.post-text{
+    float:left;
+    width:100%;
+    margin-top: -25px;
+    white-space:pre;
+}
+
+.main-posts-avatar{
+    display: block;
+    width: 7%;
+    height: auto;
+    float: left;
+    margin: 0.2em 0em 0em;
+
+}

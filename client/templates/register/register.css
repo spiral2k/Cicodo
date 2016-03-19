@@ -1,0 +1,31 @@
+#avatar {
+    float: left;
+    width: 62px;
+    height: 60px;
+    border:1px solid #e2e2e2;
+    text-align:center;
+    margin-right: 20px;
+}
+
+#avatar:before {
+    content: ' ';
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+}
+
+#avatar img {
+    vertical-align: middle;
+    display: inline-block;
+    max-width: 60px;
+    max-height: 60px;
+
+}
+
+.avatarUploadRegister{
+    float: right;
+    margin-right: 20px;
+}
+
+
+.avatarUploadRegister input[type="file"], #inputFileToLoad { display: none; }

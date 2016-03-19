@@ -5,10 +5,22 @@ Template.register.events({
         var username = template.find('#username').value;
         var password = template.find('#password').value;
 
+
+        //avatar
+        var filesSelected = document.getElementById("avatarUpload").files;
+
+        var avatar = null;
+
+        if (filesSelected.length > 0)
+        {
+            avatar = $('#avatar img').attr('src');
+        }
+
         Accounts.createUser({
             email:email,
             username:username,
-            password: password
+            password: password,
+            profile:{avatar: avatar}
         }, function(error){
             if(error){
                 console.log(error.reason);
@@ -26,8 +38,6 @@ Template.register.helpers({
         return formErrors;
     }
 });
-
-
 
 Template.register.rendered = function(){
 
@@ -76,5 +86,36 @@ Template.register.rendered = function(){
             }
         }
     });
+
+    document.getElementById("avatarUpload").addEventListener("change", encodeImageFileAsURL, false);
 };
+
+
+
+
+
+function encodeImageFileAsURL(){
+
+    console.log("get things..");
+        var filesSelected = document.getElementById("avatarUpload").files;
+        if (filesSelected.length > 0)
+        {
+            var fileToLoad = filesSelected[0];
+
+            var fileReader = new FileReader();
+
+            fileReader.onload = function(fileLoadedEvent) {
+                var srcData = fileLoadedEvent.target.result; // <--- data: base64
+
+                var newImage = document.createElement('img');
+                newImage.src = srcData;
+
+                document.getElementById("avatar").innerHTML = newImage.outerHTML;
+                console.log("Converted Base64 version is "+document.getElementById("avatar").innerHTML);
+            };
+
+            fileReader.readAsDataURL(fileToLoad);
+        }
+
+}
 
