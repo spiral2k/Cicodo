@@ -1,0 +1,32 @@
+.user-profile-avatar{
+    width: 100px;
+    height: 100px;
+}
+
+.profile-header{
+    position: relative;
+    float:left;
+    width:100%;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.profile-header span{
+    float: left;
+    width: 100%;
+    margin-top: 10px;
+}
+
+
+.user-profile-buttons-edit{
+    position: absolute;
+    top:0;
+    right:0;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.user-profile-buttons{
+    text-align: center;
+    margin-top: 20px;
+}

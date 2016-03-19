@@ -1,0 +1,44 @@
+<template name="profile">
+{{#if Template.subscriptionsReady}}
+    {{#with userProfileData}}
+
+
+
+        <h2 class="ui center profile-header">
+
+            <!--if its the profile of the viewing user-->
+            {{#if userProfile}}
+                <div class="user-profile-buttons-edit">
+                    <button class="ui button">
+                        <i class="edit icon"></i>
+                        Edit Profile
+                    </button>
+                </div>
+            {{/if}}
+
+
+
+            <img class="ui circular image centered user-profile-avatar" src="{{profile.avatar}}">
+            <span>{{username}}</span>
+        </h2>
+
+        <!--if its NOT the profile of the viewing user-->
+        {{#unless userProfile}}
+            <div class="user-profile-buttons">
+                <button class="ui button">
+                    <i class="user icon"></i>
+                    Follow
+                </button>
+            </div>
+            {{/unless}}
+
+
+
+
+    {{/with}}
+{{else}}
+    <p>Loding</p>
+{{/if}}
+
+
+</template>
