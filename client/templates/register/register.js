@@ -20,7 +20,11 @@ Template.register.events({
             email:email,
             username:username,
             password: password,
-            profile:{avatar: avatar}
+            profile:{
+                avatar: avatar,
+                private: false,
+                about: ""
+            }
         }, function(error){
             if(error){
                 console.log(error.reason);

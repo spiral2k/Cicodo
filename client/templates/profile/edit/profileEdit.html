@@ -1,3 +1,61 @@
 <template name="profileEdit">
-    <p>Profile edit</p>
+
+    <div class="profile-edit-main">
+
+        <p>Profile edit</p>
+
+        <form>
+
+        <div class="ui form">
+            <div class="setting-label">
+                About me
+            </div>
+
+
+
+            <div class="setting-block fields">
+                <div class="field fixed-width-100">
+                    <textarea rows="5" name="about-me" id="about-me"></textarea>
+                </div>
+            </div>
+
+
+
+            <div class="setting-label">
+                Privacy
+            </div>
+
+            <div class="setting-block grouped fields">
+                <div class="field">
+                    <div class="ui toggle private-profile checkbox">
+                        <input type="checkbox" name="private-profile" id="private-profile">
+                        <label for="private-profile">Private profile</label>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="form-masseges">
+            <div class="ui success message">
+                {{#if formSuccess}}
+                       <span>{{formSuccess}}</span>
+
+                {{/if}}
+            </div>
+
+                <div class="ui error message">
+                    We have some problem to save you info :(
+                </div>
+            </div>
+
+
+
+            <button class="ui primary button">
+                Save Settings
+            </button>
+            </div>
+        </form>
+    </div>
+
 </template>

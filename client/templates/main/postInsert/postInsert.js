@@ -8,17 +8,13 @@ Template.postInsert.events({
             return;
         }
 
-
         var lines = $('#postInput').val().split('\n');
-        console.log(lines.length);
 
         content = "";
 
         for(var i = 0;i < lines.length;i++){
             content +=  "\n" + lines[i];
         }
-
-        var userId = Meteor.userId();
 
         var createdAt = {
             date: new Date(),
@@ -29,13 +25,7 @@ Template.postInsert.events({
             hour: moment().format("H:mm")
         };
 
-        console.log(content, " ", userId, " ", createdAt);
-
-        Posts.insert({
-            content:content,
-            createdAt:createdAt,
-            userId: userId
-        });
+        Meteor.call('insertPost', content, createdAt );
 
         template.find("#postInput").value = "";
     }

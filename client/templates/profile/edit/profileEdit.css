@@ -1,0 +1,39 @@
+.profile-edit-main{
+    float: left;
+    width: 100%;
+}
+
+.setting-label{
+    float:left;
+    padding-right:15px;
+    width: 30%;
+    text-align: right;
+}
+
+.setting-block{
+    float:left;
+    border-left:1px solid #BABBBC;
+    padding: 5px 0px 5px 15px;
+    width:70%;
+}
+
+.fixed-width-100{
+    width:100%
+}
+
+.setting-block textarea {
+    resize:none;
+    max-height:200px;
+    min-height:100px;
+    min-width: 20%;
+    max-width:60%;
+}
+
+.checkbox label{
+    cursor: pointer;
+}
+
+.form-masseges{
+    float:left;
+    width:100%;
+}
