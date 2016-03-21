@@ -2,16 +2,42 @@
 
     <div class="profile-edit-main">
 
-        <p>Profile edit</p>
+        <h2 class="ui icon header" style="width:100%;padding:20px 0;">
+            <i class="settings icon"></i>
+            <div class="content">
+                Account Settings
+                <div class="sub header">Manage your account settings and set e-mail preferences.</div>
+            </div>
+        </h2>
 
         <form>
 
         <div class="ui form">
+
             <div class="setting-label">
-                About me
+                First name
+            </div>
+
+            <div class="setting-block fields">
+                <div class="field fixed-width-30">
+                   <input type="text" class="input" id="first-name">
+                </div>
+            </div>
+
+            <div class="setting-label">
+                Last name
+            </div>
+
+            <div class="setting-block fields">
+                <div class="field fixed-width-30">
+                    <input type="text" class="input" id="last-name">
+                </div>
             </div>
 
 
+            <div class="setting-label">
+                About me
+            </div>
 
             <div class="setting-block fields">
                 <div class="field fixed-width-100">
@@ -34,13 +60,10 @@
                 </div>
             </div>
 
-
-
             <div class="form-masseges">
             <div class="ui success message">
                 {{#if formSuccess}}
                        <span>{{formSuccess}}</span>
-
                 {{/if}}
             </div>
 
@@ -48,8 +71,6 @@
                     We have some problem to save you info :(
                 </div>
             </div>
-
-
 
             <button class="ui primary button">
                 Save Settings

@@ -16,7 +16,7 @@ Meteor.methods({
         });
     },
 
-    'updateProfile': function(aboutMe, privateProfile){
+    'updateProfile': function(aboutMe, privateProfile, firstName, lastName){
 
         console.log("updateProfile: ", aboutMe, privateProfile);
 
@@ -26,7 +26,9 @@ Meteor.methods({
             {$set:
                 {
                     "profile.about":aboutMe,
-                    "profile.private": privateProfile
+                    "profile.private": privateProfile,
+                    "profile.firstname": firstName,
+                    "profile.lastname": lastName
                 }
             });
 

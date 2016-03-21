@@ -21,6 +21,11 @@
     width:100%
 }
 
+.fixed-width-30{
+    width:30%
+}
+
+
 .setting-block textarea {
     resize:none;
     max-height:200px;

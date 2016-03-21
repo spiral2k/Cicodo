@@ -1,20 +1,32 @@
 Template.profileEdit.onRendered(function(){
 
+    ///////////////////////////////
+    // get user setting from DB
+    ///////////////////////////////
+
     // private-profile
     $(".private-profile").checkbox('setting', 'onChecked', function () {
         Session.set('private-profile', true);
     });
+
     $(".private-profile").checkbox('setting', 'onUnchecked', function () {
         Session.set('private-profile', false);
     });
 
-    // get user setting for DB
+
     this.autorun(function() {
             if ( Meteor.user() ) {
-
                 var user = Meteor.user();
 
+                console.log(user);
+
                 $('#about-me').val(user.profile.about);
+
+                $('#first-name').val(user.profile.firstname);
+
+                $('#last-name').val(user.profile.lastname);
+
+
 
                 if(user.profile.private)
                     $(".private-profile").checkbox('check');
@@ -25,7 +37,6 @@ Template.profileEdit.onRendered(function(){
             }
         }
     );
-
 
     // reset session var for form success
     Session.set('formSuccess', undefined);
@@ -41,17 +52,20 @@ Template.profileEdit.helpers({
 });
 
 Template.profileEdit.events({
-
     'submit form': function(event, template){
         event.preventDefault();
 
         var privateProfile = Session.get('private-profile');
+
         var aboutMe = template.find('#about-me').value;
 
-        var respond = Meteor.call('updateProfile', aboutMe, privateProfile, function(error, result){
-            console.log("call ", error, result);
+
+        var firstName = template.find('#first-name').value;
+
+        var lastName = template.find('#last-name').value;
 
 
+        Meteor.call('updateProfile', aboutMe, privateProfile, firstName, lastName, function(error, result){
             if(error){
                 console.log("ERROR: Cant save profile setting!");
                 return;
@@ -62,9 +76,12 @@ Template.profileEdit.events({
                 $('.success').show();
             }
         });
-
-
-
     }
+});
+
+Template.profileEdit.onDestroyed(function(){
+
+    // reset session var for form success
+    Session.set('formSuccess', undefined);
 
 });

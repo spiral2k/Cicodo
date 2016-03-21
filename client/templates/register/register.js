@@ -24,11 +24,14 @@ Template.register.events({
             profile:{
                 avatar: avatar,
                 private: false,
-                about: ""
+                about: "",
+                firstname:"",
+                lastname:""
             }
         }, function(error){
             if(error){
                 console.log(error.reason);
+                Session.set("formErrors", error.reason);
             } else {
                 FlowRouter.go('/');
             }
@@ -96,7 +99,12 @@ Template.register.rendered = function(){
 };
 
 
+Template.register.onDestroyed(function(){
 
+    // reset session var for form errors
+    Session.set('formErrors', undefined);
+
+});
 
 
 function encodeImageFileAsURL(){

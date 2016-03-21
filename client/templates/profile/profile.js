@@ -11,9 +11,6 @@ Template.profile.onCreated(function() {
         var username = FlowRouter.getParam('username'); // Get the user username from the route parameter
         self.subscribe('getUserDataByUsername', username.trim());
 
-        console.log(username);
-
-
     });
 });
 
@@ -54,7 +51,6 @@ Template.profile.helpers({
                 "username": username
             }) || {};
 
-        console.log(userProfile)
         if(!_.isEmpty(userProfile)){
 
             // get the profile user ID
