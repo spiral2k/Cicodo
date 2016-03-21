@@ -26,8 +26,6 @@ Template.profileEdit.onRendered(function(){
 
                 $('#last-name').val(user.profile.lastname);
 
-
-
                 if(user.profile.private)
                     $(".private-profile").checkbox('check');
                 else{

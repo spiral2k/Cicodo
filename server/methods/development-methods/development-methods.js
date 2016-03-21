@@ -2,11 +2,11 @@ Meteor.methods({
     'deleteFollow': function(){
 
         return Meteor.users.update(
-                    {_id : Meteor.userId()},
-                    {$unset:
-                        {
-                            "profile.follow":""
-                        }
+            {_id : Meteor.userId()},
+            {$unset:
+            {
+                "profile.follow":""
+            }
             });
     },
     'removeAllPosts': function(){
