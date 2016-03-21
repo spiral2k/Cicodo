@@ -31,9 +31,6 @@ Template.login.helpers({
 
 Template.login.rendered = function(){
 
-    this.$("form").on("submit", function (e) { e.preventDefault() });
-
-
     // reset session var for form errors
     Session.set('formErrors', undefined);
 

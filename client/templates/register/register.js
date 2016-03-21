@@ -1,6 +1,7 @@
 Template.register.events({
-    'submit form': function(events, template){
+    'submit form': function(event, template){
         event.preventDefault();
+
         var email = template.find('#email').value;
         var username = template.find('#username').value;
         var password = template.find('#password').value;
@@ -100,7 +101,6 @@ Template.register.rendered = function(){
 
 function encodeImageFileAsURL(){
 
-    console.log("get things..");
         var filesSelected = document.getElementById("avatarUpload").files;
         if (filesSelected.length > 0)
         {
@@ -115,7 +115,7 @@ function encodeImageFileAsURL(){
                 newImage.src = srcData;
 
                 document.getElementById("avatar").innerHTML = newImage.outerHTML;
-                console.log("Converted Base64 version is "+document.getElementById("avatar").innerHTML);
+
             };
 
             fileReader.readAsDataURL(fileToLoad);
