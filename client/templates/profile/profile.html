@@ -2,8 +2,6 @@
 {{#if Template.subscriptionsReady}}
     {{#with userProfileData}}
 
-
-
         <h2 class="ui center profile-header">
 
             <!--if its the profile of the viewing user-->
@@ -24,21 +22,23 @@
         </h2>
 
         <!--if its NOT the profile of the viewing user-->
-        {{#unless userProfile}}
-            <div class="user-profile-buttons">
-                <button class="ui button">
-                    <i class="user icon"></i>
-                    Follow
-                </button>
-            </div>
+        {{#if currentUser}}
+            {{#unless userProfile}}
+                <div class="user-profile-buttons">
+                    <button class="ui button" id="follow-user">
+                        <i class="user icon"></i>
+                        Follow
+                    </button>
+                </div>
             {{/unless}}
-
-
-
+        {{/if}}
 
     {{/with}}
+
 {{else}}
+
     <p>Loding</p>
+
 {{/if}}
 
 

@@ -1,8 +1,3 @@
-Template.profile.helpers({
-
-});
-
-
 Template.profile.onCreated(function() {
     // Subscribe only the relevant subscription to this page
     var self = this;
@@ -10,6 +5,19 @@ Template.profile.onCreated(function() {
         var username= FlowRouter.getParam('username'); // Get the collection id from the route parameter
         self.subscribe('userProfileData', username); // Subscribe to the single entry in the collection with the route params id
     });
+});
+
+
+Template.profile.events({
+    'click #follow-user': function(){
+        var username = FlowRouter.getParam('username');
+        var userData = Meteor.users.findOne({
+                username: username
+            }) || {};
+
+        Meteor.call('follow',userData._id);
+
+    }
 });
 
 Template.profile.helpers({

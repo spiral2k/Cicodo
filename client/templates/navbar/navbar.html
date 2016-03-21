@@ -1,21 +1,20 @@
 <template name="navbar">
-        <nav class="ui menu">
-            <a class="item" href="/">
-                <h3 class="header">Cicodo</h3>
+        <nav class="navbar-top navbar-white">
+            <div class="navbar-container">
+            <a href="/">
+                <img src="../logo/small.png">
             </a>
-            <a class="item" href="/">Home</a>
-            <a class="item" href="/about">About</a>
+
 
             {{#if currentUser}}
-
-                <a class="item" id="logout" href="#">logout</a>
-
-            {{else}}
-
-                <a class="item" href="/register">sign-up</a>
-                <a class="item" href="/login">sign-in</a>
-
+                {{>navbaruser}}
             {{/if}}
 
+            {{#unless currentUser}}
+                {{>navbarguest}}
+            {{/unless}}
+
+
+            </div>
         </nav>
 </template>

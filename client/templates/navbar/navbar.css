@@ -1,0 +1,25 @@
+.navbar-top{
+    float:left;
+    width:100%;
+    position:fixed;
+    height:50px;
+    top: 0px;
+    z-index: 1;
+}
+
+.navbar-white{
+    background:#fff;
+    border-bottom:1px solid #f5f5f5;
+    -webkit-box-shadow: 0px 0px 11px 0px rgba(234,234,234,1);
+    -moz-box-shadow: 0px 0px 11px 0px rgba(234,234,234,1);
+    box-shadow: 0px 0px 11px 0px rgba(234,234,234,1);
+}
+
+.navbar-container{
+    margin:0 auto;
+    max-width:1127px;
+}
+
+.navbar-user-block{
+    float:right;
+}

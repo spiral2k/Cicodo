@@ -2,8 +2,36 @@
     outline: none;
 }
 
+body{
+    height: auto;
+}
+
 ul{
     list-style: none;
     padding:0;
     margin:0;
+}
+
+.right{
+    float:right;
+}
+
+.left{
+    float:left;
+}
+
+.top-from-navbar{
+    margin-top:70px;
+}
+
+.avatar{
+    max-width:70px;
+    max-height: 70px;
+    border-radius: 70px;
+}
+
+
+.avatar.small{
+    width:30px;
+    height:30px;
 }

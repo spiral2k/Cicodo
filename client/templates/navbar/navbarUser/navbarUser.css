@@ -1,0 +1,20 @@
+.navbar-dropdown-header{
+    float: right;
+    height: 50px;
+    line-height: 50px;
+}
+
+.navbar-dropdown-header i{
+    float: right;
+}
+
+.navbar-dropdown-header span{
+    float: right;
+    margin-right: 7px;
+    text-transform: capitalize;
+}
+
+.navbar-dropdown-header img{
+    margin-top: 10px;
+    float: right;
+}

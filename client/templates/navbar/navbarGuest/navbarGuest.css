@@ -1,0 +1,13 @@
+.navbar-links{
+    float:right;
+    color:#939aa4;
+    line-height:50px;
+}
+
+.navbar-links a{
+    color:#939aa4;
+}
+
+.navbar-links a:hover{
+    color:#a8b1b8;
+}
