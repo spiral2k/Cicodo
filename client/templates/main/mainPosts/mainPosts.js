@@ -1,9 +1,9 @@
 Template.mainPosts.onDestroyed(function(){
-        Session.set('mainPostsLoadLimit', 5);
+     Session.set('mainPostsLoadLimit', 5);
 });
 
 Template.mainPosts.onRendered(function(){
-    Session.set('mainPostsLoadLimit', 8);
+    Session.set('mainPostsLoadLimit', 5);
 
 });
 
@@ -18,12 +18,16 @@ Template.mainPosts.helpers({
     posts: function () {
         var followArray = Meteor.user().profile.follow;
 
-        //Subscribe to user followed posts
-        for(i = 0; i < followArray.length; i++){
-            console.log(followArray[i]);
-            Meteor.subscribe('postsFollowedByUser', followArray[i]);
-        };
+        if(followArray) {
+            //Subscribe to user followed posts
+            for (var i = 0; i < followArray.length; i++) {
+                // Post data
+                Meteor.subscribe('postsFollowedByUser', followArray[i]);
 
+                // User data
+                Meteor.subscribe('usersFollowedByUser', followArray[i]);
+            }
+        }
 
         Meteor.subscribe('postsFollowedByUser', Meteor.userId());
 
@@ -48,8 +52,6 @@ Template.mainPosts.helpers({
             return "path to default avatar";
     },
     postsCount: function(){
-        console.log(Posts.find().count(), Session.get('mainPostsLoadLimit'));
-
         if(Posts.find().count() > Session.get('mainPostsLoadLimit')){
             return true
         }else{

@@ -1,20 +1,17 @@
 Meteor.methods({
     'deleteFollow': function(){
 
-        Meteor.users.update(
-            {_id : Meteor.userId()},
-                {$unset:
-                    {
-                        "profile.follow":""
-                    }
-        });
-
-        return true;
+        return Meteor.users.update(
+                    {_id : Meteor.userId()},
+                    {$unset:
+                        {
+                            "profile.follow":""
+                        }
+            });
     },
     'removeAllPosts': function(){
 
         return Posts.remove({})
-
     }
 
 

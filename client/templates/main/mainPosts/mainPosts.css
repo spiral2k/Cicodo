@@ -23,12 +23,17 @@
 }
 
 .post-author{
+    text-transform: capitalize;
     font-size: 14px;
+}
+
+.post-author:hover{
+    text-decoration: underline;
 }
 
 .post-date{
     font-size:11px;
-    color:#9197a3;
+    color:#BEC0C3;
 }
 
 .post-text{
