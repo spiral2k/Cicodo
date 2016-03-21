@@ -31,35 +31,6 @@ Meteor.methods({
             });
 
         return true;
-    },
-
-    'follow': function(userIdToFollow){
-
-        Meteor.users.update(
-            {_id : Meteor.userId()},
-                {$addToSet:
-                    {
-                        "profile.follow":userIdToFollow
-                    }
-                }
-        );
-
-
-        Meteor.users.update(
-            {_id : userIdToFollow},
-                {$addToSet:
-                    {
-                        "profile.followers":Meteor.userId()
-                    }
-                }
-        );
-
-
-        return true;
     }
-
-
-
-
 
 });

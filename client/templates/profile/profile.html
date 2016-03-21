@@ -24,12 +24,21 @@
         <!--if its NOT the profile of the viewing user-->
         {{#if currentUser}}
             {{#unless userProfile}}
-                <div class="user-profile-buttons">
-                    <button class="ui button" id="follow-user">
-                        <i class="user icon"></i>
-                        Follow
-                    </button>
-                </div>
+                {{#if isUserFollowing}}
+                    <div class="user-profile-buttons">
+                        <button class="ui button" id="unfollow-user">
+                            <i class="user icon"></i>
+                            Unfollow
+                        </button>
+                    </div>
+                {{else}}
+                    <div class="user-profile-buttons">
+                        <button class="ui button" id="follow-user">
+                            <i class="user icon"></i>
+                            Follow
+                        </button>
+                    </div>
+                {{/if}}
             {{/unless}}
         {{/if}}
 
@@ -37,7 +46,7 @@
 
 {{else}}
 
-    <p>Loding</p>
+    <p>Loading...</p>
 
 {{/if}}
 
