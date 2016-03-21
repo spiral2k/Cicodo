@@ -17,4 +17,11 @@
             </div>
         {{/each}}
     </div>
+
+    {{#if postsCount}}
+        <div id="load-more">Load more</div>
+    {{else}}
+        <div>No more posts to load.</div>
+    {{/if}}
+
 </template>

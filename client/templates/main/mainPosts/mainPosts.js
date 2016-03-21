@@ -1,11 +1,35 @@
+Template.mainPosts.onDestroyed(function(){
+        Session.set('mainPostsLoadLimit', 5);
+});
+
+Template.mainPosts.onRendered(function(){
+    Session.set('mainPostsLoadLimit', 8);
+
+});
+
 Template.mainPosts.events({
+    'click #load-more': function() {
+        Session.set('mainPostsLoadLimit', Session.get('mainPostsLoadLimit') + 20);
+    }
 
 });
 
 Template.mainPosts.helpers({
     posts: function () {
+        var followArray = Meteor.user().profile.follow;
 
-        return Posts.find({}, {sort: {createdAt: {date: -1} }});
+        //Subscribe to user followed posts
+        for(i = 0; i < followArray.length; i++){
+            console.log(followArray[i]);
+            Meteor.subscribe('postsFollowedByUser', followArray[i]);
+        };
+
+
+        Meteor.subscribe('postsFollowedByUser', Meteor.userId());
+
+        return Posts.find({},{limit: Session.get('mainPostsLoadLimit'), sort:{'createdAt.date': -1}});
+
+
     },
     username: function(userId) {
         var user = Meteor.users.findOne(userId);
@@ -22,6 +46,16 @@ Template.mainPosts.helpers({
                 return user.profile.avatar;
         else
             return "path to default avatar";
+    },
+    postsCount: function(){
+        console.log(Posts.find().count(), Session.get('mainPostsLoadLimit'));
+
+        if(Posts.find().count() > Session.get('mainPostsLoadLimit')){
+            return true
+        }else{
+            return false
+        }
+
     }
 
 });

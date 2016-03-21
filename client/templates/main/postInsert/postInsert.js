@@ -27,6 +27,9 @@ Template.postInsert.events({
 
         Meteor.call('insertPost', content, createdAt );
 
+        // all the posts that the user can see + the post that he submited
+        Session.set('mainPostsLoadLimit', Session.get('mainPostsLoadLimit') + 1);
+
         template.find("#postInput").value = "";
     }
 

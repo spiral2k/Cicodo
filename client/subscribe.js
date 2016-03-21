@@ -1,6 +1,4 @@
-
-
 //Subs
 Meteor.subscribe('users');
 
-Meteor.subscribe('posts');
+Meteor.subscribe('postsFollowedByUser');

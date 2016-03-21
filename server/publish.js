@@ -4,9 +4,13 @@ Meteor.publish("users", function() {
 });
 
 
-Meteor.publish("posts", function() {
-    return Posts.find();
-})
+
+
+
+Meteor.publish("postsFollowedByUser", function(userIDPosts) {
+
+    return Posts.find({createdBy: userIDPosts}, {sort: {'createdAt.date': -1}});
+});
 
 
 

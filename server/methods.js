@@ -31,6 +31,12 @@ Meteor.methods({
             });
 
         return true;
+    },
+    'followedUsersPosts': function(){
+
+        console.log('calling followedUsersPosts');
+
+        return Posts.find()
     }
 
 });
