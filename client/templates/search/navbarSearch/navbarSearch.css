@@ -1,0 +1,40 @@
+.navbar-search-wrap{
+    float: left;
+    position: relative;
+    margin-top: 7px;
+}
+
+.search-list{
+    position: absolute;
+    top:25px;
+    width:160%;
+    background: #fff;
+    color:#000;
+    border: 1px solid rgba(34, 36, 38, 0.15);
+    border-radius: 0.28571429rem;
+    padding:10px 0;
+}
+
+.avatar-search{
+    float: left;
+    margin: 0 10px;
+}
+
+.search-list .header{
+    color:#1EBC30;
+}
+
+.listQuerys{
+    margin: 7px 0;
+}
+.searchQuery {
+    border-top: 1px solid #f4f4f4;
+}
+
+.searchQuery:hover {
+    background: #f6f6f6;
+}
+
+.QueryWrap{
+    padding:8px 0 6px 0;
+}

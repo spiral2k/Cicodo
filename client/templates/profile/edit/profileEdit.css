@@ -42,3 +42,8 @@
     float:left;
     width:100%;
 }
+
+.profile-edit-buttons{
+    float: right;
+    margin-right: 27%;
+}

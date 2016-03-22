@@ -30,7 +30,7 @@ Template.profile.helpers({
         if( _.isEmpty(userData)){
             FlowRouter.go('/404')
         }
-        
+
         if(userData._id == Meteor.userId()){
             userData.userProfile = true;
         }

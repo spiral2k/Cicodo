@@ -8,8 +8,8 @@
             {{#if userProfile}}
                 <div class="user-profile-buttons-edit">
                     <a class="ui button" href="/profile-edit">
-                        <i class="edit icon"></i>
-                        Edit Profile
+                        <i class="settings icon"></i>
+                        Settings
                     </a>
                 </div>
             {{/if}}
@@ -46,7 +46,7 @@
 
 {{else}}
 
-    <p>Loading...</p>
+    {{>loader}}
 
 {{/if}}
 

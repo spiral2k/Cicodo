@@ -2,6 +2,7 @@ Template.navbaruser.onRendered(function(){
     $('.dropdown').dropdown({
         transition: 'drop'
     });
+
 });
 
 Template.navbaruser.helpers({
@@ -24,5 +25,9 @@ Template.navbaruser.events({
 
         console.log("dwdw");
         FlowRouter.go('/');
+    },
+    'click .item': function(event){
+        $(event.target).removeClass('selected');
+        $(event.target).removeClass('active');
     }
 });

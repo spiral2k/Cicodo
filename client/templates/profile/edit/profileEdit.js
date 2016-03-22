@@ -1,10 +1,12 @@
+var user;
+
 Template.profileEdit.onRendered(function(){
 
     ///////////////////////////////
     // get user setting from DB
     ///////////////////////////////
 
-    // private-profile
+    // private-profile events, save state in session
     $(".private-profile").checkbox('setting', 'onChecked', function () {
         Session.set('private-profile', true);
     });
@@ -16,9 +18,7 @@ Template.profileEdit.onRendered(function(){
 
     this.autorun(function() {
             if ( Meteor.user() ) {
-                var user = Meteor.user();
-
-                console.log(user);
+                user = Meteor.user();
 
                 $('#about-me').val(user.profile.about);
 
@@ -74,6 +74,23 @@ Template.profileEdit.events({
                 $('.success').show();
             }
         });
+    },
+    'click #discard-changes': function(){
+
+        $('#about-me').val(user.profile.about);
+
+        $('#first-name').val(user.profile.firstname);
+
+        $('#last-name').val(user.profile.lastname);
+
+        if(user.profile.private)
+            $(".private-profile").checkbox('check');
+        else{
+            $(".private-profile").checkbox('uncheck');
+        }
+
+        return true;
+
     }
 });
 

@@ -20,6 +20,10 @@ ul{
     float:left;
 }
 
+.capitalize{
+    text-transform: capitalize;
+}
+
 .top-from-navbar{
     margin-top:70px;
 }
