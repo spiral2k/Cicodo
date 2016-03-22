@@ -1,5 +1,5 @@
 // user profile data
-var userData;
+var userData, username;
 
 Template.profile.onCreated(function() {
 
@@ -11,7 +11,7 @@ Template.profile.onCreated(function() {
         //////////////////////////////////////////////////////////////////////
         // Get information about the user that the profile belong to him
         //////////////////////////////////////////////////////////////////////
-        var username = FlowRouter.getParam('username'); // Get the user username from the route parameter
+        username = FlowRouter.getParam('username'); // Get the user username from the route parameter
 
         self.subscribe('getUserDataByUsername', username.trim());
 
@@ -26,8 +26,11 @@ Template.profile.onCreated(function() {
 
 Template.profile.helpers({
     userProfileData: function() {
-        var username = FlowRouter.getParam('username');
 
+        if( _.isEmpty(userData)){
+            FlowRouter.go('/404')
+        }
+        
         if(userData._id == Meteor.userId()){
             userData.userProfile = true;
         }
@@ -46,8 +49,6 @@ Template.profile.helpers({
         if(viewUser) {
             var follows = viewUser.profile.follow;
         }
-
-        var username = FlowRouter.getParam('username');
 
         if(!_.isEmpty(userData)){
 
@@ -70,21 +71,16 @@ Template.profile.helpers({
 
 Template.profile.events({
     'click #follow-user': function(){
-        var username = FlowRouter.getParam('username');
-        var userData = Meteor.users.findOne({
-                username: username
-            }) || {};
 
         Meteor.call('follow',userData._id);
 
+        return true;
     },
     'click #unfollow-user': function(){
-        var username = FlowRouter.getParam('username');
-        var userData = Meteor.users.findOne({
-                username: username
-            }) || {};
 
         Meteor.call('unfollow', userData._id);
+
+        return true;
     }
 
 
