@@ -1,4 +1,5 @@
 <template name="mainPosts">
+    {{#if mainPostsReady}}
     <div class="main-posts">
         {{#each posts}}
             <div class="main-post">
@@ -18,10 +19,14 @@
         {{/each}}
     </div>
 
-    {{#if postsCount}}
-        <div id="load-more">Load more</div>
+        {{#if postsCount}}
+                <div id="load-more">Load more</div>
+            {{else}}
+                <div>No more posts to load.</div>
+        {{/if}}
+
     {{else}}
-        <div>No more posts to load.</div>
+        {{>loader}}
     {{/if}}
 
 </template>
