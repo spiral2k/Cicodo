@@ -1,0 +1,39 @@
+.navbar-search-wrap{
+    float: left;
+    position: relative;
+    margin-top: 7px;
+}
+
+.search-list{
+    position: absolute;
+    top:38px;
+    width:160%;
+    background: #fff;
+    color:#000;
+    border: 1px solid rgba(34, 36, 38, 0.15);
+    border-radius: 0.28571429rem;
+}
+
+
+.search-list a{
+    float:left;
+    width:100%;
+    padding: 5px 0 5px 10px;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+.search-list a:hover{
+    background: rgba(0, 0, 0, 0.05);
+}
+
+
+.search-list a img{
+    float:left;
+}
+
+.search-list a span{
+    float:left;
+    margin-left:10px;
+    text-transform: capitalize;
+    line-height: 28px;
+}

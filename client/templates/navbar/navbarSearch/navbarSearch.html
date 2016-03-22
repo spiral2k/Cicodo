@@ -1,0 +1,18 @@
+<template name="navbarSearch">
+<div class="navbar-search-wrap">
+    <div class="ui small icon input">
+        <input type="text" placeholder="Search..." id="navbar-search">
+        <i class="search icon"></i>
+    </div>
+
+    {{#if searchHasResults}}
+        <ul class="search-list">
+            {{#each searchHasResults}}
+                <a class="searchQuery" href="/profile/{{username}}"><img class="avatar small" src="{{profile.avatar}}"> <span>{{username}}</span></a>
+            {{/each}}
+        </ul>
+    {{/if}}
+
+</div>
+
+</template>

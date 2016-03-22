@@ -1,4 +1,8 @@
+// user profile data
+var userData;
+
 Template.profile.onCreated(function() {
+
     // Subscribe only the relevant subscription to this page
 
     var self = this;
@@ -7,25 +11,22 @@ Template.profile.onCreated(function() {
         //////////////////////////////////////////////////////////////////////
         // Get information about the user that the profile belong to him
         //////////////////////////////////////////////////////////////////////
-
         var username = FlowRouter.getParam('username'); // Get the user username from the route parameter
+
         self.subscribe('getUserDataByUsername', username.trim());
+
+        userData = Meteor.users.findOne({
+                username: username
+            }) || {};
 
     });
 });
 
 
+
 Template.profile.helpers({
     userProfileData: function() {
         var username = FlowRouter.getParam('username');
-
-        var userData = Meteor.users.findOne({
-                username: username
-            }) || {};
-
-        if(_.isEmpty(userData)){
-            FlowRouter.go("/404");
-        }
 
         if(userData._id == Meteor.userId()){
             userData.userProfile = true;
@@ -41,20 +42,17 @@ Template.profile.helpers({
 
         // get user following ID's
         var viewUser = Meteor.user();
+
         if(viewUser) {
             var follows = viewUser.profile.follow;
         }
 
         var username = FlowRouter.getParam('username');
 
-        var userProfile = Meteor.users.findOne({
-                "username": username
-            }) || {};
-
-        if(!_.isEmpty(userProfile)){
+        if(!_.isEmpty(userData)){
 
             // get the profile user ID
-            var userProfileId = userProfile._id;
+            var userProfileId = userData._id;
 
             // search if user is following the profile user
 

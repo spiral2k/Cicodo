@@ -9,7 +9,11 @@ Meteor.publish("postsFollowedByUser", function(postsByID) {
 
 
 Meteor.publish("getUserDataByUsername", function(user_name) {
-    return Meteor.users.find({username: user_name}, {fields: {'username': 1, 'profile': 1}});
+    return Meteor.users.find(
+        {username: user_name},
+        {fields: {'username': 1, 'profile': 1}
+        }
+    );
 });
 
 
