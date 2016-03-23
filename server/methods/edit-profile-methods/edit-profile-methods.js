@@ -1,7 +1,13 @@
 Meteor.methods({
-    'updateProfile': function (aboutMe, privateProfile, firstName, lastName) {
+    'updateProfile': function (aboutMe, privateProfile, firstName, lastName, feedType) {
 
-        console.log("updateProfile: ", aboutMe, privateProfile);
+        console.log("updateProfile: ", feedType);
+
+        aboutMe = aboutMe || "";
+        privateProfile = privateProfile || "";
+        firstName = firstName || "";
+        lastName = lastName || "";
+        feedType = feedType  || "";
 
 
         Meteor.users.update(
@@ -11,7 +17,8 @@ Meteor.methods({
                     "profile.about": aboutMe,
                     "profile.private": privateProfile,
                     "profile.firstname": firstName,
-                    "profile.lastname": lastName
+                    "profile.lastname": lastName,
+                    "profile.feedType": feedType
                 }
             });
 

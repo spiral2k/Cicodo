@@ -2,6 +2,8 @@ var user;
 
 Template.profileEdit.onRendered(function(){
 
+    $('.dropdown.feedType').dropdown();
+
     ///////////////////////////////
     // get user setting from DB
     ///////////////////////////////
@@ -25,6 +27,11 @@ Template.profileEdit.onRendered(function(){
                 $('#first-name').val(user.profile.firstname);
 
                 $('#last-name').val(user.profile.lastname);
+
+
+                console.log("user.profile.feedType ", user.profile.feedType);
+
+                $('#feedType').dropdown('set selected', user.profile.feedType);
 
                 if(user.profile.private)
                     $(".private-profile").checkbox('check');
@@ -57,13 +64,15 @@ Template.profileEdit.events({
 
         var aboutMe = template.find('#about-me').value;
 
-
         var firstName = template.find('#first-name').value;
 
         var lastName = template.find('#last-name').value;
 
+        // here the result is Array -- Letapel acharkach
+        var feedType = $('#feedType').dropdown('get value');
 
-        Meteor.call('updateProfile', aboutMe, privateProfile, firstName, lastName, function(error, result){
+
+        Meteor.call('updateProfile', aboutMe, privateProfile, firstName, lastName, feedType[0], function(error, result){
             if(error){
                 console.log("ERROR: Cant save profile setting!");
                 return;

@@ -1,0 +1,58 @@
+.main-posts{
+    float:left;
+    width: 100%;
+    margin-top:20px;
+}
+
+.main-post{
+    float:left;
+    width:100%;
+    border-bottom: 1px solid #CACBCD;
+    padding-bottom:10px;
+    margin-bottom: 10px;
+}
+
+
+.main-post:last-child{
+    border:0;
+}
+.post-content{
+    float:left;
+    width: 85%;
+    margin: 6px 0 0 10px;
+}
+
+.post-author{
+    text-transform: capitalize;
+    font-size: 14px;
+}
+
+.post-author:hover{
+    text-decoration: underline;
+}
+
+.post-date{
+    font-size:11px;
+    color:#BEC0C3;
+}
+
+.searchQuery{
+    min-height:44px;
+}
+
+.post-text{
+    float: left;
+    width: 100%;
+    margin-top: -13px;
+    white-space: pre;
+    line-height: 12px;
+}
+
+.main-posts-avatar{
+    display: block;
+    width: 45px;
+    height: 45px;
+    float: left;
+    margin: 0.2em 0em 0em;
+
+}

@@ -24,9 +24,10 @@ Template.register.events({
             profile:{
                 avatar: avatar,
                 private: false,
-                about: "",
+                about: "Hi im new here!",
                 firstname:"",
-                lastname:""
+                lastname:"",
+                feedType:"regularFeed"
             }
         }, function(error){
             if(error){

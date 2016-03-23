@@ -1,41 +1,21 @@
 <template name="mainPosts">
-    {{#if mainPostsReady}}
-    <div class="main-posts">
-        {{#each posts}}
-            <div class="main-post">
-                <a class="post-author" href="/profile/{{username createdBy}}">
-                    <img class="ui circular image main-posts-avatar" src="{{getAvatar createdBy}}">
-                </a>
-                <div class="post-content">
-                    <a class="post-author" href="/profile/{{username createdBy}}">{{username createdBy}}</a>
 
-                    <div class="post-date">{{createdAt.displayDate}}</div>
-                    <div class="post-text">
-                        {{content}}
-                    </div>
-                </div>
 
+    <div class="ui dropdown button right">
+
+        <span class="text">Feed Type</span>
+        <div class="menu" style="top:40px;">
+            <div class="item">
+                <i class="lightning icon"></i>
+                Live Feed
             </div>
-        {{/each}}
+            <div class="item">
+                <i class="rocket icon"></i>
+                Regular Feed
+            </div>
+        </div>
     </div>
 
-        {{#if $eq postsCount 'hasPosts'}}
-
-                <div id="load-more">Load more</div>
-
-            {{else}}
-
-            {{#if $eq postsCount 'noPostsToLoad'}}
-                <div>No  posts!!!.</div>
-                {{else}}
-
-                <div>No more posts to load.</div>
-
-            {{/if}}
-        {{/if}}
-
-    {{else}}
-        {{>loader}}
-    {{/if}}
+    {{>Template.dynamic template=feedType}}
 
 </template>
