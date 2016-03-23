@@ -1,5 +1,5 @@
 // get user followers array that contain ids;
-var followArray;
+var followArray = [], noPostsToLoad = "noPostsToLoad", hasPosts = 'hasPosts';
 
 
 Template.mainPosts.onCreated(function(){
@@ -17,15 +17,17 @@ Template.mainPosts.onCreated(function(){
     if(followArray) {
         //Subscribe to user followed posts
         for ( var i = 0; i < followArray.length; i++ ) {
+
             // User data
             this.posts = this.subscribe('usersFollowedByUser', followArray[i]);
             // Post data
             this.posts = this.subscribe('postsFollowedByUser', followArray[i], Session.get('mainPostsLoadLimit'), Session.get('nowDate'));
         }
+    }
         //subscribe to Meteor.user() posts.
         this.posts = this.subscribe('postsFollowedByUser', Meteor.userId(), Session.get('mainPostsLoadLimit'), new Date());
 
-    }
+
 
 });
 
@@ -39,7 +41,11 @@ Template.mainPosts.events({
 
 Template.mainPosts.helpers({
     mainPostsReady:function(){
-        return Template.instance().posts.ready();
+        if(typeof followArray !== 'undefined' &&  followArray.length > 0) {
+            return Template.instance().posts.ready();
+        } else {
+            return true
+        }
     },
     posts: function () {
 
@@ -52,10 +58,12 @@ Template.mainPosts.helpers({
                 // Post data
                 Template.instance().posts = Template.instance().subscribe('postsFollowedByUser', followArray[i], Session.get('mainPostsLoadLimit'), Session.get('nowDate'));
             }
+
+        }
             //subscribe to Meteor.user() posts.
             Template.instance().posts = Template.instance().subscribe('postsFollowedByUser', Meteor.userId(), Session.get('mainPostsLoadLimit'), new Date());
 
-        }
+
 
         var postsList = Posts.find({},{limit: Session.get('mainPostsLoadLimit'), sort:{'createdAt.date': -1}});
 
@@ -80,14 +88,23 @@ Template.mainPosts.helpers({
             if((typeof  user.profile !== 'undefined' || typeof user.profile.avatar !== 'undefined') && user.profile.avatar != "") {
                 return user.profile.avatar;
             } else {
-                return "";
+                return true;
             }
     },
     postsCount: function(){
         //check if need to show 'Load more posts'.
+
+
+
         if(Posts.find().count() > Session.get('mainPostsLoadLimit')){
-            return true
+            return 'hasPosts'
         }else{
+
+            if(Posts.find().count() === 0){
+
+                return noPostsToLoad;
+
+            }
             return false
         }
 

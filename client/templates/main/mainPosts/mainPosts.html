@@ -19,10 +19,19 @@
         {{/each}}
     </div>
 
-        {{#if postsCount}}
+        {{#if $eq postsCount 'hasPosts'}}
+
                 <div id="load-more">Load more</div>
+
             {{else}}
+
+            {{#if $eq postsCount 'noPostsToLoad'}}
+                <div>No  posts!!!.</div>
+                {{else}}
+
                 <div>No more posts to load.</div>
+
+            {{/if}}
         {{/if}}
 
     {{else}}

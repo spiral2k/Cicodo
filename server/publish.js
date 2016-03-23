@@ -7,7 +7,7 @@ Meteor.publish("postsFollowedByUser", function(postsByID, limit, date) {
 
     limit = limit || 5;
 
-    return Posts.find({createdBy: postsByID, 'createdAt.date': {$lt: date} }, {sort: {'createdAt.date': -1}, limit: limit});
+    return Posts.find({createdBy: postsByID, 'createdAt.date': {$lte: date} }, {sort: {'createdAt.date': -1}, limit: limit});
 });
 
 
