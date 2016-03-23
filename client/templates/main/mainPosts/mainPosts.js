@@ -1,9 +1,12 @@
+// get user followers array that contain ids;
+var followArray;
+
+
 Template.mainPosts.onCreated(function(){
 
     Session.set('mainPostsLoadLimit', 5);
 
-    // get user followers array that contain ids;
-    var followArray = Meteor.user().profile.follow;
+    followArray = Meteor.user().profile.follow;
 
     if(followArray) {
         //Subscribe to user followed posts
@@ -11,10 +14,10 @@ Template.mainPosts.onCreated(function(){
             // User data
             this.posts = this.subscribe('usersFollowedByUser', followArray[i]);
             // Post data
-            this.posts = this.subscribe('postsFollowedByUser', followArray[i]);
+            this.posts = this.subscribe('postsFollowedByUser', followArray[i], Session.get('mainPostsLoadLimit'));
         }
         //subscribe to Meteor.user() posts.
-        this.posts = this.subscribe('postsFollowedByUser', Meteor.userId());
+        this.posts = this.subscribe('postsFollowedByUser', Meteor.userId(), Session.get('mainPostsLoadLimit'));
 
     }
 
@@ -23,7 +26,8 @@ Template.mainPosts.onCreated(function(){
 
 Template.mainPosts.events({
     'click #load-more': function() {
-        Session.set('mainPostsLoadLimit', Session.get('mainPostsLoadLimit') + 20);
+        // increase session post limit
+        Session.set('mainPostsLoadLimit', Session.get('mainPostsLoadLimit') + 5);
     }
 });
 
@@ -32,7 +36,28 @@ Template.mainPosts.helpers({
         return Template.instance().posts.ready();
     },
     posts: function () {
-        var postsList = Posts.find({},{limit: Session.get('mainPostsLoadLimit'), sort:{'createdAt.date': -1}});
+
+
+        if(followArray) {
+            //Subscribe to user followed posts
+            for ( var i = 0; i < followArray.length; i++ ) {
+                // User data
+                Template.instance().posts = Template.instance().subscribe('usersFollowedByUser', followArray[i]);
+                // Post data
+                Template.instance().posts = Template.instance().subscribe('postsFollowedByUser', followArray[i], Session.get('mainPostsLoadLimit'));
+            }
+            //subscribe to Meteor.user() posts.
+            Template.instance().posts = Template.instance().subscribe('postsFollowedByUser', Meteor.userId(), Session.get('mainPostsLoadLimit'));
+
+        }
+        var postsList = Posts.find({},{limit: Session.get('mainPostsLoadLimit'), sort:{'createdAt.date': -1}});;
+
+        postsList.observeChanges({
+            addedBefore: function(id, doc) {
+                    console.log(doc);
+            }
+        });
+
         return postsList;
     },
     username: function(userId) {
@@ -48,7 +73,7 @@ Template.mainPosts.helpers({
             if((typeof  user.profile !== 'undefined' || typeof user.profile.avatar !== 'undefined') && user.profile.avatar != "") {
                 return user.profile.avatar;
             } else {
-                return "path to default avatar";
+                return "";
             }
     },
     postsCount: function(){
