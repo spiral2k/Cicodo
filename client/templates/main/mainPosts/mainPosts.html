@@ -1,21 +1,23 @@
 <template name="mainPosts">
 
+<div class="mainFeedWrap">
 
-    <div class="ui dropdown button right">
-
+    <div id="feedType" class="ui dropdown button right">
         <span class="text">Feed Type</span>
         <div class="menu" style="top:40px;">
-            <div class="item">
+            <div class="item" data-value="liveFeed">
                 <i class="lightning icon"></i>
                 Live Feed
             </div>
-            <div class="item">
+            <div class="item" data-value="regularFeed">
                 <i class="rocket icon"></i>
                 Regular Feed
             </div>
         </div>
     </div>
 
-    {{>Template.dynamic template=feedType}}
 
+
+    {{>Template.dynamic template=feedType}}
+</div>
 </template>
