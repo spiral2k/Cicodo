@@ -5,9 +5,12 @@ var followArray;
 Template.mainPosts.onCreated(function(){
 
     Session.set('mainPostsLoadLimit', 5);
+    Session.set('nowDate', new Date());
+
+
+    console.log("DATE: ", Session.get('nowDate'));
 
     followArray = Meteor.user().profile.follow;
-
 
     // critical for loader
     // need to know when to finish "loading"
@@ -17,10 +20,10 @@ Template.mainPosts.onCreated(function(){
             // User data
             this.posts = this.subscribe('usersFollowedByUser', followArray[i]);
             // Post data
-            this.posts = this.subscribe('postsFollowedByUser', followArray[i], Session.get('mainPostsLoadLimit'));
+            this.posts = this.subscribe('postsFollowedByUser', followArray[i], Session.get('mainPostsLoadLimit'), Session.get('nowDate'));
         }
         //subscribe to Meteor.user() posts.
-        this.posts = this.subscribe('postsFollowedByUser', Meteor.userId(), Session.get('mainPostsLoadLimit'));
+        this.posts = this.subscribe('postsFollowedByUser', Meteor.userId(), Session.get('mainPostsLoadLimit'), new Date());
 
     }
 
@@ -47,10 +50,10 @@ Template.mainPosts.helpers({
                 // User data
                 Template.instance().posts = Template.instance().subscribe('usersFollowedByUser', followArray[i]);
                 // Post data
-                Template.instance().posts = Template.instance().subscribe('postsFollowedByUser', followArray[i], Session.get('mainPostsLoadLimit'));
+                Template.instance().posts = Template.instance().subscribe('postsFollowedByUser', followArray[i], Session.get('mainPostsLoadLimit'), Session.get('nowDate'));
             }
             //subscribe to Meteor.user() posts.
-            Template.instance().posts = Template.instance().subscribe('postsFollowedByUser', Meteor.userId(), Session.get('mainPostsLoadLimit'));
+            Template.instance().posts = Template.instance().subscribe('postsFollowedByUser', Meteor.userId(), Session.get('mainPostsLoadLimit'), new Date());
 
         }
 

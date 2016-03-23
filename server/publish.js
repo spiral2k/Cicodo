@@ -3,11 +3,11 @@ Meteor.publish("usersFollowedByUser", function(userByID) {
     return Meteor.users.find({_id: userByID}, {fields: {'username': 1, 'profile': 1}});
 });
 
-Meteor.publish("postsFollowedByUser", function(postsByID, limit) {
+Meteor.publish("postsFollowedByUser", function(postsByID, limit, date) {
 
     limit = limit || 5;
 
-    return Posts.find({createdBy: postsByID}, {sort: {'createdAt.date': -1}, limit: limit});
+    return Posts.find({createdBy: postsByID, 'createdAt.date': {$lt: date} }, {sort: {'createdAt.date': -1}, limit: limit});
 });
 
 
