@@ -21,24 +21,7 @@ Template.profileEdit.onRendered(function(){
     this.autorun(function() {
             if ( Meteor.user() ) {
                 user = Meteor.user();
-
-                $('#about-me').val(user.profile.about);
-
-                $('#first-name').val(user.profile.firstname);
-
-                $('#last-name').val(user.profile.lastname);
-
-
-                console.log("user.profile.feedType ", user.profile.feedType);
-
-                $('#feedType').dropdown('set selected', user.profile.feedType);
-
-                if(user.profile.private)
-                    $(".private-profile").checkbox('check');
-                else{
-                    $(".private-profile").checkbox('uncheck');
-                }
-
+                setTemplateValue();
             }
         }
     );
@@ -86,17 +69,7 @@ Template.profileEdit.events({
     },
     'click #discard-changes': function(){
 
-        $('#about-me').val(user.profile.about);
-
-        $('#first-name').val(user.profile.firstname);
-
-        $('#last-name').val(user.profile.lastname);
-
-        if(user.profile.private)
-            $(".private-profile").checkbox('check');
-        else{
-            $(".private-profile").checkbox('uncheck');
-        }
+        setTemplateValue();
 
         return true;
 
@@ -109,3 +82,22 @@ Template.profileEdit.onDestroyed(function(){
     Session.set('formSuccess', undefined);
 
 });
+
+
+function setTemplateValue(){
+    $('#about-me').val(user.profile.about);
+
+    $('#first-name').val(user.profile.firstname);
+
+    $('#last-name').val(user.profile.lastname);
+
+    $('#feedType').dropdown('set selected', user.profile.feedType);
+
+    if(user.profile.private)
+        $(".private-profile").checkbox('check');
+    else{
+        $(".private-profile").checkbox('uncheck');
+    }
+
+    return true;
+}
