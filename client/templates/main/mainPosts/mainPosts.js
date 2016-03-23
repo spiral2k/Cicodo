@@ -8,6 +8,9 @@ Template.mainPosts.onCreated(function(){
 
     followArray = Meteor.user().profile.follow;
 
+
+    // critical for loader
+    // need to know when to finish "loading"
     if(followArray) {
         //Subscribe to user followed posts
         for ( var i = 0; i < followArray.length; i++ ) {
@@ -50,7 +53,8 @@ Template.mainPosts.helpers({
             Template.instance().posts = Template.instance().subscribe('postsFollowedByUser', Meteor.userId(), Session.get('mainPostsLoadLimit'));
 
         }
-        var postsList = Posts.find({},{limit: Session.get('mainPostsLoadLimit'), sort:{'createdAt.date': -1}});;
+
+        var postsList = Posts.find({},{limit: Session.get('mainPostsLoadLimit'), sort:{'createdAt.date': -1}});
 
         postsList.observeChanges({
             addedBefore: function(id, doc) {
