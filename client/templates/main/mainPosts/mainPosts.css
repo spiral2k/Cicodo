@@ -36,6 +36,10 @@
     color:#BEC0C3;
 }
 
+.searchQuery{
+    min-height:44px;
+}
+
 .post-text{
     float: left;
     width: 100%;
