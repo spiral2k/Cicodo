@@ -24,6 +24,12 @@ ul{
     text-transform: capitalize;
 }
 
+.float-width{
+    float:left;
+    width:100%;
+    margin-bottom: 10px;
+}
+
 .top-from-navbar{
     margin-top:70px;
 }
@@ -38,4 +44,8 @@ ul{
 .avatar.small{
     width:30px;
     height:30px;
+}
+
+.font-size-12{
+    font-size: 12px;
 }

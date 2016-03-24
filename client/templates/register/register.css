@@ -1,10 +1,20 @@
+
+.avatarUploadRegister{
+    text-align: center;
+}
+
+.avatarUploadButton{
+    display: inline-block;
+}
+
 #avatar {
-    float: left;
+    display: inline-block;
     width: 62px;
     height: 60px;
-    border:1px solid #e2e2e2;
-    text-align:center;
-    margin-right: 20px;
+    border: 1px solid #e2e2e2;
+    text-align: center;
+    margin-right: 8px;
+    cursor: pointer;
 }
 
 #avatar:before {
@@ -22,10 +32,6 @@
 
 }
 
-.avatarUploadRegister{
-    float: right;
-    margin-right: 20px;
-}
 
 
 .avatarUploadRegister input[type="file"], #inputFileToLoad { display: none; }

@@ -38,3 +38,12 @@
 .QueryWrap{
     padding:8px 0 6px 0;
 }
+
+.only-username{
+    line-height:30px;
+}
+
+.content-query{
+    float:left;
+    margin-left:3px;
+}
