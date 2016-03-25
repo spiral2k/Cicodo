@@ -28,3 +28,5 @@ kadira:blaze-layout
 momentjs:moment
 underscore
 raix:handlebar-helpers
+cfs:standard-packages
+cfs:filesystem
