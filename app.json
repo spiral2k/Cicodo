@@ -2,7 +2,7 @@
   "name": "Cicodo",
   "description": "An open-source community app built with Meteor",
   "repository": "https://github.com/spiral2k/social",
-  "logo": "",
+  "logo": "http://s22.postimg.org/jz0udegrl/small.png",
   "keywords": ["meteor", "social", "community"],
   "env": {
     "BUILDPACK_URL": "https://github.com/AdmitHub/meteor-buildpack-horse.git",
