@@ -17,17 +17,18 @@ Template.register.events({
             avatar = $('#avatar img').attr('src');
         }
 
+
         Accounts.createUser({
             email:email,
             username:username,
             password: password,
             profile:{
                 avatar: avatar,
-                private: false,
-                about: "Hi im new here!",
+                private: Meteor.settings.public.privateProfiles,
+                about: Meteor.settings.public.defaultAbout,
                 firstname:"",
                 lastname:"",
-                feedType:"regularFeed"
+                feedType: Meteor.settings.public.feedType
             }
         }, function(error){
             if(error){

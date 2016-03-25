@@ -16,7 +16,20 @@ Template.login.events({
                 FlowRouter.go('/');
             }
         });
-    }
+    },
+    '#github': function(){
+
+        Meteor.loginWithGithub({
+            requestPermissions: ['user', 'public_repo']
+        }, function (err) {
+            if (err)
+                Session.set('formErrors', err.reason || 'Unknown error');
+        });
+}
+
+
+
+
 });
 
 

@@ -30,3 +30,6 @@ underscore
 raix:handlebar-helpers
 cfs:standard-packages
 cfs:filesystem
+accounts-github
+service-configuration
+email
