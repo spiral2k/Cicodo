@@ -4,7 +4,6 @@ var userData, username, follows;
 Template.profile.onCreated(function() {
 
     // Subscribe only the relevant subscription to this page
-
     var self = this;
     self.autorun(function() { // Stops all current subscriptions
 
@@ -22,6 +21,44 @@ Template.profile.onCreated(function() {
 
     });
 });
+
+Template.profile.onRendered(function(){
+
+    setTimeout(function(){
+        $('.ui.followers.modal').modal('attach events', '.fireFollowersModal', 'show').modal({blurring: true});
+        $('.ui.following.modal').modal('attach events', '.fireFollowingModal', 'show').modal({blurring: true});
+
+
+    }, 500);
+
+
+
+
+
+
+
+
+
+
+});
+
+
+
+Template.profile.events({
+    'click #follow-user': function(){
+        Meteor.call('follow',userData._id);
+        return true;
+    },
+    'click #unfollow-user': function(){
+        Meteor.call('unfollow', userData._id);
+        return true;
+    },
+    'click #showModal': function(){
+        $('.ui.modal').modal('attach events', '#showModal', 'show');
+    }
+});
+
+
 
 
 
@@ -110,15 +147,4 @@ Template.profile.helpers({
 
 
 
-});
-
-Template.profile.events({
-    'click #follow-user': function(){
-        Meteor.call('follow',userData._id);
-        return true;
-    },
-    'click #unfollow-user': function(){
-        Meteor.call('unfollow', userData._id);
-        return true;
-    }
 });
