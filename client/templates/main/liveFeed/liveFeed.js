@@ -4,7 +4,7 @@ var followArray = [], noPostsToLoad = "noPostsToLoad", hasPosts = 'hasPosts';
 
 Template.liveFeed.onCreated(function(){
 
-    Session.set('mainPostsLoadLimit', 5);
+    Session.set('mainPostsLoadLimit', MAIN_POSTS_LOAD_LIMIT);
 
     followArray = Meteor.user().profile.follow;
 
@@ -28,7 +28,7 @@ Template.liveFeed.onCreated(function(){
 Template.liveFeed.events({
     'click #load-more': function() {
         // increase session post limit
-        Session.set('mainPostsLoadLimit', Session.get('mainPostsLoadLimit') + 5);
+        Session.set('mainPostsLoadLimit', Session.get('mainPostsLoadLimit') + MAIN_POSTS_INCRESE_LOAD_LIMIT);
     }
 });
 
@@ -99,5 +99,5 @@ Template.liveFeed.helpers({
 
 
 Template.liveFeed.onDestroyed(function(){
-    Session.set('mainPostsLoadLimit', 5);
+    Session.set('mainPostsLoadLimit', MAIN_POSTS_LOAD_LIMIT);
 });

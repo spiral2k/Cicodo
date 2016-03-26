@@ -5,7 +5,7 @@ var followArray = [], noPostsToLoad = "noPostsToLoad", hasPosts = 'hasPosts';
 
 Template.regularFeed.onCreated(function(){
 
-    Session.set('mainPostsLoadLimit', 5);
+    Session.set('mainPostsLoadLimit', MAIN_POSTS_LOAD_LIMIT);
     Session.set('nowDate', new Date());
 
 
@@ -36,7 +36,7 @@ Template.regularFeed.onCreated(function(){
 Template.regularFeed.events({
     'click #load-more': function() {
         // increase session post limit
-        Session.set('mainPostsLoadLimit', Session.get('mainPostsLoadLimit') + 5);
+        Session.set('mainPostsLoadLimit', Session.get('mainPostsLoadLimit') + MAIN_POSTS_INCRESE_LOAD_LIMIT);
     }
 });
 
@@ -115,5 +115,5 @@ Template.regularFeed.helpers({
 
 
 Template.regularFeed.onDestroyed(function(){
-    Session.set('mainPostsLoadLimit', 5);
+    Session.set('mainPostsLoadLimit', MAIN_POSTS_LOAD_LIMIT);
 });

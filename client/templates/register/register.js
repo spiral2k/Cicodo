@@ -24,11 +24,11 @@ Template.register.events({
             password: password,
             profile:{
                 avatar: avatar,
-                private: false,
-                about: "Hi im new here.",
+                private: EDIT_PROFILE_PRIVATE_PROFILE,
+                about: EDIT_PROFILE_ABOUT,
                 firstname:"",
                 lastname:"",
-                feedType: "regularFeed",
+                feedType: EDIT_PROFILE_FEED_TYPE,
                 follow: [],
                 followers:[]
             }

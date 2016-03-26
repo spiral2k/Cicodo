@@ -27,11 +27,13 @@ Template.profile.onCreated(function() {
 Template.profile.helpers({
     userProfileData: function() {
 
-
         // important - to B reactive
+        /////////////////////////////////
         userData = Meteor.users.findOne({
                 username: username
             }) || {};
+
+
 
         if( _.isEmpty(userData)){
             FlowRouter.go('/404')
@@ -83,22 +85,13 @@ Template.profile.helpers({
     }
 });
 
-
-
-
 Template.profile.events({
     'click #follow-user': function(){
-
         Meteor.call('follow',userData._id);
-
         return true;
     },
     'click #unfollow-user': function(){
-
         Meteor.call('unfollow', userData._id);
-
         return true;
     }
-
-
 });
