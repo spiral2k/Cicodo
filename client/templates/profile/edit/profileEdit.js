@@ -4,6 +4,8 @@ Template.profileEdit.onRendered(function(){
 
     $('.dropdown.feedType').dropdown();
 
+    document.getElementById("avatarUpload").addEventListener("change", encodeImageFileAsURL, false);
+
     ///////////////////////////////
     // get user setting from DB
     ///////////////////////////////
@@ -55,7 +57,22 @@ Template.profileEdit.events({
         var feedType = $('#feedType').dropdown('get value');
 
 
-        Meteor.call('updateProfile', aboutMe, privateProfile, firstName, lastName, feedType[0], function(error, result){
+
+        //avatar
+        var filesSelected = document.getElementById("avatarUpload").files;
+
+
+        avatar = user.profile.avatar;
+
+        if (filesSelected.length > 0)
+        {
+            avatar = $('#avatar img').attr('src');
+
+        }
+
+
+
+        Meteor.call('updateProfile', aboutMe, privateProfile, firstName, lastName, feedType[0], avatar, function(error, result){
             if(error){
                 console.log("ERROR: Cant save profile setting!");
                 return;
@@ -93,6 +110,12 @@ function setTemplateValue(){
 
     $('#feedType').dropdown('set selected', user.profile.feedType);
 
+    if(user.profile.avatar) {
+        var newImage = document.createElement('img');
+        newImage.src = user.profile.avatar;
+        document.getElementById("avatar").innerHTML = newImage.outerHTML;
+    }
+
     if(user.profile.private)
         $(".private-profile").checkbox('check');
     else{
@@ -101,3 +124,30 @@ function setTemplateValue(){
 
     return true;
 }
+
+
+
+function encodeImageFileAsURL(){
+
+    var filesSelected = document.getElementById("avatarUpload").files;
+    if (filesSelected.length > 0)
+    {
+        var fileToLoad = filesSelected[0];
+
+        var fileReader = new FileReader();
+
+        fileReader.onload = function(fileLoadedEvent) {
+            var srcData = fileLoadedEvent.target.result; // <--- data: base64
+
+            var newImage = document.createElement('img');
+            newImage.src = srcData;
+
+            document.getElementById("avatar").innerHTML = newImage.outerHTML;
+
+        };
+
+        fileReader.readAsDataURL(fileToLoad);
+    }
+
+}
+

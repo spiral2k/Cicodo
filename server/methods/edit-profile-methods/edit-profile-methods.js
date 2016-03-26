@@ -1,5 +1,5 @@
 Meteor.methods({
-    'updateProfile': function (aboutMe, privateProfile, firstName, lastName, feedType) {
+    'updateProfile': function (aboutMe, privateProfile, firstName, lastName, feedType, avatar) {
 
         console.log("updateProfile: ", feedType);
 
@@ -18,7 +18,9 @@ Meteor.methods({
                     "profile.private": privateProfile,
                     "profile.firstname": firstName,
                     "profile.lastname": lastName,
-                    "profile.feedType": feedType
+                    "profile.feedType": feedType,
+                    "profile.avatar": avatar
+
                 }
             });
 

@@ -1,5 +1,6 @@
 .idea/
 users.txt
-settings.json
 
+settings.json
 public/uploads
+mup.json

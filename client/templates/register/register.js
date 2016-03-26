@@ -24,11 +24,13 @@ Template.register.events({
             password: password,
             profile:{
                 avatar: avatar,
-                private: Meteor.settings.public.privateProfiles,
-                about: Meteor.settings.public.defaultAbout,
+                private: false,
+                about: "Hi im new here.",
                 firstname:"",
                 lastname:"",
-                feedType: Meteor.settings.public.feedType
+                feedType: "regularFeed",
+                follow: [],
+                followers:[]
             }
         }, function(error){
             if(error){

@@ -1,6 +1,4 @@
 accounts-base@1.2.2
-accounts-github@1.0.6
-accounts-oauth@1.1.8
 accounts-password@1.1.4
 autoupdate@1.2.4
 babel-compiler@5.8.24_1
@@ -49,7 +47,6 @@ es5-shim@4.1.14
 fastclick@1.0.7
 flemay:less-autoprefixer@1.2.0
 geojson-utils@1.0.4
-github@1.1.4
 hot-code-push@1.0.0
 html-tools@1.0.5
 htmljs@1.0.5
@@ -74,8 +71,6 @@ mongo-id@1.0.1
 mongo-livedata@1.0.9
 npm-bcrypt@0.7.8_2
 npm-mongo@1.4.39_1
-oauth@1.1.6
-oauth2@1.1.5
 observe-sequence@1.0.7
 ordered-dict@1.0.4
 promise@0.5.1

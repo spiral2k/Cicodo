@@ -24,12 +24,9 @@ flemay:less-autoprefixer
 kadira:flow-router
 kadira:blaze-layout
 
-
 momentjs:moment
 underscore
 raix:handlebar-helpers
 cfs:standard-packages
 cfs:filesystem
-accounts-github
-service-configuration
 email
