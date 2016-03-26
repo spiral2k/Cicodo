@@ -55,6 +55,12 @@ Template.profile.events({
     },
     'click #showModal': function(){
         $('.ui.modal').modal('attach events', '#showModal', 'show');
+    },
+    'mouseenter .user-edit-avatar':function(){
+        $('.edit-avatar-mask').show();
+    },
+    'mouseleave .user-edit-avatar':function(){
+        $('.edit-avatar-mask').hide();
     }
 });
 

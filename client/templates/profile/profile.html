@@ -14,9 +14,20 @@
                 </div>
             {{/if}}
 
+        {{#if userProfile}}
+            <div class="ui circular image centered user-profile-avatar user-edit-avatar" style="background-image:url({{profile.avatar}});background-size: 100% 100%;">
 
+                <a class="edit-avatar-mask" href="/profile-edit">
+                    <i class="file image outline icon"></i>
+                    <span>Edit</span>
+                </a>
+            </div>
 
+        {{else}}
             <img class="ui circular image centered user-profile-avatar" src="{{profile.avatar}}">
+        {{/if}}
+
+
             <span>{{username}}</span>
             <div class="about-me">{{profile.about}}</div>
         </h2>
@@ -94,7 +105,7 @@
         <div class="header">
             {{username}} Following
         </div>
-        
+
             <div class="ui middle aligned selection list">
                 {{#each followsData}}
                     <div class="item">
