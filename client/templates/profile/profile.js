@@ -1,5 +1,5 @@
 // user profile data
-var userData, username;
+var userData, username, follows;
 
 Template.profile.onCreated(function() {
 
@@ -19,6 +19,7 @@ Template.profile.onCreated(function() {
                 username: username
             }) || {};
 
+
     });
 });
 
@@ -28,16 +29,21 @@ Template.profile.helpers({
     userProfileData: function() {
 
         // important - to B reactive
-        /////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////
         userData = Meteor.users.findOne({
                 username: username
             }) || {};
 
+        // Followers
+        Meteor.subscribe('profilefollowingListUserByID', userData.profile.followers);
+        // Following
+        Meteor.subscribe('profilefollowingListUserByID', userData.profile.follow);
 
 
         if( _.isEmpty(userData)){
             FlowRouter.go('/404')
         }
+
 
         if(userData._id == Meteor.userId()){
             userData.userProfile = true;
@@ -82,7 +88,28 @@ Template.profile.helpers({
         if(typeof userData.follow !== "undefined" || !_.isEmpty(userData))
             return userData.profile.follow.length;
         else return 0
+    },
+    followersData: function(){
+            var followerUsers = Meteor.users.find({
+                '_id': { $in: userData.profile.followers}
+            },{fields: {'username': 1, 'profile.avatar': 1}}, function(err, docs){
+                console.log(docs);
+            });
+
+        return followerUsers;
+    },
+    followsData: function(){
+        var followsUsers = Meteor.users.find({
+            '_id': { $in: userData.profile.follow}
+        },{fields: {'username': 1, 'profile.avatar': 1}}, function(err, docs){
+            console.log(docs);
+        });
+
+        return followsUsers;
     }
+
+
+
 });
 
 Template.profile.events({

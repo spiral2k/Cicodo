@@ -30,7 +30,5 @@ Meteor.publish("getUserDataByUsername", function(user_name) {
 
 
 Meteor.publish("profilefollowingListUserByID", function(arrayOfIDs) {
-
-    return Meteor.users.find({_id: {$in: arrayOfIDs}}, {fields: {'username': 1, 'profile.avatar': 1}}, {limit: 5});
-
+    return Meteor.users.find({_id: {$in: arrayOfIDs}}, {fields: {'username': 1, 'profile.avatar': 1}});
 });

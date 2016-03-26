@@ -61,7 +61,26 @@
         </div>
 
 
+        {{#each followersData}}
+
+            <img src="{{profile.avatar}}">
+            {{username}}
+
+        {{/each}}
+
+        <br><br><br>
+
+        {{#each followsData}}
+
+            <img src="{{profile.avatar}}">
+            {{username}}
+
+        {{/each}}
+
+
+
     {{/with}}
+
 
 {{else}}
 
