@@ -30,3 +30,4 @@ raix:handlebar-helpers
 cfs:standard-packages
 cfs:filesystem
 email
+tap:i18n

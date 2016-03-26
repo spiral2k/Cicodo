@@ -30,7 +30,8 @@ Template.register.events({
                 lastname:"",
                 feedType: EDIT_PROFILE_FEED_TYPE,
                 follow: [],
-                followers:[]
+                followers:[],
+                language:"en"
             }
         }, function(error){
             if(error){
