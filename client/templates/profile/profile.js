@@ -27,6 +27,12 @@ Template.profile.onCreated(function() {
 Template.profile.helpers({
     userProfileData: function() {
 
+
+        // important - to B reactive
+        userData = Meteor.users.findOne({
+                username: username
+            }) || {};
+
         if( _.isEmpty(userData)){
             FlowRouter.go('/404')
         }
@@ -64,8 +70,19 @@ Template.profile.helpers({
             return isTheUserFollowing
         }
         return false;
+    },
+    followersCount: function(){
+        if(typeof userData.followers !== "undefined" || !_.isEmpty(userData))
+            return userData.profile.followers.length;
+        else return 0
+    },
+    followingCount: function(){
+        if(typeof userData.follow !== "undefined" || !_.isEmpty(userData))
+            return userData.profile.follow.length;
+        else return 0
     }
 });
+
 
 
 
