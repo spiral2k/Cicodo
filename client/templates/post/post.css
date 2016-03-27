@@ -1,3 +1,14 @@
+.post-warp{
+    float:left;
+    width:100%;
+    background:#fff;
+    padding:15px 0;
+    margin-bottom:15px;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(50, 50, 50, 0.01);
+    -moz-box-shadow:    0px 0px 15px 0px rgba(50, 50, 50, 0.01);
+    box-shadow:         0px 0px 15px 0px rgba(50, 50, 50, 0.01);
+}
+
 .main-post{
     width:calc(100% - 30px);
     margin:0 auto;
@@ -26,11 +37,10 @@
 .post-text{
     float: left;
     width: 100%;
-    margin-top: -13px;
+    margin-top: -6px;
     white-space: pre;
     line-height: 12px;
 }
-
 
 .main-posts-avatar{
     display: block;
@@ -38,5 +48,4 @@
     height: 40px;
     float: left;
     margin: 0.2em 0em 0em;
-
 }

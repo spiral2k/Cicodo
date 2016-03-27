@@ -1,6 +1,8 @@
 .profile-edit-main{
     float: left;
     width: 100%;
+    background: #fff;
+    padding-bottom:20px;
 }
 
 .setting-label{

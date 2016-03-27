@@ -1,6 +1,12 @@
 var user;
 
+
 Template.profileEdit.onRendered(function(){
+
+
+    if(!Meteor.user()){
+        FlowRouter.go('/login');
+    }
 
     $('#feedType').dropdown();
     $('#langugage').dropdown();
