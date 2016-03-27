@@ -5,6 +5,7 @@ var followArray = [], noPostsToLoad = "noPostsToLoad", hasPosts = 'hasPosts';
 Template.liveFeed.onCreated(function(){
 
     Session.set('mainPostsLoadLimit', MAIN_POSTS_LOAD_LIMIT);
+    Session.set('mainPostsSERVERLoadLimit', SERVER_MAIN_POSTS_LOAD_LIMIT);
 
     followArray = Meteor.user().profile.follow;
 
@@ -16,17 +17,18 @@ Template.liveFeed.onCreated(function(){
             // User data
             this.posts = this.subscribe('usersFollowedByUser', followArray[i]);
             // Post data
-            this.posts = this.subscribe('liveFeedPostsFollowedByUser', followArray[i], Session.get('mainPostsLoadLimit'));
+            this.posts = this.subscribe('liveFeedPostsFollowedByUser', followArray[i], Session.get('mainPostsSERVERLoadLimit'));
         }
     }
     //subscribe to Meteor.user() posts.
-    this.posts = this.subscribe('liveFeedPostsFollowedByUser', Meteor.userId(), Session.get('mainPostsLoadLimit'));
+    this.posts = this.subscribe('liveFeedPostsFollowedByUser', Meteor.userId(), Session.get('mainPostsSERVERLoadLimit'));
 
 });
 
 Template.liveFeed.events({
     'click #load-more': function() {
         // increase session post limit
+        Session.set('mainPostsSERVERLoadLimit', Session.get('mainPostsSERVERLoadLimit') + MAIN_POSTS_INCRESE_LOAD_LIMIT);
         Session.set('mainPostsLoadLimit', Session.get('mainPostsLoadLimit') + MAIN_POSTS_INCRESE_LOAD_LIMIT);
     }
 });
@@ -46,12 +48,12 @@ Template.liveFeed.helpers({
                 // User data
                 Template.instance().posts = Template.instance().subscribe('usersFollowedByUser', followArray[i]);
                 // Post data
-                Template.instance().posts = Template.instance().subscribe('liveFeedPostsFollowedByUser', followArray[i], Session.get('mainPostsLoadLimit'));
+                Template.instance().posts = Template.instance().subscribe('liveFeedPostsFollowedByUser', followArray[i], Session.get('mainPostsSERVERLoadLimit'));
             }
 
         }
         //subscribe to Meteor.user() posts.
-        Template.instance().posts = Template.instance().subscribe('liveFeedPostsFollowedByUser', Meteor.userId(), Session.get('mainPostsLoadLimit'));
+        Template.instance().posts = Template.instance().subscribe('liveFeedPostsFollowedByUser', Meteor.userId(), Session.get('mainPostsSERVERLoadLimit'));
 
         var postsList = Posts.find({},{limit: Session.get('mainPostsLoadLimit'), sort:{'createdAt.date': -1}});
 
@@ -80,4 +82,5 @@ Template.liveFeed.helpers({
 
 Template.liveFeed.onDestroyed(function(){
     Session.set('mainPostsLoadLimit', MAIN_POSTS_LOAD_LIMIT);
+    Session.set('mainPostsSERVERLoadLimit', SERVER_MAIN_POSTS_LOAD_LIMIT);
 });
