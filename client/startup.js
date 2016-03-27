@@ -1,12 +1,22 @@
 Meteor.startup(function () {
 
-    TAPi18n.setLanguage("fr")
-        .done(function () {
-            Session.set("showLoadingIndicator", false);
-        })
-        .fail(function (error_message) {
-            // Handle the situation
-            console.log(error_message);
-        });
+    Meteor.autorun(function(){
+
+        var user = Meteor.user();
+
+        if(Meteor.user()) {
+
+            var lang = user.profile.language || "en";
+            Session.set("Language", lang);
+
+            TAPi18n.setLanguage(Session.get("Language"))
+                .done(function () {
+                    console.log("UI language is: " + Session.get("Language")+ " From JSON");
+                })
+                .fail(function (error_message) {
+                    console.log("Problem to set language: " + error_message);
+                });
+        }
+    });
 
 });

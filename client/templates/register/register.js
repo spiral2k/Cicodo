@@ -100,7 +100,7 @@ Template.register.rendered = function(){
         }
     });
 
-    document.getElementById("avatarUpload").addEventListener("change", encodeImageFileAsURL, false);
+    document.getElementById("avatarUpload").addEventListener("change", Base64Avatar, false);
 };
 
 
@@ -110,29 +110,4 @@ Template.register.onDestroyed(function(){
     Session.set('formErrors', undefined);
 
 });
-
-
-function encodeImageFileAsURL(){
-
-        var filesSelected = document.getElementById("avatarUpload").files;
-        if (filesSelected.length > 0)
-        {
-            var fileToLoad = filesSelected[0];
-
-            var fileReader = new FileReader();
-
-            fileReader.onload = function(fileLoadedEvent) {
-                var srcData = fileLoadedEvent.target.result; // <--- data: base64
-
-                var newImage = document.createElement('img');
-                newImage.src = srcData;
-
-                document.getElementById("avatar").innerHTML = newImage.outerHTML;
-
-            };
-
-            fileReader.readAsDataURL(fileToLoad);
-        }
-
-}
 
