@@ -6,8 +6,8 @@
 
 .post-content{
     float:left;
-    width: 85%;
-    margin: 6px 0 0 10px;
+    width: 90%;
+    margin: 3px 0 0 10px;
 }
 
 .post-author{
@@ -35,8 +35,8 @@
 
 .main-posts-avatar{
     display: block;
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     float: left;
     margin: 0.2em 0em 0em;
 

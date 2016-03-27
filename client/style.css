@@ -33,15 +33,14 @@ ul{
 }
 
 .top-from-navbar{
-    margin-top:55px;
+    margin-top:70px;
 }
 
 .avatar{
     max-width:70px;
-    max-height: 70px;
-    border-radius: 70px;
-}
+    max-height:70px;
 
+}
 
 .avatar.small{
     width:30px;
@@ -49,8 +48,8 @@ ul{
 }
 
 .avatar.medium{
-    width:50px;
-    height:50px;
+    width:40px;
+    height:40px;
 }
 
 .font-size-12{

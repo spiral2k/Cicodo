@@ -11,7 +11,7 @@
 }
 
 .post-insert-wrap{
-    width: 90%;
+    width: 100%;
     display: flex;
     margin: 0 auto;
     border-bottom: 1px solid #dcdee2;
@@ -19,10 +19,10 @@
 
 .post-insert-wrap img{
     float:left;
+    margin-left:15px;
 }
 
 .post-insert-buttons{
-
-    width:90%;
-    margin:10px auto;
+    width:calc(100% - 7px);
+    margin:10px 0;
 }

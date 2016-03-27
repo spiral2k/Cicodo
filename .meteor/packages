@@ -31,3 +31,4 @@ cfs:standard-packages
 cfs:filesystem
 email
 tap:i18n
+meteorhacks:fast-render

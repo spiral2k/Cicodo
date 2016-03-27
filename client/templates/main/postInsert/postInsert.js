@@ -1,8 +1,9 @@
 Template.postInsert.onRendered(function(){
     Autoheight($("#insert-posts-main"));
+
+    $("#insert-posts-main").attr('style','height:65px');
+
 });
-
-
 
 Template.postInsert.events({
     'submit form': function(event, template){
@@ -39,7 +40,13 @@ Template.postInsert.events({
         template.find("#insert-posts-main").value = "";
     },
     'keyup #insert-posts-main': function(){
+
         Autoheight($("#insert-posts-main"));
+
+        if($("#insert-posts-main").val() === ""){
+            $("#insert-posts-main").attr('style','height:65px');
+        }
+
     }
 });
 
