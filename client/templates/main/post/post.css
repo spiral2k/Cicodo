@@ -1,15 +1,9 @@
 .main-post{
-    float:left;
-    width:100%;
-    border-bottom: 1px solid #CACBCD;
+    width:calc(100% - 30px);
+    margin:0 auto;
     padding-bottom:10px;
-    margin-bottom: 10px;
 }
 
-
-.main-post:last-child{
-    border:0;
-}
 .post-content{
     float:left;
     width: 85%;

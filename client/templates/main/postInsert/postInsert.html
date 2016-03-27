@@ -1,16 +1,22 @@
 <template name="postInsert">
-    <form class="ui form">
-
-        <div class="field">
-            <label>Text</label>
+    <form class="ui form textarea-clean">
 
 
-            <button class="ui primary submit labeled icon button right">
-                <i class="icon edit"></i> {{_ "addPost"}}
-            </button>
 
-            <textarea id="insert-posts-main"></textarea>
-        </div>
+            <div class="post-warp">
+
+                <div class="post-insert-wrap">
+                    <img class="avatar medium" src="{{avatar}}">
+                    <textarea id="insert-posts-main" placeholder="What's on your mind?"></textarea>
+                </div>
+
+                <div class="post-insert-buttons">
+                    <button class="ui primary submit labeled icon button right">
+                        <i class="icon edit"></i> {{_ "addPost"}}
+                    </button>
+                </div>
+            </div>
+
 
 
     </form>

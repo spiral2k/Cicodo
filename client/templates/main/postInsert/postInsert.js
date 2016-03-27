@@ -1,3 +1,9 @@
+Template.postInsert.onRendered(function(){
+    Autoheight($("#insert-posts-main"));
+});
+
+
+
 Template.postInsert.events({
     'submit form': function(event, template){
         event.preventDefault();
@@ -33,26 +39,13 @@ Template.postInsert.events({
         template.find("#insert-posts-main").value = "";
     },
     'keyup #insert-posts-main': function(){
-        autoheight($("#insert-posts-main"));
+        Autoheight($("#insert-posts-main"));
     }
-
-
-});
-
-Template.postInsert.onRendered(function(){
-    autoheight($("#insert-posts-main"));
 });
 
 
-function autoheight(a) {
-
-    if (!$(a).prop('scrollTop')) {
-        do {
-            var b = $(a).prop('scrollHeight');
-            var h = $(a).height();
-            $(a).height(h - 5);
-        }
-        while (b && (b != $(a).prop('scrollHeight')));
-    };
-    $(a).height($(a).prop('scrollHeight') + 20);
-}
+Template.postInsert.helpers({
+    avatar: function(){
+        return Meteor.user().profile.avatar;
+    }
+});

@@ -4,7 +4,9 @@
 
 body{
     height: auto;
+    background:#f4f4f4;
 }
+
 
 ul{
     list-style: none;
@@ -31,7 +33,7 @@ ul{
 }
 
 .top-from-navbar{
-    margin-top:70px;
+    margin-top:55px;
 }
 
 .avatar{
@@ -46,11 +48,14 @@ ul{
     height:30px;
 }
 
+.avatar.medium{
+    width:50px;
+    height:50px;
+}
+
 .font-size-12{
     font-size: 12px;
 }
-
-
 
 /* Tiny Modal Width */
 
@@ -96,4 +101,13 @@ ul{
 
 .ui.modal > .close {
     color: #484952;
+}
+
+
+.post-warp{
+    float:left;
+    width:100%;
+    background:#fff;
+    padding:15px 0;
+    margin-bottom:15px;
 }

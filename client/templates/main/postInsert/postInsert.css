@@ -1,6 +1,28 @@
 #insert-posts-main {
-    width:100%;
-    min-height:116px;
+    width:calc(90% - 50px);
+    float:left;
+    min-height:50px;
     max-height:1200px;
     resize:none;
+}
+
+.textarea-clean textarea{
+    border:0px !important;
+}
+
+.post-insert-wrap{
+    width: 90%;
+    display: flex;
+    margin: 0 auto;
+    border-bottom: 1px solid #dcdee2;
+}
+
+.post-insert-wrap img{
+    float:left;
+}
+
+.post-insert-buttons{
+
+    width:90%;
+    margin:10px auto;
 }
