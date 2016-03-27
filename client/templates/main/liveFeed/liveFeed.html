@@ -9,7 +9,7 @@
 
         {{#if $eq postsCount 'hasPosts'}}
 
-            <div id="load-more">{{_ "LoadMorePosts"}}</div>
+            <button id="load-more" class="fluid ui teal button">{{_ "LoadMorePosts"}}</button>
 
         {{else}}
 
@@ -17,8 +17,7 @@
                 <div>{{_ "noPostsToShow"}}</div>
             {{else}}
 
-            <div>{{_ "noMorePostsToLoad"}}</div>
-
+            <button class="fluid ui disabled button">{{_ "noMorePostsToLoad"}}</button>
             {{/if}}
         {{/if}}
 

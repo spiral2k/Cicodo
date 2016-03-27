@@ -7,7 +7,7 @@
             <!--if its the profile of the viewing user-->
             {{#if userProfile}}
                 <div class="user-profile-buttons-edit">
-                    <a class="ui button" href="/profile-edit">
+                    <a class="ui green button" href="/settings">
                         <i class="settings icon"></i>
                         {{_ "settings"}}
                     </a>
@@ -17,18 +17,17 @@
         {{#if userProfile}}
             <div class="ui circular image centered user-profile-avatar user-edit-avatar" style="background-image:url({{profile.avatar}});background-size: 100% 100%;">
 
-                <a class="edit-avatar-mask" href="/profile-edit">
+                <a class="edit-avatar-mask" href="/settings">
                     <i class="file image outline icon"></i>
                     <span>{{_ "edit"}}</span>
                 </a>
             </div>
-
         {{else}}
             <img class="ui circular image centered user-profile-avatar" src="{{profile.avatar}}">
         {{/if}}
 
 
-            <span>{{username}}</span>
+            <span>@{{username}}</span>
             <div class="about-me">{{profile.about}}</div>
         </h2>
 
@@ -37,14 +36,14 @@
             {{#unless userProfile}}
                 {{#if isUserFollowing}}
                     <div class="user-profile-buttons">
-                        <button class="ui button" id="unfollow-user">
+                        <button class="ui red button" id="unfollow-user">
                             <i class="user icon"></i>
                             {{_ "unfollow"}}
                         </button>
                     </div>
                 {{else}}
                     <div class="user-profile-buttons">
-                        <button class="ui button" id="follow-user">
+                        <button class="ui green button" id="follow-user">
                             <i class="user icon"></i>
                             {{_ "follow"}}
                         </button>

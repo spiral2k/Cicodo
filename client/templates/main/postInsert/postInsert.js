@@ -9,6 +9,11 @@ Template.postInsert.events({
     'submit form': function(event, template){
         event.preventDefault();
 
+        if(! Meteor.user()){
+            return;
+        }
+
+
         var content = template.find("#insert-posts-main").value;
 
         if(content.trim() === ""){

@@ -15,7 +15,7 @@
                     <a href="/profile/{{username}}">
                     <img class="ui avatar image avatar-search" src="{{profile.avatar}}">
                     <div class="content">
-                        <a class="header capitalize{{#unless profile.firstname}} only-username {{/unless}}">{{username}}</a>
+                        <a class="header {{#unless profile.firstname}} only-username {{/unless}}">@{{username}}</a>
                         {{#if profile.firstname}}
                             <div class="description capitalize font-size-12">{{profile.firstname}} {{profile.lastname}}</div>
                         {{/if}}

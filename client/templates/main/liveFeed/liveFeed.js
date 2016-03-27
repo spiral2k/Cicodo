@@ -26,7 +26,9 @@ Template.liveFeed.onCreated(function(){
 });
 
 Template.liveFeed.events({
-    'click #load-more': function() {
+    'click #load-more': function(event) {
+        event.preventDefault();
+
         // increase session post limit
         Session.set('mainPostsSERVERLoadLimit', Session.get('mainPostsSERVERLoadLimit') + MAIN_POSTS_INCRESE_LOAD_LIMIT);
         Session.set('mainPostsLoadLimit', Session.get('mainPostsLoadLimit') + MAIN_POSTS_INCRESE_LOAD_LIMIT);

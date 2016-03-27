@@ -44,9 +44,17 @@ Template.profileEdit.helpers({
 
 Template.profileEdit.events({
     'submit form': function(event, template){
+
         event.preventDefault();
 
         var privateProfile = Session.get('private-profile');
+
+        if(privateProfile === 'true'){
+            privateProfile = true;
+        }else{
+            privateProfile = false;
+        }
+
 
         var aboutMe = template.find('#about-me').value;
 
@@ -58,10 +66,8 @@ Template.profileEdit.events({
         var feedType = $('#feedType').dropdown('get value');
 
         // here the result is Array -- Letapel acharkach
+
         var language = $('#language').dropdown('get value');
-
-
-        console.log("(language) ", language);
 
         //avatar
         var filesSelected = document.getElementById("avatarUpload").files;
@@ -79,7 +85,6 @@ Template.profileEdit.events({
                 console.log("ERROR: Cant save profile setting!");
                 return;
             }
-
             if(result){
                 Session.set('formSuccess', "saved!");
                 $('.success').show();

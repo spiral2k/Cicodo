@@ -27,18 +27,7 @@ Template.profile.onRendered(function(){
     setTimeout(function(){
         $('.ui.followers.modal').modal('attach events', '.fireFollowersModal', 'show').modal({blurring: true});
         $('.ui.following.modal').modal('attach events', '.fireFollowingModal', 'show').modal({blurring: true});
-
-
     }, 500);
-
-
-
-
-
-
-
-
-
 
 });
 
