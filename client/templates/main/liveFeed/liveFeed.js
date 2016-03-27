@@ -13,7 +13,6 @@ Template.liveFeed.onCreated(function(){
     if(followArray) {
         //Subscribe to user followed posts
         for ( var i = 0; i < followArray.length; i++ ) {
-
             // User data
             this.posts = this.subscribe('usersFollowedByUser', followArray[i]);
             // Post data
@@ -41,8 +40,6 @@ Template.liveFeed.helpers({
         }
     },
     posts: function () {
-
-
         if(followArray) {
             //Subscribe to user followed posts
             for ( var i = 0; i < followArray.length; i++ ) {
@@ -60,28 +57,11 @@ Template.liveFeed.helpers({
 
         postsList.observeChanges({
             addedBefore: function(id, doc) {
-                console.log(doc);
+                // console.log(doc);
             }
         });
 
         return postsList;
-    },
-    username: function(userId) {
-        var user = Meteor.users.findOne(userId);
-        if(user)
-            return user.username;
-    },
-
-    getAvatar: function(userId){
-
-        var user = Meteor.users.findOne(userId);
-
-        if(typeof user !== 'undefined')
-            if((typeof  user.profile !== 'undefined' || typeof user.profile.avatar !== 'undefined') && user.profile.avatar != "") {
-                return user.profile.avatar;
-            } else {
-                return true;
-            }
     },
     postsCount: function(){
         //check if need to show 'Load more posts' OR 'no more posts' OR 'no posts at all'.

@@ -9,8 +9,6 @@ Template.regularFeed.onCreated(function(){
     Session.set('nowDate', new Date());
 
 
-    console.log("DATE: ", Session.get('nowDate'));
-
     followArray = Meteor.user().profile.follow;
 
     // critical for loader
@@ -18,7 +16,6 @@ Template.regularFeed.onCreated(function(){
     if(followArray) {
         //Subscribe to user followed posts
         for ( var i = 0; i < followArray.length; i++ ) {
-
             // User data
             this.posts = this.subscribe('usersFollowedByUser', followArray[i]);
             // Post data
@@ -27,9 +24,6 @@ Template.regularFeed.onCreated(function(){
     }
     //subscribe to Meteor.user() posts.
     this.posts = this.subscribe('postsFollowedByUser', Meteor.userId(), Session.get('mainPostsLoadLimit'), new Date());
-
-
-
 });
 
 
@@ -64,33 +58,15 @@ Template.regularFeed.helpers({
         //subscribe to Meteor.user() posts.
         Template.instance().posts = Template.instance().subscribe('postsFollowedByUser', Meteor.userId(), Session.get('mainPostsLoadLimit'), new Date());
 
-
-
         var postsList = Posts.find({},{limit: Session.get('mainPostsLoadLimit'), sort:{'createdAt.date': -1}});
 
         postsList.observeChanges({
             addedBefore: function(id, doc) {
-                console.log(doc);
+               // console.log(doc);
             }
         });
 
         return postsList;
-    },
-    username: function(userId) {
-        var user = Meteor.users.findOne(userId);
-        if(user)
-            return user.username;
-    },
-    getAvatar: function(userId){
-
-        var user = Meteor.users.findOne(userId);
-
-        if(typeof user !== 'undefined')
-            if((typeof  user.profile !== 'undefined' || typeof user.profile.avatar !== 'undefined') && user.profile.avatar != "") {
-                return user.profile.avatar;
-            } else {
-                return true;
-            }
     },
     postsCount: function(){
         //check if need to show 'Load more posts'.
