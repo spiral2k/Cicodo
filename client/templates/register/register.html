@@ -4,7 +4,7 @@
 
         <div class="column centered row loginHeader">
             <img src="logo/medium.png">
-            <h1>Register</h1>
+            <h1>{{_ "register"}}</h1>
         </div>
 
         <form class="ui column centered form loginForm">
@@ -19,24 +19,24 @@
 
                 <div class="float-width">
                     <input id="avatarUpload" type="file" />
-                    <label for="avatarUpload" class="ui button avatarUploadButton">Upload Avatar</label>
+                    <label for="avatarUpload" class="ui button avatarUploadButton">{{_ "uploadAvatar"}}</label>
                 </div>
 
             </div>
 
             <div class="field">
-                <label>Email</label>
-                <input placeholder="Email" name="email" id="email" type="text">
+                <label>{{_ "email"}}</label>
+                <input placeholder="{{_ "email"}}" name="email" id="email" type="text">
             </div>
 
             <div class="field">
-                <label>Username</label>
-                <input placeholder="Username" name="username" id="username" type="text">
+                <label>{{_ "username"}}</label>
+                <input placeholder="{{_ "username"}}" name="username" id="username" type="text">
             </div>
 
             <div class="field">
-                <label>Password</label>
-                <input placeholder="Password"  type="password" name="password" id="password">
+                <label>{{_ "password"}}</label>
+                <input placeholder="{{_ "password"}}"  type="password" name="password" id="password">
             </div>
 
 
@@ -50,7 +50,7 @@
                 </div>
             {{/if}}
 
-            <button type="submit" class="ui primary button">Create</button>
+            <button type="submit" class="ui primary button">{{_ "creatAccount"}}</button>
         </form>
 
         </div>

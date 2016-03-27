@@ -5,8 +5,8 @@
         <h2 class="ui icon header" style="width:100%;padding:20px 0;">
             <i class="settings icon"></i>
             <div class="content">
-                Account Settings
-                <div class="sub header">Manage your account settings and set e-mail preferences.</div>
+                {{_ "accountSettings"}}
+                <div class="sub header">{{_ "accountSettingsText"}}</div>
             </div>
         </h2>
 
@@ -17,7 +17,7 @@
 
 
             <div class="setting-label">
-                Avatar
+                {{_ "avatar"}}
             </div>
 
             <div class="setting-block fields">
@@ -32,7 +32,7 @@
 
                         <div class="float-width">
                             <input id="avatarUpload" type="file" />
-                            <label for="avatarUpload" class="ui button avatarUploadButton">Upload Avatar</label>
+                            <label for="avatarUpload" class="ui button avatarUploadButton">{{_ "uploadAvatar"}}</label>
                         </div>
 
                     </div>
@@ -42,7 +42,7 @@
 
 
             <div class="setting-label">
-                First name
+                {{_ "firstName"}}
             </div>
 
             <div class="setting-block fields">
@@ -52,7 +52,7 @@
             </div>
 
             <div class="setting-label">
-                Last name
+                {{_ "lastName"}}
             </div>
 
             <div class="setting-block fields">
@@ -63,7 +63,7 @@
 
 
             <div class="setting-label">
-                About me
+                {{_ "aboutMe"}}
             </div>
 
             <div class="setting-block fields">
@@ -75,15 +75,15 @@
 
 
             <div class="setting-label">
-                Feed Settings
+                {{_ "feedSettings"}}
             </div>
 
             <div class="setting-block fields">
                 <div class="field">
                     <select id="feedType" class="ui dropdown">
-                        <option value="">Feed Type</option>
-                        <option value="liveFeed">Live Feed</option>
-                        <option value="regularFeed">Regular Feed</option>
+                        <option value="">{{_ "feedType"}}</option>
+                        <option value="liveFeed">{{_ "liveFeed"}}</option>
+                        <option value="regularFeed">{{_ "regularFeed"}}</option>
                     </select>
                 </div>
             </div>
@@ -93,14 +93,14 @@
 
 
             <div class="setting-label">
-                Privacy
+                {{_ "privacy"}}
             </div>
 
             <div class="setting-block grouped fields">
                 <div class="field">
                     <div class="ui toggle private-profile checkbox">
                         <input type="checkbox" name="private-profile" id="private-profile">
-                        <label for="private-profile">Private profile</label>
+                        <label for="private-profile">{{_ "privateProfile"}}</label>
                     </div>
                 </div>
             </div>
@@ -113,17 +113,17 @@
             </div>
 
                 <div class="ui error message">
-                    We have some problem to save you info :(
+                    {{_ "problemToSave"}}
                 </div>
             </div>
 
             <div class="profile-edit-buttons">
                 <div class="ui button" id="discard-changes">
-                    Discard Changes
+                    {{_ "discardChanges"}}
                 </div>
 
                 <button class="ui primary button">
-                    Save Settings
+                    {{_ "saveSettings"}}
                 </button>
             </div>
 

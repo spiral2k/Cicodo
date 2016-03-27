@@ -3,19 +3,19 @@
 
         <div class="column centered row loginHeader">
             <img src="logo/medium.png">
-            <h1>Login</h1>
+            <h1>{{_ "login"}}</h1>
         </div>
 
         <form class="ui column centered form loginForm">
 
             <div class="field">
-                <label>Email or username</label>
-                <input placeholder="Email or username" name="email" id="email" type="text">
+                <label>{{_ "emailOrUsername"}}</label>
+                <input placeholder="{{_ "emailOrUsername"}}" name="email" id="email" type="text">
             </div>
 
             <div class="field">
-                <label>Password</label>
-                <input placeholder="Password"  type="password" name="password" id="password">
+                <label>{{_ "password"}}</label>
+                <input placeholder="{{_ "password"}}"  type="password" name="password" id="password">
             </div>
 
             <div class="ui error message"></div>
@@ -28,7 +28,9 @@
                 </div>
             {{/if}}
 
-            <button type="submit" class="ui primary button">Sign-in</button>
+            <button type="submit" class="ui primary button">
+                {{_ "signin"}}
+            </button>
         </form>
 
     </div>

@@ -9,7 +9,7 @@
                 <div class="user-profile-buttons-edit">
                     <a class="ui button" href="/profile-edit">
                         <i class="settings icon"></i>
-                        Settings
+                        {{_ "settings"}}
                     </a>
                 </div>
             {{/if}}
@@ -19,7 +19,7 @@
 
                 <a class="edit-avatar-mask" href="/profile-edit">
                     <i class="file image outline icon"></i>
-                    <span>Edit</span>
+                    <span>{{_ "edit"}}</span>
                 </a>
             </div>
 
@@ -39,14 +39,14 @@
                     <div class="user-profile-buttons">
                         <button class="ui button" id="unfollow-user">
                             <i class="user icon"></i>
-                            Unfollow
+                            {{_ "unfollow"}}
                         </button>
                     </div>
                 {{else}}
                     <div class="user-profile-buttons">
                         <button class="ui button" id="follow-user">
                             <i class="user icon"></i>
-                            Follow
+                            {{_ "follow"}}
                         </button>
                     </div>
                 {{/if}}
@@ -58,13 +58,13 @@
 
 
                 <a class="ui label fireFollowersModal">
-                    Followers
+                    {{_ "followers"}}
                     <div class="detail">{{followersCount}}</div>
                 </a>
 
 
                 <a class="ui label fireFollowingModal">
-                    Following
+                    {{_ "following"}}
                     <div class="detail">{{followingCount}}</div>
                 </a>
 
@@ -79,7 +79,7 @@
     <div class="ui tiny followers modal">
         <i class="close icon"></i>
         <div class="header">
-            {{username}} Followers
+            {{username}} {{_ "followers"}}
         </div>
 
         <div class="ui middle aligned selection list">
@@ -93,7 +93,7 @@
         {{/each}}
         </div>
         <div class="actions">
-            <div class="ui cancel button">Close</div>
+            <div class="ui cancel button">{{_ "close"}}</div>
         </div>
     </div>
 
@@ -103,7 +103,7 @@
     <div class="ui tiny following modal">
         <i class="close icon"></i>
         <div class="header">
-            {{username}} Following
+            {{username}} {{_ "following"}}
         </div>
 
             <div class="ui middle aligned selection list">
@@ -118,7 +118,7 @@
             </div>
 
         <div class="actions">
-            <div class="ui cancel button">Close</div>
+            <div class="ui cancel button">{{_ "close"}}</div>
         </div>
     </div>
 

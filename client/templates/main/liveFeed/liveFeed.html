@@ -23,15 +23,15 @@
 
         {{#if $eq postsCount 'hasPosts'}}
 
-            <div id="load-more">Load more</div>
+            <div id="load-more">{{_ "LoadMorePosts"}}</div>
 
         {{else}}
 
             {{#if $eq postsCount 'noPostsToLoad'}}
-                <div>No  posts!!!.</div>
+                <div>{{_ noPostsToShow}}</div>
             {{else}}
 
-                <div>No more posts to load.</div>
+            <div>{{_ "noMorePostsToLoad"}}</div>
 
             {{/if}}
         {{/if}}
