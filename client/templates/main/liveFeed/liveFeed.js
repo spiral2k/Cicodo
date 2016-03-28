@@ -61,7 +61,6 @@ Template.liveFeed.helpers({
 
         postsList.observeChanges({
             addedBefore: function(id, doc) {
-                // console.log(doc);
             }
         });
 

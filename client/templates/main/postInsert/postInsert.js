@@ -55,9 +55,10 @@ Template.postInsert.events({
     }
 });
 
-
 Template.postInsert.helpers({
     avatar: function(){
         return Meteor.user().profile.avatar;
     }
 });
+
+
