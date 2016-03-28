@@ -52,17 +52,11 @@ Template.liveFeed.helpers({
                 // Post data
                 Template.instance().posts = Template.instance().subscribe('liveFeedPostsFollowedByUser', followArray[i], Session.get('mainPostsSERVERLoadLimit'));
             }
-
         }
         //subscribe to Meteor.user() posts.
         Template.instance().posts = Template.instance().subscribe('liveFeedPostsFollowedByUser', Meteor.userId(), Session.get('mainPostsSERVERLoadLimit'));
 
         var postsList = Posts.find({},{limit: Session.get('mainPostsLoadLimit'), sort:{'createdAt.date': -1}});
-
-        postsList.observeChanges({
-            addedBefore: function(id, doc) {
-            }
-        });
 
         return postsList;
     },
