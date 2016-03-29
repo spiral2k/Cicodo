@@ -48,11 +48,21 @@ Template.postInsert.events({
 
         Autoheight($("#insert-posts-main"));
 
+        if($("#insert-posts-main").val() === "" || $("#insert-posts-main").val() === " "){
+            $("#insert-posts-main").attr('style','height:65px');
+        }
+
+    },
+    'paste #insert-posts-main': function(){
+
+        Autoheight($("#insert-posts-main"));
+
         if($("#insert-posts-main").val() === ""){
             $("#insert-posts-main").attr('style','height:65px');
         }
 
     }
+
 });
 
 Template.postInsert.helpers({
