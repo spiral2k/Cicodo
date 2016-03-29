@@ -44,7 +44,7 @@ Template.postInsert.events({
 
         template.find("#insert-posts-main").value = "";
     },
-    'keyup #insert-posts-main': function(){
+    'keydown #insert-posts-main': function(){
 
         Autoheight($("#insert-posts-main"));
 
