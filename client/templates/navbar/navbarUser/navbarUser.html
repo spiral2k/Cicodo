@@ -1,6 +1,20 @@
 <template name="navbaruser">
-    <div class="ui floating dropdown navbar-user-block">
 
+
+
+    <div class="ui icon buttons">
+        <div class="ui top right pointing dropdown button masseges-dropdown">
+            <i class="user icon"></i>
+            <div class="menu">
+                <div class="item"><i class="edit icon"></i>Edit User</div>
+                <div class="item"><i class="delete icon"></i>Remove User</div>
+                <div class="item"><i class="hide icon"></i>Make Invisible</div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="ui floating dropdown navbar-user-block username-dropdown">
         <div class="navbar-dropdown-header">
             <i class="dropdown icon"></i>
             <img class="avatar small" src="{{avatar}}">

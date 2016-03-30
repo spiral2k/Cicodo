@@ -31,7 +31,13 @@ Template.register.events({
                 feedType: EDIT_PROFILE_FEED_TYPE,
                 follow: [],
                 followers:[],
-                language:"en"
+                language:"en",
+                // New
+                notifications: [],
+                masseges:{
+                    unread: 0,
+                    masseges_list:[]
+                }
             }
         }, function(error){
             if(error){

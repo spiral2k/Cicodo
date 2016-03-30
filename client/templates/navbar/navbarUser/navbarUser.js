@@ -1,7 +1,13 @@
 Template.navbaruser.onRendered(function(){
-    $('.dropdown').dropdown({
+    $('.username-dropdown').dropdown({
         transition: 'drop'
     });
+
+    $('.masseges-dropdown').dropdown({
+        transition: 'drop'
+    });
+
+
 
 });
 
