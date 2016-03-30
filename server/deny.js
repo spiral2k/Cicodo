@@ -3,3 +3,10 @@ Meteor.users.deny({
         return true;
     }
 });
+
+
+Messages.allow({
+    insert: function (userId, doc) {
+        return (userId && doc.user === userId);
+    }
+});

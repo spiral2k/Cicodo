@@ -34,3 +34,5 @@ meteorhacks:fast-render
 check
 standard-minifier-css
 standard-minifier-js
+anti:fake
+dburles:factory

@@ -33,11 +33,7 @@ Template.register.events({
                 followers:[],
                 language:"en",
                 // New
-                notifications: [],
-                masseges:{
-                    unread: 0,
-                    masseges_list:[]
-                }
+                notifications: []
             }
         }, function(error){
             if(error){
