@@ -1,6 +1,6 @@
 Template.postInsert.onRendered(function(){
     Autoheight($("#insert-posts-main"));
-
+    tabEnabled('insert-posts-main');
     $("#insert-posts-main").attr('style','height:65px');
 
 });
@@ -16,16 +16,14 @@ Template.postInsert.events({
 
         var content = template.find("#insert-posts-main").value;
 
-        if(content.trim() === ""){
-            return;
-        }
-
-        var lines = $('#insert-posts-main').val().split('\n');
-
+        var lines = content.split('\n');
         content = "";
-
         for(var i = 0;i < lines.length;i++){
             content +=  "\n" + lines[i];
+        }
+
+        if(content.trim() === ""){
+            return;
         }
 
         var createdAt = {
@@ -45,22 +43,13 @@ Template.postInsert.events({
         template.find("#insert-posts-main").value = "";
     },
     'keydown #insert-posts-main': function(){
-
         Autoheight($("#insert-posts-main"));
+
+        tabEnabled('insert-posts-main');
 
         if($("#insert-posts-main").val() === "" || $("#insert-posts-main").val() === " "){
             $("#insert-posts-main").attr('style','height:65px');
         }
-
-    },
-    'paste #insert-posts-main': function(){
-
-        Autoheight($("#insert-posts-main"));
-
-        if($("#insert-posts-main").val() === ""){
-            $("#insert-posts-main").attr('style','height:65px');
-        }
-
     }
 
 });
@@ -72,3 +61,28 @@ Template.postInsert.helpers({
 });
 
 
+
+
+
+function tabEnabled(id){
+    var el = document.getElementById(id);
+    el.onkeydown = function(e) {
+        if (e.keyCode === 9) { // tab was pressed
+
+            // get caret position/selection
+            var val = this.value,
+                start = this.selectionStart,
+                end = this.selectionEnd;
+
+            // set textarea value to: text before caret + tab + text after caret
+            this.value = val.substring(0, start) + '\t' + val.substring(end);
+
+            // put caret at right position again
+            this.selectionStart = this.selectionEnd = start + 1;
+
+            // prevent the focus lose
+            return false;
+
+        }
+    };
+}

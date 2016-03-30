@@ -49,3 +49,15 @@
     float: left;
     margin: 0.2em 0em 0em;
 }
+
+
+.code{
+    float:left;
+    width:100%;
+    padding-left:10%;
+    background: #eee;
+    color: #000;
+    white-space: pre;
+    line-height: 12px;
+    margin-bottom:10px;
+}
