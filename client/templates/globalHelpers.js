@@ -3,6 +3,10 @@ Template.registerHelper("usernameFromId", function (userId) {
     return user.username;
 });
 
+Template.registerHelper("avatarFromId", function (userId) {
+    var user = Meteor.users.findOne({_id: userId});
+    return user.profile.avatar;
+});
 
 
 Template.registerHelper("timestampToTime", function (timestamp) {

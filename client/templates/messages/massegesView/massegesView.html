@@ -1,6 +1,6 @@
 <template name="messagesView">
     {{#each messages}}
-        {{> message text=text user=send_from timestamp=timestamp}}
+        {{> message text=text user=send_from timestamp=timestamp avatar=avatar}}
     {{/each}}
     <textarea class="textMessage"></textarea>
 </template>

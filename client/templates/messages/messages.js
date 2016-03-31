@@ -3,38 +3,33 @@ var username, userData, self;
 // user that resive that message contexet session var
 //Session.get("messageUserName");
 
-
-
 Template.messages.onCreated(function(){
-
     self = this;
-
     self.autorun(function() {
         username = FlowRouter.getParam('username'); // Get the user username from the route parameter
-
         Session.set("messageUserName", username);
-
         self.subscribe('getUserDataByUsername', username);
-
         userData = Meteor.users.findOne({
                 username: username
             }) || {};
 
         self.subscribe('usersListByID', Meteor.user().profile.open_messages);
 
-
         // need fix
+        Session.set("isMessagesMain", true);
         self.subscribe('messages');
     });
 });
-
-
 
 Template.messages.events({
     'click .messages-sidebar-user': function(){
 
         Session.set("messageUserName", this.username);
-        FlowRouter.go('/messages/' + this.username);
+
+        Session.set("isMessagesMain", false);
+
+        history.pushState({}, null, '/messages/' + this.username);
+
         return true;
     },
     'keyup .textMessage': function(e) {
@@ -52,7 +47,7 @@ Template.messages.events({
 
                 Meteor.call('newMessage', {
                     text: query_selector.val()
-                },username);
+                },  Session.get("messageUserName"));
 
                 query_selector.val("");
                 return false;
@@ -65,20 +60,16 @@ Template.messages.events({
 
 Template.messages.helpers({
     isMainMessages:function(){
-      // if username exist = not in main page
-      if(!!username){
-          return false;
-      }
-      return true;
+        return Session.get("isMessagesMain");
 
     },
     usernames: function () {
-        if(Template.instance().subscriptionsReady()) {
+
             return Meteor.users.find({
                 '_id': { $in: Meteor.user().profile.open_messages }
             }, { fields: { 'username': 1, 'profile.avatar': 1 } }, function (err, docs) {
                 console.log("Error getting usernames", docs);
             });
-        }
+
     }
 });

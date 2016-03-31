@@ -4,5 +4,8 @@ Template.developmentTools.events({
     },
     'click #removeAllPosts': function(){
         Meteor.call('removeAllPosts')
+    },
+    'click #removeAllMessages': function(){
+        Meteor.call('removeAllMessages')
     }
 });
