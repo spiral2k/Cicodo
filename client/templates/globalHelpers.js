@@ -1,7 +1,4 @@
 Template.registerHelper("usernameFromId", function (userId) {
-
-    console.log("global helper : ", userId)
-
     var user = Meteor.users.findOne({_id: userId});
     return user.username;
 });

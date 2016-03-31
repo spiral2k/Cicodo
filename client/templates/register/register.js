@@ -33,7 +33,9 @@ Template.register.events({
                 followers:[],
                 language:"en",
                 // New
-                notifications: []
+                notifications: [],
+                open_messages:[]
+
             }
         }, function(error){
             if(error){

@@ -7,6 +7,9 @@ Meteor.users.deny({
 
 Messages.allow({
     insert: function (userId, doc) {
-        return (userId && doc.user === userId);
+
+        console.log("alaoow: ",userId, doc);
+
+        return (userId && doc.send_from === userId);
     }
 });

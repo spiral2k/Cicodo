@@ -67,9 +67,9 @@ Template.profile.helpers({
             }) || {};
 
         // Followers
-        Meteor.subscribe('profilefollowingListUserByID', userData.profile.followers);
+        Meteor.subscribe('usersListByID', userData.profile.followers);
         // Following
-        Meteor.subscribe('profilefollowingListUserByID', userData.profile.follow);
+        Meteor.subscribe('usersListByID', userData.profile.follow);
 
 
         if( _.isEmpty(userData)){

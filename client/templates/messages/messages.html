@@ -1,13 +1,34 @@
 <template name="messages">
-
+    {{#if Template.subscriptionsReady}}
     <div class="ui grid ">
         <div class="three wide column computer only">
-            {{>messagesSidebar}}
-
+            <div class="messages-sidebar">
+            <span>usernames: </span>
+            <br>
+            {{#each usernames}}
+                <div class="messages-sidebar-user">
+                    <img src="{{profile.avatar}}">
+                    <span>{{username}}1</span>
+                </div>
+            {{/each}}
+            </div>
         </div>
+
+
         <div class="twelve wide column ">
-            {{> messagesList}}
+            {{#if isMainMessages}}
+                {{>mainMessages}}
+            {{else}}
+
+                    {{#each messages}}
+                        {{> message text=text user=send_from timestamp=timestamp}}
+                    {{/each}}
+
+            {{/if}}
+
+            <textarea class="textMessage"></textarea>
+
         </div>
     </div>
-
+    {{/if}}
 </template>
