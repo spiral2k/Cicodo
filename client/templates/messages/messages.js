@@ -1,11 +1,18 @@
 var username, userData, self;
 
+// user that resive that message contexet session var
+//Session.get("messageUserName");
+
+
+
 Template.messages.onCreated(function(){
 
     self = this;
 
     self.autorun(function() {
         username = FlowRouter.getParam('username'); // Get the user username from the route parameter
+
+        Session.set("messageUserName", username);
 
         self.subscribe('getUserDataByUsername', username);
 
@@ -14,8 +21,6 @@ Template.messages.onCreated(function(){
             }) || {};
 
         self.subscribe('usersListByID', Meteor.user().profile.open_messages);
-
-
 
 
         // need fix
@@ -27,6 +32,8 @@ Template.messages.onCreated(function(){
 
 Template.messages.events({
     'click .messages-sidebar-user': function(){
+
+        Session.set("messageUserName", this.username);
         FlowRouter.go('/messages/' + this.username);
         return true;
     },
@@ -34,8 +41,6 @@ Template.messages.events({
 
         var query_selector = $('.textMessage');
         var inputVal = query_selector.val();
-
-
 
         if(!!inputVal) {
             var charCode = (typeof e.which == "number") ? e.which : e.keyCode;
@@ -75,9 +80,5 @@ Template.messages.helpers({
                 console.log("Error getting usernames", docs);
             });
         }
-    },
-    messages: function(){
-            console.log("user: ", userData);
-            return Messages.find({send_to: userData._id});
     }
 });

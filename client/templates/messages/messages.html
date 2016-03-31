@@ -19,15 +19,8 @@
             {{#if isMainMessages}}
                 {{>mainMessages}}
             {{else}}
-
-                    {{#each messages}}
-                        {{> message text=text user=send_from timestamp=timestamp}}
-                    {{/each}}
-
+                {{> messagesView}}
             {{/if}}
-
-            <textarea class="textMessage"></textarea>
-
         </div>
     </div>
     {{/if}}
