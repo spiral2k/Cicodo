@@ -1,6 +1,6 @@
 
 Meteor.publish("usersFollowedByUser", function(userByID) {
-    return Meteor.users.find({_id: userByID}, {fields: {'username': 1, 'profile': 1}});
+    return Meteor.users.find({_id: userByID}, {fields: {'username': 1, 'profile': 1, "status.online": 1}});
 });
 
 Meteor.publish("postsFollowedByUser", function(postsByID, limit, date) {
@@ -19,13 +19,13 @@ Meteor.publish("liveFeedPostsFollowedByUser", function(postsByID, limit) {
 Meteor.publish("getUserDataByUsername", function(user_name) {
     return Meteor.users.find(
         {username: user_name},
-        {fields: {'username': 1, 'profile': 1}
+        {fields: {'username': 1, 'profile': 1, "status.online": 1}
         }
     );
 });
 
 Meteor.publish("usersListByID", function(arrayOfIDs) {
-    return Meteor.users.find({_id: {$in: arrayOfIDs}}, {fields: {'username': 1, 'profile.avatar': 1}});
+    return Meteor.users.find({_id: {$in: arrayOfIDs}}, {fields: {'username': 1, 'profile.avatar': 1, "status.online": 1}});
 });
 
 Meteor.publish('messages', function () {

@@ -15,15 +15,21 @@
             {{/if}}
 
         {{#if userProfile}}
-            <div class="ui circular image centered user-profile-avatar user-edit-avatar" style="background-image:url({{profile.avatar}});background-size: 100% 100%;">
+            <div class="profile-avatar-warp">
+                <div class="ui circular image centered user-profile-avatar user-edit-avatar" style="background-image:url({{profile.avatar}});background-size: 100% 100%;">
 
-                <a class="edit-avatar-mask" href="/settings">
-                    <i class="file image outline icon"></i>
-                    <span>{{_ "edit"}}</span>
-                </a>
+                    <a class="edit-avatar-mask" href="/settings">
+                        <i class="file image outline icon"></i>
+                        <span>{{_ "edit"}}</span>
+                    </a>
+                </div>
+                <span class="user-status online"></span>
             </div>
         {{else}}
-            <img class="ui circular image centered user-profile-avatar" src="{{profile.avatar}}">
+            <div class="profile-avatar-warp">
+                <img class="ui circular image centered user-profile-avatar" src="{{profile.avatar}}">
+                <span class="user-status {{#if userIsOnline}} online {{/if}}"></span>
+            </div>
         {{/if}}
 
 

@@ -37,8 +37,29 @@
     font-size:12px;
 }
 
+
+.profile-avatar-warp{
+    position: relative;
+    display: inline-block;
+}
+
 .user-edit-avatar a{
     color:#fff;
+}
+
+.user-status {
+    position: absolute;
+    top: -5px;
+    right: 5px;
+    width: 19px !important;
+    height: 19px !important;
+    border-radius: 15px;
+    border: 3px solid #f4f4f4;
+    background: #DB2828;
+}
+
+.online{
+    background: #1EBC30;
 }
 
 .edit-avatar-mask{

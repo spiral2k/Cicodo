@@ -2,7 +2,6 @@
 var userData, username, follows;
 
 Template.profile.onCreated(function() {
-
     // Subscribe only the relevant subscription to this page
     var self = this;
     self.autorun(function() { // Stops all current subscriptions
@@ -17,21 +16,15 @@ Template.profile.onCreated(function() {
         userData = Meteor.users.findOne({
                 username: username
             }) || {};
-
-
     });
 });
 
 Template.profile.onRendered(function(){
-
     setTimeout(function(){
         $('.ui.followers.modal').modal('attach events', '.fireFollowersModal', 'show').modal({blurring: true});
         $('.ui.following.modal').modal('attach events', '.fireFollowingModal', 'show').modal({blurring: true});
     }, 500);
-
 });
-
-
 
 Template.profile.events({
     'click #follow-user': function(){
@@ -53,10 +46,6 @@ Template.profile.events({
     }
 });
 
-
-
-
-
 Template.profile.helpers({
     userProfileData: function() {
 
@@ -70,7 +59,6 @@ Template.profile.helpers({
         Meteor.subscribe('usersListByID', userData.profile.followers);
         // Following
         Meteor.subscribe('usersListByID', userData.profile.follow);
-
 
         if( _.isEmpty(userData)){
             FlowRouter.go('/404')
@@ -138,8 +126,13 @@ Template.profile.helpers({
         });
 
         return followsUsers;
+    },
+    userIsOnline:function(){
+        if(userData.status.online){
+            return true
+        }else{
+            return false
+        }
     }
-
-
 
 });
