@@ -19,6 +19,25 @@ Template.navbaruser.helpers({
     avatar: function(){
         var avatar = Meteor.user().profile.avatar;
         return avatar;
+    },
+    hasNewMessages:function(){
+        //var c= Meteor.users.find( {_id: Meteor.userId()},
+        //    {"profile.messages":{"$elemMatch":{new_messages:{$gte:1}}}} ).count()
+
+        var userMessages = Meteor.user().profile.messages;
+        var count = 0;
+        for(var i = 0; i < userMessages.length; i++){
+
+            console.log("userMessages: ", userMessages[i]);
+
+            if(userMessages[i].new_messages >= 1){
+                count++;
+            }
+
+        }
+
+        return count;
+
     }
 });
 

@@ -13,7 +13,7 @@ Template.messages.onCreated(function(){
                 username: username
             }) || {};
 
-        self.subscribe('usersListByID', Meteor.user().profile.messages.open_messages);
+        self.subscribe('usersListByID', Meteor.user().profile.open_messages);
 
         // need fix
         if(username){
@@ -70,9 +70,8 @@ Template.messages.helpers({
 
     },
     usernames: function () {
-            if(Meteor.user().profile.messages.open_messages)
                 return Meteor.users.find({
-                    '_id': { $in: Meteor.user().profile.messages.open_messages }
+                    '_id': { $in: Meteor.user().profile.open_messages }
                 }, { fields: { 'username': 1, 'profile.avatar': 1 } }, function (err, docs) {
                     console.log("Error getting usernames", docs);
                 });
