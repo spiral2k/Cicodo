@@ -13,10 +13,14 @@ Template.messages.onCreated(function(){
                 username: username
             }) || {};
 
-        self.subscribe('usersListByID', Meteor.user().profile.open_messages);
+        self.subscribe('usersListByID', Meteor.user().profile.messages.open_messages);
 
         // need fix
-        Session.set("isMessagesMain", true);
+        if(username){
+            Session.set("isMessagesMain", false);
+        }else{
+            Session.set("isMessagesMain", true);
+        }
         self.subscribe('messages');
     });
 });
@@ -25,9 +29,9 @@ Template.messages.events({
     'click .messages-sidebar-user': function(){
 
         Session.set("messageUserName", this.username);
-
         Session.set("isMessagesMain", false);
 
+        // change without reload
         history.pushState({}, null, '/messages/' + this.username);
 
         return true;
@@ -47,7 +51,9 @@ Template.messages.events({
 
                 Meteor.call('newMessage', {
                     text: query_selector.val()
-                },  Session.get("messageUserName"));
+                },
+                    // what person will recive that message
+                    Session.get("messageUserName"));
 
                 query_selector.val("");
                 return false;
@@ -64,12 +70,11 @@ Template.messages.helpers({
 
     },
     usernames: function () {
-
-            return Meteor.users.find({
-                '_id': { $in: Meteor.user().profile.open_messages }
-            }, { fields: { 'username': 1, 'profile.avatar': 1 } }, function (err, docs) {
-                console.log("Error getting usernames", docs);
-            });
-
+            if(Meteor.user().profile.messages.open_messages)
+                return Meteor.users.find({
+                    '_id': { $in: Meteor.user().profile.messages.open_messages }
+                }, { fields: { 'username': 1, 'profile.avatar': 1 } }, function (err, docs) {
+                    console.log("Error getting usernames", docs);
+                });
     }
 });

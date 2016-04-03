@@ -34,8 +34,7 @@ Template.register.events({
                 language:"en",
                 // New
                 notifications: [],
-                open_messages:[]
-
+                messages: []
             }
         }, function(error){
             if(error){
