@@ -36,6 +36,7 @@ Template.register.events({
                 notifications: [],
                 open_messages:[],
                 messages: []
+
             }
         }, function(error){
             if(error){
@@ -48,6 +49,9 @@ Template.register.events({
 
     }
 });
+
+
+
 
 Template.register.helpers({
     formErrors: function() {
