@@ -11,10 +11,6 @@ Template.messages.onCreated(function(){
     });
 });
 
-
-
-
-
 Template.messagesView.helpers({
     avatar:function(){
       return Meteor.user().profile.avatar;
