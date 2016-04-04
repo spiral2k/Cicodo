@@ -14,7 +14,6 @@ Template.messages.onCreated(function(){
             }) || {};
 
         self.subscribe('usersListByID', Meteor.user().profile.open_messages);
-
         // need fix
         if(username){
             Session.set("isMessagesMain", false);
@@ -62,7 +61,6 @@ Template.messages.events({
     }
 
 });
-
 
 Template.messages.helpers({
     isMainMessages:function(){
