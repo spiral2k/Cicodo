@@ -35,5 +35,8 @@ Meteor.publish('messages', function () {
 });
 
 
+Meteor.publish('lastMessageById', function (arrayOfIDs) {
+    return Messages.find({send_from: {$in: arrayOfIDs}, send_to: this.userId},{limit: 5});
+});
 
 

@@ -1,26 +1,10 @@
 <template name="navbaruser">
 
-
-
-    <!--<div class="ui icon buttons">-->
-        <!--<div class="ui top right pointing dropdown button masseges-dropdown">-->
-            <!--<i class="user icon"></i>-->
-            <!--<div class="menu">-->
-                <!--<div class="item"><i class="edit icon"></i>Edit User</div>-->
-                <!--<div class="item"><i class="delete icon"></i>Remove User</div>-->
-                <!--<div class="item"><i class="hide icon"></i>Make Invisible</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-
-
-
     <div class="ui floating dropdown navbar-user-block username-dropdown">
         <div class="navbar-dropdown-header">
             <i class="dropdown icon"></i>
             <img class="avatar small" src="{{avatar}}">
             <span>@{{username}}</span>
-            <a class="ui red circular label">{{hasNewMessages}}</a>
         </div>
 
 
@@ -32,4 +16,23 @@
         </div>
 
     </div>
+
+    {{!-- Messages TopBar --}}
+
+
+
+
+        <div class="ui top right pointing dropdown ">
+            <i class="big mail outline icon"></i>
+            <a class="ui red circular mini label messages-notification">{{hasNewMessages}}</a>
+            <div class="menu">
+                {{#each messages}}
+                    <div class="item"><i class="edit icon"></i> {{usernameFromId send_from}}g</div>
+                {{/each}}
+            </div>
+        </div>
+
+
+
+
 </template>

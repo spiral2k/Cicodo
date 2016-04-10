@@ -19,6 +19,13 @@
     float: right;
 }
 
+.messages-notification{
+    position: absolute;
+    right:0;
+    top:0;
+}
+
 .masseges-dropdown{
-    float:right;
+    position: relative;
+    margin-top:10px;
 }

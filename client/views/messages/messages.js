@@ -7,6 +7,13 @@ Template.messages.onCreated(function(){
     self = this;
     self.autorun(function() {
         username = FlowRouter.getParam('username'); // Get the user username from the route parameter
+
+
+        if(username === Meteor.user().username){
+            history.pushState({}, null, '/messages/');
+        }
+
+
         Session.set("messageUserName", username);
         self.subscribe('getUserDataByUsername', username);
         userData = Meteor.users.findOne({

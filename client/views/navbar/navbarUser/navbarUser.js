@@ -1,3 +1,29 @@
+var userMessages, messagesUsersArray = [], userMessagesReady;
+
+
+Template.navbaruser.onCreated(function(){
+    self = this;
+
+    self.autorun(function() {
+        userMessages = Meteor.user().profile.messages;
+
+        for(var i = 0; i < userMessages.length; i++){
+            messagesUsersArray.push(userMessages[i].user_message_id);
+        }
+
+        self.subscribe('usersListByID', messagesUsersArray);
+
+
+        console.log("messagesUsersArray: ", messagesUsersArray);
+
+        userMessagesReady = self.subscribe('lastMessageById', messagesUsersArray);
+
+    });
+
+});
+
+
+
 Template.navbaruser.onRendered(function(){
     $('.username-dropdown').dropdown({
         transition: 'drop'
@@ -7,6 +33,7 @@ Template.navbaruser.onRendered(function(){
         transition: 'drop'
     });
 
+    this.subscribe('messages');
 
 
 });
@@ -24,11 +51,10 @@ Template.navbaruser.helpers({
         //var c= Meteor.users.find( {_id: Meteor.userId()},
         //    {"profile.messages":{"$elemMatch":{new_messages:{$gte:1}}}} ).count()
 
-        var userMessages = Meteor.user().profile.messages;
-        var count = 0;
-        for(var i = 0; i < userMessages.length; i++){
 
-            console.log("userMessages: ", userMessages[i]);
+        var count = 0;
+
+        for(var i = 0; i < userMessages.length; i++){
 
             if(userMessages[i].new_messages >= 1){
                 count++;
@@ -37,6 +63,11 @@ Template.navbaruser.helpers({
         }
 
         return count;
+
+    },
+    messages: function(){
+
+            return Messages.find({send_from: {$in: messagesUsersArray}, send_to: Meteor.userId}, {limit: 1})
 
     }
 });
