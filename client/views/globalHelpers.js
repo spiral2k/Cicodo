@@ -3,6 +3,12 @@ Template.registerHelper("usernameFromId", function (userId) {
     return user.username;
 });
 
+Template.registerHelper("messagesShortPreview", function (text) {
+    var n = 40;
+    return (text.length > n) ? text.substr(0,n-1)+'...' : text;
+
+});
+
 Template.registerHelper("avatarFromId", function (userId) {
     var user = Meteor.users.findOne({_id: userId});
     return user.profile.avatar;

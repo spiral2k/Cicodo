@@ -18,19 +18,23 @@
     </div>
 
     {{!-- Messages TopBar --}}
-
-
-
-
-        <div class="ui top right pointing dropdown ">
-            <i class="big mail outline icon"></i>
-            <a class="ui red circular mini label messages-notification">{{hasNewMessages}}</a>
-            <div class="menu">
+    <div class="ui top right pointing dropdown ">
+        <i class="big mail outline icon"></i>
+        {{#if hasNewMessages}}
+        <a class="ui red circular mini label messages-notification">{{hasNewMessages}}</a>
+        {{/if}}
+        <div class="menu messages-panel-width">
                 {{#each messages}}
-                    <div class="item"><i class="edit icon"></i> {{usernameFromId send_from}}g</div>
+                    <div class="item messagesUserItem">
+                        <img class="messages-panel-avatar" src="{{avatarFromId send_from}}">
+                        <div class="content">
+                            <div class="header">{{usernameFromId send_from}}</div>
+                            {{messagesShortPreview text}}
+                        </div>
+                    </div>
                 {{/each}}
-            </div>
         </div>
+    </div>
 
 
 

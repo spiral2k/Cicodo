@@ -1,22 +1,20 @@
-var userMessages, messagesUsersArray = [], userMessagesReady;
+var userMessages, usersMessagesArray = [], messagesReady, usersReady;
 
 
 Template.navbaruser.onCreated(function(){
     self = this;
-
     self.autorun(function() {
+
         userMessages = Meteor.user().profile.messages;
 
-        for(var i = 0; i < userMessages.length; i++){
-            messagesUsersArray.push(userMessages[i].user_message_id);
-        }
+        if(userMessages)
+            for(var i = 0; i < userMessages.length && i < 5; i++){
+                usersMessagesArray.push(userMessages[i].user_message_id);
+                messagesReady = self.subscribe('lastMessageById', userMessages[i].user_message_id);
+            }
 
-        self.subscribe('usersListByID', messagesUsersArray);
+        usersReady = self.subscribe('usersListByID', usersMessagesArray);
 
-
-        console.log("messagesUsersArray: ", messagesUsersArray);
-
-        userMessagesReady = self.subscribe('lastMessageById', messagesUsersArray);
 
     });
 
@@ -33,9 +31,6 @@ Template.navbaruser.onRendered(function(){
         transition: 'drop'
     });
 
-    this.subscribe('messages');
-
-
 });
 
 Template.navbaruser.helpers({
@@ -48,27 +43,21 @@ Template.navbaruser.helpers({
         return avatar;
     },
     hasNewMessages:function(){
-        //var c= Meteor.users.find( {_id: Meteor.userId()},
-        //    {"profile.messages":{"$elemMatch":{new_messages:{$gte:1}}}} ).count()
-
-
         var count = 0;
-
         for(var i = 0; i < userMessages.length; i++){
-
             if(userMessages[i].new_messages >= 1){
                 count++;
             }
-
+        }
+        if(count == 0){
+            return "";
         }
 
         return count;
-
     },
     messages: function(){
-
-            return Messages.find({send_from: {$in: messagesUsersArray}, send_to: Meteor.userId}, {limit: 1})
-
+        if(messagesReady.ready() && usersReady.ready())
+            return Messages.find();
     }
 });
 
@@ -85,5 +74,11 @@ Template.navbaruser.events({
     'click .item': function(event){
         $(event.target).removeClass('selected');
         $(event.target).removeClass('active');
+    },
+    'click .messagesUserItem': function(){
+        var user = Meteor.users.findOne({_id: this.send_from }, {fields: {username:1}});
+
+        FlowRouter.go("/messages/" + user.username);
+
     }
 });

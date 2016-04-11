@@ -29,3 +29,11 @@
     position: relative;
     margin-top:10px;
 }
+
+.messages-panel-width{
+    width:300px;
+}
+
+.messages-panel-avatar{
+    float: left !important;
+}
