@@ -1,6 +1,8 @@
 <template name="messagesView">
-    {{#each messages}}
-        {{> message text=text user=send_from timestamp=timestamp avatar=avatar}}
-    {{/each}}
-    <textarea class="textMessage"></textarea>
+    {{#if Template.subscriptionsReady}}
+        {{#each messages}}
+            {{> message text=text user=send_from timestamp=timestamp avatar=avatar}}
+        {{/each}}
+    {{/if}}
+    <textarea id="textMessage"></textarea>
 </template>

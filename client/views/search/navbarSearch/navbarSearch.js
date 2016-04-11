@@ -1,14 +1,14 @@
-Template.navbarSearch.onRendered(function(){
-
+Template.navbarSearch.onCreated(function(){
     Session.set('searchHasResults', null);
+});
 
+
+Template.navbarSearch.onRendered(function(){
     $(document).mouseup(function (e)
     {
         var container = $(".navbar-search-wrap");
 
-        if (!container.is(e.target) // if the target of the click isn't the container...
-            && container.has(e.target).length === 0) // ... nor a descendant of the container
-        {
+        if (!container.is(e.target) && container.has(e.target).length === 0) {
             Session.set('searchHasResults', null);
         }
     });
@@ -28,7 +28,7 @@ Template.navbarSearch.events({
             Meteor.call('navbar-search', query, function(error, result){
 
                 if(error){
-                    console.log(error.reason);
+                    console.log("Navbar Search Error: ", error.reason);
                     return;
                 }
 
@@ -41,8 +41,8 @@ Template.navbarSearch.events({
 
     },
     'keyup input': function(event) {
-        var query = $('#navbar-search').val();
 
+        var query = $('#navbar-search').val();
 
         Session.set('searchHasResults', null);
 
@@ -53,7 +53,7 @@ Template.navbarSearch.events({
             Meteor.call('navbar-search', query, function(error, result){
 
                 if(error){
-                    console.log(error.reason);
+                    console.log("Navbar Search Error: ", error.reason);
                     return;
                 }
 
@@ -75,4 +75,9 @@ Template.navbarSearch.helpers({
     searchHasResults: function(){
         return Session.get('searchHasResults');
     }
+});
+
+
+Template.navbarSearch.onDestroyed(function(){
+    Session.set('searchHasResults', null);
 });

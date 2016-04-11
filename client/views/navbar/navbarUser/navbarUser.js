@@ -15,7 +15,6 @@ Template.navbaruser.onCreated(function(){
 
         usersReady = self.subscribe('usersListByID', usersMessagesArray);
 
-
     });
 
 });
@@ -43,6 +42,9 @@ Template.navbaruser.helpers({
         return avatar;
     },
     hasNewMessages:function(){
+
+        userMessages = Meteor.user().profile.messages;
+
         var count = 0;
         for(var i = 0; i < userMessages.length; i++){
             if(userMessages[i].new_messages >= 1){
@@ -56,8 +58,15 @@ Template.navbaruser.helpers({
         return count;
     },
     messages: function(){
-        if(messagesReady.ready() && usersReady.ready())
-            return Messages.find();
+
+        if(userMessages)
+            for(var i = 0; i < userMessages.length && i < 5; i++){
+                usersMessagesArray.push(userMessages[i].user_message_id);
+                messagesReady = self.subscribe('lastMessageById', userMessages[i].user_message_id);
+            }
+
+        //if(messagesReady.ready() && usersReady.ready())
+        //    return Messages.find();
     }
 });
 
@@ -77,8 +86,6 @@ Template.navbaruser.events({
     },
     'click .messagesUserItem': function(){
         var user = Meteor.users.findOne({_id: this.send_from }, {fields: {username:1}});
-
         FlowRouter.go("/messages/" + user.username);
-
     }
 });

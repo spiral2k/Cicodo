@@ -28,14 +28,17 @@ Meteor.publish("usersListByID", function(arrayOfIDs) {
     return Meteor.users.find({_id: {$in: arrayOfIDs}}, {fields: {'username': 1, 'profile.avatar': 1, "status.online": 1}});
 });
 
-Meteor.publish('messageView', function (userData) {
-    return  Messages.find({$or: [{send_to: this.userId, send_from: userData._id}, {send_to: userData._id, send_from: this.userId}] },{sort: {timestamp: -1}, limit: 50});
+Meteor.publish('messageView', function (username) {
+
+    var user = Meteor.users.findOne({'username': username});
+
+    return  Messages.find({$or: [{send_to: this.userId, send_from: user._id}, {send_to: user._id, send_from: this.userId}] },{sort: {timestamp: -1}, limit: 50});
 });
 
 
 
 Meteor.publish('lastMessageById', function (userMessageID) {
-    return  Messages.find({send_from:  userMessageID, send_to: this.userId},{sort: {timestamp: -1}, limit: 1});
+    return  Messages.find({send_from:  userMessageID, send_to: this.userId},{sort: {timestamp: 1}, limit: 1});
 });
 
 

@@ -65,6 +65,7 @@ Template.register.rendered = function(){
     // reset session var for form errors
     Session.set('formErrors', undefined);
 
+   //Validation
     $('.loginForm').form({
         fields: {
             email: {
