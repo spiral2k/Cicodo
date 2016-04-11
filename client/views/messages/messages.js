@@ -6,13 +6,13 @@ var username, userData, self;
 Template.messages.onCreated(function(){
     self = this;
     self.autorun(function() {
+
         username = FlowRouter.getParam('username'); // Get the user username from the route parameter
 
-
         if(username === Meteor.user().username){
+            Session.set("isMessagesMain", true);
             history.pushState({}, null, '/messages/');
         }
-
 
         Session.set("messageUserName", username);
         self.subscribe('getUserDataByUsername', username);
@@ -47,17 +47,16 @@ Template.messages.events({
         var query_selector = $('.textMessage');
         var inputVal = query_selector.val();
 
+        console.log("e: ", e);
+
         if(!!inputVal) {
             var charCode = (typeof e.which == "number") ? e.which : e.keyCode;
             if (charCode == 13) {
                 e.stopPropagation();
 
-
-                console.log("inputVal: ", inputVal);
-
                 Meteor.call('newMessage', {
-                    text: query_selector.val()
-                },
+                        text: query_selector.val()
+                    },
                     // what person will recive that message
                     Session.get("messageUserName"));
 
@@ -66,7 +65,6 @@ Template.messages.events({
             }
         }
     }
-
 });
 
 Template.messages.helpers({

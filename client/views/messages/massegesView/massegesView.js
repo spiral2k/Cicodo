@@ -7,7 +7,7 @@ Template.messages.onCreated(function(){
             }) || {};
 
         // need fix
-        self.subscribe('messages');
+        self.subscribe('messageView', userData);
     });
 });
 
@@ -22,4 +22,8 @@ Template.messagesView.helpers({
 
         return Messages.find({ $or: [{send_to: Meteor.userId(), send_from: userData._id}, {send_to: userData._id, send_from: Meteor.userId()}] });
     }
+});
+
+Template.messagesView.events({
+
 });
