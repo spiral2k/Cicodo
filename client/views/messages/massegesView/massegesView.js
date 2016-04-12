@@ -28,13 +28,12 @@ Template.messagesView.helpers({
 
         return Messages.find({ $or: [{send_to: Meteor.userId(), send_from: userData._id}, {send_to: userData._id, send_from: Meteor.userId()}] }, {sort: {timestamp: 1}});
     },
-    userMessageAvatar:function(){
+    userMessage:function(){
         var userData = Meteor.users.findOne({
                 username: Session.get("messageUserName")
             }, {fields: {username:1, 'profile.avatar': 1}}) || {};
 
         return  userData;
-
     }
 });
 

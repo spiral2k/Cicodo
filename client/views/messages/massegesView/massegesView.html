@@ -2,9 +2,16 @@
 
     {{#if Template.subscriptionsReady}}
 
+
+
         <div class="top-messageView-panel">
-            <img src="{{userMessageAvatar.profile.avatar}}">
-            <span>{{userMessageAvatar.username}}</span>
+
+            <div class="back"></div>
+            <div class="panel-content">
+                <img src="{{userMessage.profile.avatar}}">
+                <span>{{userMessage.username}}</span>
+                <a class="ui right blue button link" href="/@/{{userMessage.username}}">{{userMessage.username}} {{_ "profile"}}</a>
+            </div>
         </div>
 
         <div id="messages-view-warp">
