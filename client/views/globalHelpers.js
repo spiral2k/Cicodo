@@ -24,8 +24,6 @@ Template.registerHelper("lastMessageByID", function (userId) {
     return;
 });
 
-
-
 Template.registerHelper("lastMessageTimeByID", function (userId) {
 
     var date, today;
@@ -52,12 +50,6 @@ Template.registerHelper("lastMessageTimeByID", function (userId) {
         return moment(date).format("MMMM D, YYYY");
 
 });
-
-
-
-
-
-
 
 Template.registerHelper("avatarFromId", function (userId) {
     var user = Meteor.users.findOne({_id: userId});
