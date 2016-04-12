@@ -12,9 +12,7 @@ Template.messages.helpers({
         if(FlowRouter.current().route.path === '/messages'){
             return true;
         }
-
         return false;
-
     },
     usernames: function () {
                 return Meteor.users.find({
@@ -24,7 +22,6 @@ Template.messages.helpers({
                 });
     },
     currentMessageUser:function(){
-
         if(this.username == Session.get("messageUserName")){
             return true;
         }
@@ -32,16 +29,21 @@ Template.messages.helpers({
     }
 });
 
-
 Template.messages.events({
     'click .messages-sidebar-user': function(){
         Session.set("messageUserName", this.username);
-
         FlowRouter.go('/messages/' + this.username)
-
-        // change without reload
-        //history.pushState({}, null, '/messages/' + this.username);
-
+        return true;
+    },
+    'keyup #user-messages-search': function(e){
+        var value = $('#user-messages-search').val();
+        $(".messages-sidebar-user").each(function() {
+            if ($(this).find('.username-sidebar').text().search(new RegExp(value, "i")) > -1) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
         return true;
     }
 });

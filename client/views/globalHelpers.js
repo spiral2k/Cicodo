@@ -15,7 +15,6 @@ Template.registerHelper("lastMessageByID", function (userId) {
     }, { fields: { 'profile.messages': 1} }).fetch();
 
     last_message = last_message[0].profile.messages;
-    console.log("last_message: ", last_message);
 
     for(var i = 0; i < last_message.length;i++){
         if(last_message[i].user_message_id == userId){
@@ -36,23 +35,21 @@ Template.registerHelper("lastMessageTimeByID", function (userId) {
     }, { fields: { 'profile.messages': 1} }).fetch();
 
     last_message = last_message[0].profile.messages;
-    console.log("last_message: ", last_message);
 
     for(var i = 0; i < last_message.length;i++){
         if(last_message[i].user_message_id == userId){
             date = last_message[i].last_message_time;
         }
     }
+    if(date)
+        today = (date.toDateString() === new Date().toDateString());
 
-    today = (date.toDateString() === new Date().toDateString());
-
-    if(today){
-
+    if(today && date){
         return moment(date).format("HH:mm")
 
     }
-
-    return moment(date).format("MMMM D, YYYY");
+    if(date)
+        return moment(date).format("MMMM D, YYYY");
 
 });
 

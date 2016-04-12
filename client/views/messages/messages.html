@@ -4,6 +4,11 @@
             <div class="ui grid ">
                 <div class="four wide column computer only">
                     <div class="messages-sidebar">
+
+                        <div class="top-messages-search">
+                            <input type="text" id="user-messages-search" placeholder="{{_ "messagesUsersSearch"}}">
+                            <i class="search icon"></i>
+                        </div>
                     {{#each usernames}}
                         <div class="messages-sidebar-user {{#if currentMessageUser}} selected {{/if}}">
                             <img src="{{profile.avatar}}">
@@ -17,7 +22,7 @@
                     </div>
                 </div>
             {{#if Template.subscriptionsReady}}
-                <div class="eleven wide column messages-view">
+                <div class="twelve wide column messages-view">
                     {{#if isMainMessages}}
                         {{>mainMessages}}
                     {{else}}

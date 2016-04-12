@@ -32,12 +32,14 @@
     width:100%;
     height:100%;
     background: #2B323A;
+    text-align: center;
 }
+
 
 .messages-sidebar-user{
     position: relative;
     float: left;
-    width: 100%;
+    width: 97%;
     height: 70px;
     cursor: pointer;
     margin-bottom: 10px;
@@ -45,6 +47,7 @@
 
 .messages-sidebar-user.selected, .messages-sidebar-user:hover {
     background:#343D45;
+    border-radius: 3px;
 }
 
 
@@ -61,7 +64,8 @@
     float:left;
     color:#ABACAE;
     margin-left: 15px;
-    width:70%;
+    width:55%;
+    text-align: left;
 }
 
 .last-message-date-sidebar{
@@ -78,7 +82,7 @@
     border-radius:50px;
     float:left;
     margin-top: 10px;
-    margin-left:10px;
+    margin-left:16px;
 }
 
 .messages-view{
@@ -86,3 +90,32 @@
     width:100%;
     background: #EAEDF2;
 }
+
+.top-messages-search{
+    float:left;
+    width:100%;
+    position: relative;
+}
+
+.top-messages-search i{
+    position: absolute;
+    top: 5px;
+    right: 32px;
+    color: #CACACA;
+}
+
+
+#user-messages-search{
+    border: 0;
+    background: #363D45;
+    border-radius: 50px;
+    padding: 0 20px;
+    line-height: 30px;
+    text-transform: capitalize;
+    width: 80%;
+    display: inline-block;
+    color: #fff;
+    height: 30px;
+    margin-bottom: 20px;
+}
+
