@@ -165,11 +165,8 @@ Template.profile.helpers({
                 username: username
             }) || {};
 
-        if(userData.status.online){
-            return true
-        }else{
-            return false
-        }
+        return userData.status.online
+
     }
 
 });

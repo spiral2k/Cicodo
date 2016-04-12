@@ -19,9 +19,16 @@ Template.messages.helpers({
     usernames: function () {
                 return Meteor.users.find({
                     '_id': { $in: Meteor.user().profile.open_messages }
-                }, { fields: { 'username': 1, 'profile.avatar': 1 } }, function (err, docs) {
+                }, { fields: { 'username': 1, 'profile.avatar': 1, 'status.online': 1} }, function (err, docs) {
                     console.log("Template.messages.helpers: Error getting usernames ", docs);
                 });
+    },
+    currentMessageUser:function(){
+
+        if(this.username == Session.get("messageUserName")){
+            return true;
+        }
+        return false;
     }
 });
 

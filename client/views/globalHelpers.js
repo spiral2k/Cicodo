@@ -9,6 +9,59 @@ Template.registerHelper("messagesShortPreview", function (text) {
 
 });
 
+Template.registerHelper("lastMessageByID", function (userId) {
+    var last_message =  Meteor.users.find({
+        '_id': Meteor.userId()
+    }, { fields: { 'profile.messages': 1} }).fetch();
+
+    last_message = last_message[0].profile.messages;
+    console.log("last_message: ", last_message);
+
+    for(var i = 0; i < last_message.length;i++){
+        if(last_message[i].user_message_id == userId){
+            return last_message[i].last_message;
+        }
+    }
+    return;
+});
+
+
+
+Template.registerHelper("lastMessageTimeByID", function (userId) {
+
+    var date, today;
+
+    var last_message =  Meteor.users.find({
+        '_id': Meteor.userId()
+    }, { fields: { 'profile.messages': 1} }).fetch();
+
+    last_message = last_message[0].profile.messages;
+    console.log("last_message: ", last_message);
+
+    for(var i = 0; i < last_message.length;i++){
+        if(last_message[i].user_message_id == userId){
+            date = last_message[i].last_message_time;
+        }
+    }
+
+    today = (date.toDateString() === new Date().toDateString());
+
+    if(today){
+
+        return moment(date).format("HH:mm")
+
+    }
+
+    return moment(date).format("MMMM D, YYYY");
+
+});
+
+
+
+
+
+
+
 Template.registerHelper("avatarFromId", function (userId) {
     var user = Meteor.users.findOne({_id: userId});
     return user.profile.avatar;

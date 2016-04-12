@@ -1,27 +1,33 @@
 <template name="messages">
+    <div class="messages-main">
+        <div class="ui container messages-top-from-navbar">
+            <div class="ui grid ">
+                <div class="four wide column computer only">
+                    <div class="messages-sidebar">
+                    {{#each usernames}}
+                        <div class="messages-sidebar-user {{#if currentMessageUser}} selected {{/if}}">
+                            <img src="{{profile.avatar}}">
+                            <span class="user-status-messages {{#if status.online}} online {{/if}}"></span>
+                            <span class="username-sidebar">{{username}}</span>
+                            <span class="last-message-date-sidebar">{{lastMessageTimeByID _id}}</span>
+                            <span class="last-message-sidebar">{{lastMessageByID _id}}</span>
 
-    <div class="ui grid ">
-        <div class="three wide column computer only">
-            <div class="messages-sidebar">
-            <span>usernames: </span>
-            <br>
-            {{#each usernames}}
-                <div class="messages-sidebar-user">
-                    <img src="{{profile.avatar}}">
-                    <span>{{username}}</span>
+                        </div>
+                    {{/each}}
+                    </div>
                 </div>
-            {{/each}}
+            {{#if Template.subscriptionsReady}}
+                <div class="eleven wide column messages-view">
+                    {{#if isMainMessages}}
+                        {{>mainMessages}}
+                    {{else}}
+                        {{> messagesView}}
+                    {{/if}}
+                    {{>footer}}
+                </div>
+            {{/if}}
             </div>
         </div>
-    {{#if Template.subscriptionsReady}}
-        <div class="twelve wide column ">
-            {{#if isMainMessages}}
-                {{>mainMessages}}
-            {{else}}
-                {{> messagesView}}
-            {{/if}}
-        </div>
-    {{/if}}
     </div>
 
 </template>
