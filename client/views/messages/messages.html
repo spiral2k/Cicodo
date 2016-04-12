@@ -1,5 +1,5 @@
 <template name="messages">
-    {{#if Template.subscriptionsReady}}
+
     <div class="ui grid ">
         <div class="three wide column computer only">
             <div class="messages-sidebar">
@@ -13,12 +13,15 @@
             {{/each}}
             </div>
         </div>
-
+    {{#if Template.subscriptionsReady}}
         <div class="twelve wide column ">
-
+            {{#if isMainMessages}}
+                {{>mainMessages}}
+            {{else}}
                 {{> messagesView}}
-
+            {{/if}}
         </div>
-    </div>
     {{/if}}
+    </div>
+
 </template>

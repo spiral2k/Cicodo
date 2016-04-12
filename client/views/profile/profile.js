@@ -5,7 +5,7 @@ Template.profile.onCreated(function() {
         //////////////////////////////////////////////////////////////////////
         // Get information about the user that the profile belong to him
         //////////////////////////////////////////////////////////////////////
-        var username = FlowRouter.getParam('username'); // Get the user username from the route parameter
+        var username = FlowRouter.getParam('username');
         self.subscribe('getUserDataByUsername', username);
 
     });
