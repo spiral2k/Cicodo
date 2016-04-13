@@ -67,8 +67,9 @@ UI.registerHelper('postContentParse', function (text) {
             }
         }
 
-        res += '' + temp[index];
-        text = res;
+        res += '\n' + temp[index];
+
+        text = res.trim();
     }
 
     carriage_returns = /\r\n?/g;
@@ -77,6 +78,7 @@ UI.registerHelper('postContentParse', function (text) {
     text = text.replace(carriage_returns, '\n');
     text = text.replace(paragraphs, '</p>\n<p>');
     text = text.replace(newline, '$1<br/>');
+
 
     text = '<p>' + text + '</p>';
 

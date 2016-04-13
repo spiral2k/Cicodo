@@ -6,11 +6,10 @@
 
         <div class="top-messageView-panel">
 
-  
+
             <div class="panel-content">
-                <img src="{{userMessage.profile.avatar}}">
-                <span>{{userMessage.username}}</span>
-                <a class="ui right blue button link" href="/@/{{userMessage.username}}">{{userMessage.username}} {{_ "profile"}}</a>
+                <span>{{_ "conversationWith"}} @{{userMessage.username}}</span>
+                <a class="ui tiny right blue button link" href="/@/{{userMessage.username}}">@{{userMessage.username}} {{_ "profile"}}</a>
             </div>
         </div>
 
