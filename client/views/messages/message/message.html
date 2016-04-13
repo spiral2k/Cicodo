@@ -1,18 +1,33 @@
 <template name="message">
-    <div class="ui minimal comments">
-        <div class="comment">
-            <a class="avatar">
+
+    {{#if userMessage}}
+
+        <div class="message">
+            <div class="message-avatar right">
                 <img src="{{avatarFromId user}}">
-            </a>
-            <div class="content">
-                <a class="author">{{usernameFromId user}}</a>
-                <div class="metadata">
-                    <span class="date">{{timestampToTime timestamp}}</span>
-                </div>
-                <div class="text">
+                <span>{{timestampToTime timestamp}}</span>
+            </div>
+
+
+            <div class="message-bubble blue">
                     {{text}}
-                </div>
             </div>
         </div>
+    {{/if}}
+
+    {{#unless userMessage}}
+
+        <div class="message">
+            <div class="message-avatar left">
+                <img src="{{avatarFromId user}}">
+                <span>{{timestampToTime timestamp}}</span>
+            </div>
+
+
+            <div class="message-bubble white">
+                {{postContentParse text}}
+            </div>
         </div>
+
+    {{/unless}}
 </template>

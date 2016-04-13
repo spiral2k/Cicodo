@@ -42,23 +42,6 @@
     top:0;
 }
 
-.back{
-    width:100%;
-    height:100%;
-    background: url("http://alexcarpenter.me/img/banner.jpg") center center no-repeat;
-    background-size: cover;
-}
-
-.back:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-image: linear-gradient(to bottom, rgba(255,0,0,0), #EAEDF2);
-    opacity: 1;
-}
 
 
 

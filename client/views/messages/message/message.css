@@ -1,0 +1,89 @@
+.message{
+    float:left;
+    width:100%;
+    min-height: 100px;
+}
+
+.message-avatar{
+    width:50px;
+}
+
+
+.message-avatar.right{
+    float:right;
+}
+
+
+.message-avatar.left{
+    float:left;
+}
+
+.message-avatar img {
+    float:right;
+    width:50px;
+    height:50px;
+    border-radius: 50px;
+}
+
+.message-avatar span{
+    float:right;
+    width:100%;
+    text-align: center;
+    font-size:11px;
+    color:#868687;
+    margin-top:10px;
+}
+
+
+.message-bubble {
+    position: relative;
+    margin-top: 15px;
+
+    min-height: 30px;
+    line-height: 30px;
+    padding: 5px 16px;
+    border-radius: 18px;
+    max-width: 80%;
+}
+
+
+.message-bubble:after {
+
+    top: 15px;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    margin-top: -15px;
+    border-style: solid;
+
+}
+
+
+.message-bubble.blue{
+    background: #0084ff;
+    color: #fff;
+    float: right;
+    margin-right: 10px;
+}
+
+.message-bubble.blue:after{
+    right: 0px;
+    border-width: 0 15px 15px 0;
+    border-color: transparent #0084ff transparent transparent;
+}
+
+
+.message-bubble.white{
+    background: #fff;
+    color: #000;
+    float: left;
+    margin-left: 10px;
+}
+
+.message-bubble.white:after{
+    left:0px;
+    border-width: 15px 15px 0 0;
+    border-color: #fff transparent transparent transparent;
+}
