@@ -68,6 +68,12 @@
     margin-right: 10px;
 }
 
+
+.message-bubble.blue a{
+    color:#fff;
+    text-decoration: underline;
+}
+
 .message-bubble.blue:after{
     right: 0px;
     border-width: 0 15px 15px 0;
@@ -81,6 +87,8 @@
     float: left;
     margin-left: 10px;
 }
+
+
 
 .message-bubble.white:after{
     left:0px;
