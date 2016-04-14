@@ -96,3 +96,19 @@
     float:left;
     width:100%;
 }
+
+.no-messages{
+    display: inline-block;
+}
+
+.no-messages i{
+    width:100%;
+    text-align: center;
+}
+
+.no-messages span{
+    float: left;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+}

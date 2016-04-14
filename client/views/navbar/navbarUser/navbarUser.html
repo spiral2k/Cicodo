@@ -50,7 +50,11 @@
 
                 {{#unless messages}}
                 <div class="item">
-                    <span class="no-messages">{{_ "noMessages"}}</span>
+
+                    <span class="no-messages">
+                        <i class="big send outline icon"></i>
+                        <span>{{_ "noMessages"}}</span>
+                    </span>
                 </div>
                 {{/unless}}
 
