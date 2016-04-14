@@ -1,24 +1,57 @@
 
+
 Template.messages.onCreated(function(){
     var self = this;
+
+
+
     self.autorun(function() {
 
         if(FlowRouter.getParam('username') === Meteor.user().username){
             FlowRouter.go('/messages');
         }
 
-        // get data of the user
+        // set data of the user
         if(!Session.get("messageUserName")){
             Session.set("messageUserName",FlowRouter.getParam('username'))
         }
+
         // Subs
         self.subscribe('getUserDataByUsername',Session.get("messageUserName"));
         self.subscribe('messageView',Session.get("messageUserName"));
     });
 
-    Meteor.call("resetNewMessagesInMessage", Session.get("messageUserName"));
+
 
 });
+
+
+Template.messagesView.onRendered(function(){
+
+    var userData;
+
+    if(FlowRouter.getParam('username')) {
+        userData = Meteor.users.findOne({
+                username: Session.get("messageUserName")
+            }, { fields: { username: 1, 'profile.avatar': 1 } }) || {};
+
+        console.log("userData: ", userData , Session.get("messageUserName"));
+
+        if ( _.isEmpty(userData) ) {
+            FlowRouter.go('/messages');
+        }
+    }
+    
+    if(FlowRouter.getParam('username')) {
+        Meteor.call("resetNewMessagesInMessage", Session.get("messageUserName"));
+        Meteor.call("updateUserMessagesPath", Session.get("messageUserName"));
+    }
+
+    if(document.getElementById("messages-view-warp"))
+        document.getElementById("messages-view-warp").scrollTop = document.getElementById("messages-view-warp").scrollHeight;
+});
+
+
 
 Template.messagesView.helpers({
     avatar:function(){
@@ -50,15 +83,6 @@ Template.messagesView.helpers({
 
         return  userData;
     }
-});
-
-
-Template.messagesView.onRendered(function(){
-
-    Meteor.call("updateUserMessagesPath", Session.get("messageUserName"));
-
-    if(document.getElementById("messages-view-warp"))
-        document.getElementById("messages-view-warp").scrollTop = document.getElementById("messages-view-warp").scrollHeight;
 });
 
 

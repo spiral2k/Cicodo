@@ -62,7 +62,7 @@ Template.navbaruser.helpers({
     messages: function(){
         var messages = Meteor.user().profile.messages;
         return _.sortBy( messages, 'new_messages' ).reverse();
-        
+
     },
     newMessages: function(){
 
