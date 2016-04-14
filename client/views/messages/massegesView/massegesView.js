@@ -3,16 +3,21 @@ Template.messages.onCreated(function(){
     var self = this;
     self.autorun(function() {
 
+        if(FlowRouter.getParam('username') === Meteor.user().username){
+            FlowRouter.go('/messages');
+        }
+
         // get data of the user
         if(!Session.get("messageUserName")){
             Session.set("messageUserName",FlowRouter.getParam('username'))
         }
-
         // Subs
         self.subscribe('getUserDataByUsername',Session.get("messageUserName"));
         self.subscribe('messageView',Session.get("messageUserName"));
-
     });
+
+    Meteor.call("resetNewMessagesInMessage", Session.get("messageUserName"));
+
 });
 
 Template.messagesView.helpers({
@@ -49,6 +54,9 @@ Template.messagesView.helpers({
 
 
 Template.messagesView.onRendered(function(){
+
+    Meteor.call("updateUserMessagesPath", Session.get("messageUserName"));
+
     if(document.getElementById("messages-view-warp"))
         document.getElementById("messages-view-warp").scrollTop = document.getElementById("messages-view-warp").scrollHeight;
 });
@@ -81,4 +89,5 @@ Template.messagesView.events({
 
 Template.messages.onDestroyed(function(){
     Session.set("messageUserName", null);
+    Meteor.call("updateUserMessagesPath", null);
 });

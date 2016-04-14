@@ -35,7 +35,8 @@ Template.register.events({
                 // New
                 notifications: [],
                 open_messages:[],
-                messages: []
+                messages: [],
+                viewing_messages_of: null
 
             }
         }, function(error){

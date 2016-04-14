@@ -35,10 +35,10 @@ Meteor.publish('messageView', function (username) {
     return  Messages.find({$or: [{send_to: this.userId, send_from: user._id}, {send_to: user._id, send_from: this.userId}] },{sort: {timestamp: -1}, limit: 50});
 });
 
-
-
 Meteor.publish('lastMessageById', function (userMessageID) {
     return  Messages.find({send_from:  userMessageID, send_to: this.userId},{sort: {timestamp: 1}, limit: 1});
 });
+
+
 
 

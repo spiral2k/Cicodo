@@ -1,6 +1,7 @@
 Template.registerHelper("usernameFromId", function (userId) {
-    var user = Meteor.users.findOne({_id: userId});
-    return user.username;
+    var user = Meteor.users.findOne({_id: userId}) || {};
+    if(!_.isEmpty(user))
+        return user.username;
 });
 
 Template.registerHelper("messagesShortPreview", function (text) {
@@ -52,8 +53,9 @@ Template.registerHelper("lastMessageTimeByID", function (userId) {
 });
 
 Template.registerHelper("avatarFromId", function (userId) {
-    var user = Meteor.users.findOne({_id: userId});
-    return user.profile.avatar;
+    var user = Meteor.users.findOne({_id: userId}) || {};
+    if(!_.isEmpty(user))
+        return user.profile.avatar;
 });
 
 

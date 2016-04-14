@@ -1,4 +1,4 @@
-var userMessages, usersMessagesArray = [], messagesReady, usersReady;
+var userMessages, usersMessagesArray = [];
 
 
 Template.navbaruser.onCreated(function(){
@@ -10,10 +10,9 @@ Template.navbaruser.onCreated(function(){
         if(userMessages)
             for(var i = 0; i < userMessages.length && i < 5; i++){
                 usersMessagesArray.push(userMessages[i].user_message_id);
-                messagesReady = self.subscribe('lastMessageById', userMessages[i].user_message_id);
             }
 
-        usersReady = self.subscribe('usersListByID', usersMessagesArray);
+         self.subscribe('usersListByID', usersMessagesArray);
 
     });
 
@@ -37,10 +36,12 @@ Template.navbaruser.helpers({
         var username = Meteor.user().username;
         return username;
     },
+
     avatar: function(){
         var avatar = Meteor.user().profile.avatar;
         return avatar;
     },
+
     hasNewMessages:function(){
 
         userMessages = Meteor.user().profile.messages;
@@ -51,22 +52,33 @@ Template.navbaruser.helpers({
                 count++;
             }
         }
+
         if(count == 0){
-            return "";
+            return false;
         }
 
         return count;
     },
     messages: function(){
+        var messages = Meteor.user().profile.messages;
+            return messages
 
-        if(userMessages)
-            for(var i = 0; i < userMessages.length && i < 5; i++){
-                usersMessagesArray.push(userMessages[i].user_message_id);
-                messagesReady = self.subscribe('lastMessageById', userMessages[i].user_message_id);
+    },
+    newMessages: function(){
+
+        var messages = Meteor.user().profile.messages;
+
+        for(var i = 0; i < messages.length; i++){
+            if(messages[i].user_message_id === this.user_message_id){
+                if(messages[i].new_messages > 0) {
+                    return messages[i].new_messages;
+                }
+                else
+                    return false;
             }
 
-        //if(messagesReady.ready() && usersReady.ready())
-        //    return Messages.find();
+        }
+
     }
 });
 
@@ -85,7 +97,8 @@ Template.navbaruser.events({
         $(event.target).removeClass('active');
     },
     'click .messagesUserItem': function(){
-        var user = Meteor.users.findOne({_id: this.send_from }, {fields: {username:1}});
+        var user = Meteor.users.findOne({_id: this.user_message_id }, {fields: {username:1}});
+        Session.set("messageUserName",user.username);
         FlowRouter.go("/messages/" + user.username);
     }
 });
