@@ -25,23 +25,37 @@
         {{#if hasNewMessages}}
         <a class="ui red circular mini label messages-notification">{{hasNewMessages}}</a>
         {{/if}}
-        <div class="menu messages-panel-width">
-                {{#each messages}}
 
-                        <div class="item messagesUserItem">
-                            <img class="messages-panel-avatar" src="{{avatarFromId user_message_id}}">
-                            <div class="content">
-                                <div class="header">{{usernameFromId user_message_id}}</div>
-                                <span>{{messagesShortPreview last_message}}</span>
-                                {{#if newMessages}}
-                                <span class="new-messages">{{newMessages}}</span>
-                                {{/if}}
+            <div class="menu messages-panel-width">
+                {{#if messages}}
+                    {{#each messages}}
 
+                            <div class="item messagesUserItem">
+                                <img class="messages-panel-avatar" src="{{avatarFromId user_message_id}}">
+                                <div class="content">
+                                    <div class="header">{{usernameFromId user_message_id}}</div>
+                                    <span class="prev-message-text">{{messagesShortPreview last_message}}</span>
+                                    {{#if newMessages}}
+                                    <span class="new-messages">{{newMessages}}</span>
+                                    {{/if}}
+
+                                </div>
                             </div>
-                        </div>
 
-                {{/each}}
-        </div>
+                    {{/each}}
+                    <div class="item allMessages">
+                        {{_ "viewAllMessages"}}
+                    </div>
+                {{/if}}
+
+                {{#unless messages}}
+                <div class="item">
+                    <span class="no-messages">{{_ "noMessages"}}</span>
+                </div>
+                {{/unless}}
+
+            </div>
+
     </div>
 
 

@@ -8,6 +8,8 @@
   "signin": "Sign-in",
   "messages": "Messages",
   "messagesUsersSearch": "search",
+  "noMessages": "You don't have any messages at this time.",
+  "viewAllMessages": "View all messages",
   "conversationWith": "Conversation with",
   "LoadMorePosts": "Load more posts",
   "noPostsToShow": "No posts to show",

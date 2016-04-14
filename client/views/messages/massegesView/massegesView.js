@@ -41,7 +41,7 @@ Template.messagesView.onRendered(function(){
             FlowRouter.go('/messages');
         }
     }
-    
+
     if(FlowRouter.getParam('username')) {
         Meteor.call("resetNewMessagesInMessage", Session.get("messageUserName"));
         Meteor.call("updateUserMessagesPath", Session.get("messageUserName"));

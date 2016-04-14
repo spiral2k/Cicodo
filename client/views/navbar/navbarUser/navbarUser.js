@@ -61,7 +61,14 @@ Template.navbaruser.helpers({
     },
     messages: function(){
         var messages = Meteor.user().profile.messages;
-        return _.sortBy( messages, 'new_messages' ).reverse();
+
+        console.log("messages: ", messages);
+
+        if(messages.length > 0)
+
+            return _.sortBy( messages, 'new_messages' ).reverse();
+        else
+            return false
 
     },
     newMessages: function(){
@@ -100,5 +107,8 @@ Template.navbaruser.events({
         var user = Meteor.users.findOne({_id: this.user_message_id }, {fields: {username:1}});
         Session.set("messageUserName",user.username);
         FlowRouter.go("/messages/" + user.username);
+    },
+    'click .allMessages': function(){
+        FlowRouter.go("/messages");
     }
 });

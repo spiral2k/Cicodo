@@ -49,16 +49,26 @@
     width: calc(100% - 50px);
 }
 
-.messagesUserItem .content span, .messagesUserItem .content div {
+.messagesUserItem .content .prev-message-text, .messagesUserItem .content div {
     float:left;
     width:100%;
 }
 
+.messagesUserItem .content div {
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+
+.messagesUserItem .prev-message-text{
+    margin-top:4px;
+}
+
+
 .messagesUserItem{
     float: left;
-    position: relative;
     width: 100%;
-    padding: 5px 0;
+    border-bottom: 1px solid #f2f2f2 !important;
 }
 
 .messagesUserItem:hover{
@@ -82,3 +92,7 @@
     text-align: center;
 }
 
+.allMessages{
+    float:left;
+    width:100%;
+}
