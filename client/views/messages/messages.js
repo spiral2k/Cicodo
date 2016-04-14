@@ -1,6 +1,9 @@
 
 Template.messages.onCreated(function(){
     var self = this;
+
+    Session.set("messageUserName", null);
+
     self.autorun(function() {
         self.subscribe('usersListByID', Meteor.user().profile.open_messages);
     });

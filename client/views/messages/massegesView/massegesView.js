@@ -23,10 +23,20 @@ Template.messagesView.helpers({
         var userData = Meteor.users.findOne({
                 username: Session.get("messageUserName")
             }) || {};
+
         if(document.getElementById("messages-view-warp"))
             document.getElementById("messages-view-warp").scrollTop = document.getElementById("messages-view-warp").scrollHeight;
 
-        return Messages.find({ $or: [{send_to: Meteor.userId(), send_from: userData._id}, {send_to: userData._id, send_from: Meteor.userId()}] }, {sort: {timestamp: 1}});
+        var messages = Messages.find({ $or: [{send_to: Meteor.userId(), send_from: userData._id}, {send_to: userData._id, send_from: Meteor.userId()}] }, {sort: {timestamp: 1}});
+
+        messages.observeChanges({
+            addedBefore: function (id, user) {
+                if(document.getElementById("messages-view-warp"))
+                    document.getElementById("messages-view-warp").scrollTop = document.getElementById("messages-view-warp").scrollHeight;
+            }
+        });
+
+        return messages;
     },
     userMessage:function(){
         var userData = Meteor.users.findOne({
@@ -39,7 +49,8 @@ Template.messagesView.helpers({
 
 
 Template.messagesView.onRendered(function(){
-    document.getElementById("messages-view-warp").scrollTop = document.getElementById("messages-view-warp").scrollHeight;
+    if(document.getElementById("messages-view-warp"))
+        document.getElementById("messages-view-warp").scrollTop = document.getElementById("messages-view-warp").scrollHeight;
 });
 
 

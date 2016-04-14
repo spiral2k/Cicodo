@@ -10,6 +10,8 @@
             #2B323A 34.9%,
             #EAEDF2 34.9%,
             #EAEDF2 100% );
+
+
 }
 
 .user-status-messages{
@@ -36,7 +38,7 @@
 .messages-sidebar-user{
     position: relative;
     float: left;
-    width: 97%;
+    width: 100%;
     height: 70px;
     cursor: pointer;
     margin-bottom: 10px;
@@ -44,15 +46,20 @@
 
 .messages-sidebar-user.selected, .messages-sidebar-user:hover {
     background:#343D45;
-    border-radius: 3px;
+    border-radius: 5px;
 }
 
 .username-sidebar{
-    float:left;
-    color:#fff;
+    float: left;
+    color: #fff;
     text-transform: capitalize;
     margin-left: 15px;
-    margin-top:15px;
+    margin-top: 15px;
+    white-space: nowrap;
+    width: 170px;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .last-message-sidebar{
@@ -61,14 +68,17 @@
     margin-left: 15px;
     width:55%;
     text-align: left;
+    line-height: 16px;
 }
 
 .last-message-date-sidebar{
     float: right;
+    width: 100%;
     color: #64676B;
-    margin-top:15px;
-    margin-right:5px;
+    margin-top: -13px;
+    margin-right: 8px;
     font-size: 12px;
+    text-align: right;
 }
 
 .messages-sidebar-user img{

@@ -2,7 +2,7 @@
     <div class="messages-main">
         <div class="ui container messages-top-from-navbar">
             <div class="ui grid ">
-                <div class="four wide column computer only">
+                <div class="four wide column">
                     <div class="messages-sidebar">
 
                         <div class="top-messages-search">
@@ -14,9 +14,8 @@
                             <img src="{{profile.avatar}}">
                             <span class="user-status-messages {{#if status.online}} online {{/if}}"></span>
                             <span class="username-sidebar">{{username}}</span>
-                            <span class="last-message-date-sidebar">{{lastMessageTimeByID _id}}</span>
                             <span class="last-message-sidebar">{{lastMessageByID _id}}</span>
-
+                            <span class="last-message-date-sidebar">{{lastMessageTimeByID _id}}</span>
                         </div>
                     {{/each}}
                     </div>

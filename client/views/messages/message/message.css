@@ -11,11 +11,13 @@
 
 .message-avatar.right{
     float:right;
+    margin-right:30px;
 }
 
 
 .message-avatar.left{
     float:left;
+    margin-left:30px;
 }
 
 .message-avatar img {
