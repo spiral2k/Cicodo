@@ -61,11 +61,7 @@ Template.navbaruser.helpers({
     },
     messages: function(){
         var messages = Meteor.user().profile.messages;
-
-        console.log("messages: ", messages);
-
         if(messages.length > 0)
-
             return _.sortBy( messages, 'new_messages' ).reverse();
         else
             return false
@@ -95,8 +91,6 @@ Template.navbaruser.events({
     'click #logout': function(event){
         event.preventDefault();
         Meteor.logout();
-
-        console.log("dwdw");
         FlowRouter.go('/');
     },
     'click .item': function(event){

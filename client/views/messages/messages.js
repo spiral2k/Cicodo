@@ -26,8 +26,6 @@ Template.messages.helpers({
             var username = FlowRouter.getParam('username');
             var user = Meteor.users.findOne({username: username});
 
-            console.log("User::: ", user != undefined)
-
             if(open_messages && user != undefined)
                 for(var i = 0; i < open_messages.length; i++){
                     if(open_messages[i] === user._id) {

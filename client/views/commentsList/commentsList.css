@@ -1,0 +1,9 @@
+.reset-comments, .more-comments{
+    cursor: pointer;
+    padding: 10px 0;
+    color: #2185d0;
+}
+
+.reset-comments:hover, .more-comments:hover {
+    text-decoration: underline;
+}

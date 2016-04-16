@@ -18,5 +18,19 @@
                 </div>
             </div>
         {{/each}}
+
+        {{#if hasMoreComments}}
+            <div class="more-comments">
+                {{_ "viewMoreComments"}}
+            </div>
+        {{/if}}
+
+
+        {{#if hasMaxComments}}
+            <div class="reset-comments">
+                {{_ "hideComments"}}
+            </div>
+        {{/if}}
+
     </div>
 </template>

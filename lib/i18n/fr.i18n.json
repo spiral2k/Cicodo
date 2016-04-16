@@ -18,7 +18,7 @@
   "liveFeed": "Live Feed",
   "regularFeed": "Regular Feed",
   "addPost": "Add Post",
-  "home": "Homey",
+  "home": "Home",
   "profile": "Profile",
   "settings": "Settings",
   "logout": "Logout",
@@ -44,5 +44,10 @@
   "email":"Email",
   "username":"Username",
   "creatAccount":"Create Account",
-  "searchPlaceHolder": "Search..."
+  "searchPlaceHolder": "Search...",
+  "viewMoreComments": "View more comments",
+  "hideComments": "Hide comments",
+  "language": "Language",
+  "english": "English",
+  "franch": "Franch"
 }

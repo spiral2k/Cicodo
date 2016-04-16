@@ -1,3 +1,10 @@
+
+Template.post.onRendered(function(){
+    //important to comment system!
+    Session.set("commentForPost" + this.data._id, 5);
+});
+
+
 Template.post.helpers({
     username: function(userId) {
         var user = Meteor.users.findOne(userId);
@@ -15,4 +22,4 @@ Template.post.helpers({
                 return true;
             }
     }
-})
+});

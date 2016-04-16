@@ -34,9 +34,6 @@ Template.messagesView.onRendered(function(){
         userData = Meteor.users.findOne({
                 username: Session.get("messageUserName")
             }, { fields: { username: 1, 'profile.avatar': 1 } }) || {};
-
-        console.log("userData: ", userData , Session.get("messageUserName"));
-
         if ( _.isEmpty(userData) ) {
             FlowRouter.go('/messages');
         }

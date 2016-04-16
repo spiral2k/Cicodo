@@ -45,6 +45,8 @@
   "username":"Username",
   "creatAccount":"Create Account",
   "searchPlaceHolder": "Search...",
+  "viewMoreComments": "View more comments",
+  "hideComments": "Hide comments",
   "language": "Language",
   "english": "English",
   "franch": "Franch"
