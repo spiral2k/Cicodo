@@ -30,7 +30,9 @@
 }
 
 .messages-panel-width{
-    width:300px;
+
+    min-width: 400px !important;
+    max-width: 400px !important;
 }
 
 .messages-panel-avatar{
