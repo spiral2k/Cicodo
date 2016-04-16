@@ -2,7 +2,7 @@
     float:left;
     width:100%;
     position:fixed;
-    height:50px;
+    height: 60px;
     top: 0px;
     z-index: 1;
 }
@@ -33,4 +33,26 @@ footer{
 
 .navbar-logo{
     float:left;
+}
+
+.iconset {
+    background: url("../images//navbar/top-tray.png") no-repeat;
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    float: left;
+    margin: 26px 10px;
+}
+
+.iconset.top-down-arrow {
+    background-position: -238px -12px;
+    width: 7px;
+    height: 5px;
+}
+
+
+.iconset.messages-icon{
+    background-position: -63px -8px;
+    width: 16px;
+    height: 12px;
 }

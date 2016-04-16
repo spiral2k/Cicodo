@@ -18,11 +18,52 @@ Template.messages.helpers({
         return false;
     },
     usernames: function () {
+
+        var userInTheList = false;
+        if(FlowRouter.getParam('username')){
+
+            var open_messages = Meteor.user().profile.open_messages;
+            var username = FlowRouter.getParam('username');
+            var user = Meteor.users.findOne({username: username});
+
+            console.log("User::: ", user != undefined)
+
+            if(open_messages && user != undefined)
+                for(var i = 0; i < open_messages.length; i++){
+                    if(open_messages[i] === user._id) {
+                        userInTheList = true;
+                        console.log("User is in the list")
+                    }
+                }
+
+            if(userInTheList) {
                 return Meteor.users.find({
-                    '_id': { $in: Meteor.user().profile.open_messages }
-                }, { fields: { 'username': 1, 'profile.avatar': 1, 'status.online': 1} }, function (err, docs) {
+                    '_id': {$in: open_messages}
+                }, {fields: {'username': 1, 'profile.avatar': 1, 'status.online': 1}}, function (err, docs) {
                     console.log("Template.messages.helpers: Error getting usernames ", docs);
                 });
+            }
+
+
+            var users_list = Meteor.users.find({
+                '_id': {$in: open_messages}
+            }, {fields: {'username': 1, 'profile.avatar': 1, 'status.online': 1}}, function (err, docs) {
+                console.log("Template.messages.helpers: Error getting usernames ", docs);
+            }).fetch();
+
+
+            if(user != undefined)
+                users_list.unshift({
+                    profile:{
+                        avatar: user.profile.avatar
+                    },
+                    user_message_id: user._id,
+                    username: user.username
+                });
+
+            return users_list;
+        }
+
     },
     currentMessageUser:function(){
         if(this.username == Session.get("messageUserName")){

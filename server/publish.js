@@ -42,3 +42,7 @@ Meteor.publish('lastMessageById', function (userMessageID) {
 
 
 
+Meteor.publish("getOnePostById", function(postsID) {
+    return Posts.find({_id: postsID});
+});
+

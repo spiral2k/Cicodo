@@ -1,7 +1,6 @@
 .navbar-dropdown-header{
     float: right;
-    height: 50px;
-    line-height: 50px;
+    line-height: 56px;
 }
 
 .navbar-dropdown-header i{
@@ -10,8 +9,8 @@
 
 .navbar-dropdown-header span{
     float: right;
-    margin-right: 7px;
     text-transform: capitalize;
+    font-size: 15px;
 }
 
 .navbar-dropdown-header img{
@@ -21,13 +20,13 @@
 
 .messages-notification{
     position: absolute;
-    right:0;
-    top:0;
+    right: -5px;
+    top: -6px;
 }
 
 .masseges-dropdown{
     position: relative;
-    margin-top:10px;
+    margin: 17px 21px;
 }
 
 .messages-panel-width{

@@ -26,15 +26,12 @@ kadira:blaze-layout
 momentjs:moment
 underscore
 raix:handlebar-helpers
-cfs:standard-packages
-cfs:filesystem
+
 email
 tap:i18n
 meteorhacks:fast-render
 check
 standard-minifier-css
 standard-minifier-js
-anti:fake
-dburles:factory
 mizzao:user-status
 meteortoys:allthings

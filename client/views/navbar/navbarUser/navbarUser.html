@@ -2,8 +2,8 @@
 
     <div class="ui floating dropdown navbar-user-block username-dropdown">
         <div class="navbar-dropdown-header">
-            <i class="dropdown icon"></i>
             <img class="avatar small" src="{{avatar}}">
+            <i class="iconset top-down-arrow"></i>
             <span>@{{username}}</span>
         </div>
 
@@ -21,7 +21,7 @@
 
     {{!-- Messages TopBar --}}
     <div class="ui top right pointing dropdown masseges-dropdown">
-        <i class="big mail outline icon"></i>
+        <i class="large ui-font-color mail icon"></i>
         {{#if hasNewMessages}}
         <a class="ui red circular mini label messages-notification">{{hasNewMessages}}</a>
         {{/if}}

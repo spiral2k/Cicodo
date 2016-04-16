@@ -1,3 +1,5 @@
+import steamAPI from 'steam-webapi';
+
 Template.profile.onCreated(function() {
     // Subscribe only the relevant subscription to this page
     var self = this;

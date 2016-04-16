@@ -7,7 +7,9 @@
             <div class="post-content">
                 <a class="post-author" href="/@/{{username createdBy}}">@{{username createdBy}}</a>
 
-                <div class="post-date">{{createdAt.displayDate}}</div>
+                <a href="/@/{{username createdBy}}/{{_id}}">
+                    <div class="post-date">{{createdAt.displayDate}}</div>
+                </a>
             </div>
 
             <div class="post-text">

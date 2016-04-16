@@ -5,8 +5,12 @@ Template.registerHelper("usernameFromId", function (userId) {
 });
 
 Template.registerHelper("messagesShortPreview", function (text) {
-    var n = 40;
-    return (text.length > n) ? text.substr(0,n-1)+'...' : text;
+    if(text) {
+        var n = 40;
+        return (text.length > n) ? text.substr(0, n - 1) + '...' : text;
+    }else{
+        return "";
+    }
 
 });
 

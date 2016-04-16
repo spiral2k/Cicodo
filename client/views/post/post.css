@@ -34,6 +34,10 @@
     color:#BEC0C3;
 }
 
+.post-date:hover{
+    text-decoration: underline;
+}
+
 .post-text{
     position: relative;
     float: left;
