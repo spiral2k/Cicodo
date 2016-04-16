@@ -56,6 +56,22 @@ Template.registerHelper("lastMessageTimeByID", function (userId) {
 
 });
 
+
+Template.registerHelper("commentTime", function (time) {
+    var today;
+
+    if(time)
+        today = (time.toDateString() === new Date().toDateString());
+
+    if(today && time){
+        return moment(time).format("HH:mm")
+    }
+
+    if(time)
+        return moment(time).format("MMMM D, YYYY");
+
+});
+
 Template.registerHelper("avatarFromId", function (userId) {
     var user = Meteor.users.findOne({_id: userId}) || {};
     if(!_.isEmpty(user))

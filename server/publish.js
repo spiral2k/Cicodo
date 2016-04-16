@@ -39,10 +39,12 @@ Meteor.publish('lastMessageById', function (userMessageID) {
     return  Messages.find({send_from:  userMessageID, send_to: this.userId},{sort: {timestamp: 1}, limit: 1});
 });
 
-
-
-
 Meteor.publish("getOnePostById", function(postsID) {
     return Posts.find({_id: postsID});
+});
+
+Meteor.publish("postComments", function(postID, limit) {
+    limit = limit || 5;
+    return Comments.find({postid: postID}, {limit: limit});
 });
 

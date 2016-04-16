@@ -1,0 +1,22 @@
+<template name="commentsList">
+    <div class="ui comments">
+        {{#each comments}}
+            <div class="">
+                <div class="comment">
+                    <a class="avatar">
+                        <img src="{{avatarFromId user}}">
+                    </a>
+                    <div class="content">
+                        <a class="author">{{usernameFromId user}}</a>
+                        <div class="metadata">
+                            <span class="date">{{commentTime date}}</span>
+                        </div>
+                        <div class="text">
+                            {{text}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</template>
