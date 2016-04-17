@@ -9,13 +9,31 @@
                 <a class="post-author" href="/@/{{username createdBy}}">@{{username createdBy}}</a>
 
                 <a href="/@/{{username createdBy}}/{{_id}}">
-                    <div class="post-date">{{createdAt.displayDate}}</div>
+                    <div class="post-date">{{timestampToTime createdAt.date}}</div>
                 </a>
             </div>
 
-            <div class="post-text">
-                {{postContentParse content}}
-            </div>
+            {{#if is_shared_post}}
+                {{#with shared_post}}
+                    <a class="post-author" href="/@/{{username createdBy}}">
+                        <img class="ui avatar image" src="{{getAvatar createdBy}}">
+                    </a>
+                    <div class="post-content">
+                        <a class="post-author" href="/@/{{username createdBy}}">@{{username createdBy}}</a>
+
+                        <a href="/@/{{username createdBy}}/{{_id}}">
+                            <div class="post-date">{{createdAt.displayDate}}</div>
+                        </a>
+                    </div>
+                    <div class="post-text">
+                        {{content}}
+                    </div>
+                {{/with}}
+            {{else}}
+                <div class="post-text">
+                    {{postContentParse content}}
+                </div>
+            {{/if}}
 
         </div>
 

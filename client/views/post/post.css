@@ -131,3 +131,8 @@
     cursor: pointer;
 }
 
+.shared-post-wrap{
+    float:left;
+    width:100%;
+    border-left:1px solid #BABBBC;
+}

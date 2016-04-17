@@ -38,7 +38,8 @@ Template.register.events({
                 messages: [],
                 viewing_messages_of: null,
                 posts_events:{
-                    liked_posts:[]
+                    liked_posts:[],
+                    shared_posts:[]
                 }
 
             }

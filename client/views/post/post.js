@@ -22,6 +22,9 @@ Template.post.events({
     },
     'click .liked':function(){
         Meteor.call("unlikePost", this._id);
+    },
+    'click .share-button':function(){
+        Meteor.call("sharePost", this._id);
     }
 });
 
@@ -42,7 +45,6 @@ Template.post.helpers({
             }
     },
     numberOfComments:function(){
-        console.log(Template.instance());
         var number_of_comment = Comments.find({postid: Template.instance().data._id}).count();
         return number_of_comment;
     },
@@ -57,5 +59,24 @@ Template.post.helpers({
             }
 
         return false;
+    },
+    is_shared_post: function(){
+
+        if(this.type === "share"){
+            console.log("SHERED: ",this.shared_post_id);
+            Meteor.subscribe("getOnePostById", this.shared_post_id);
+            return true;
+
+        }
+        return false;
+    },
+    shared_post: function(){
+        if(this.type === "share"){
+            var post = Posts.find({_id: this.shared_post_id}).fetch();
+                console.log("post: ", post);
+
+            return post[0];
+        }
+
     }
 });
