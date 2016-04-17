@@ -56,7 +56,7 @@ Template.liveFeed.helpers({
         //subscribe to Meteor.user() posts.
         Template.instance().posts = Template.instance().subscribe('liveFeedPostsFollowedByUser', Meteor.userId(), Session.get('mainPostsSERVERLoadLimit'));
 
-        var postsList = Posts.find({},{limit: Session.get('mainPostsLoadLimit'), sort:{'createdAt.date': -1}});
+        var postsList = Posts.find({},{limit: Session.get('mainPostsLoadLimit'), sort:{'createdAt': -1}});
 
         return postsList;
     },

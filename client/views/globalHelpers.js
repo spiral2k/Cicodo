@@ -57,18 +57,18 @@ Template.registerHelper("lastMessageTimeByID", function (userId) {
 });
 
 
-Template.registerHelper("commentTime", function (time) {
+Template.registerHelper("contentTime", function (date) {
     var today;
 
-    if(time)
-        today = (time.toDateString() === new Date().toDateString());
+    if(date)
+        today = (date.toDateString() === new Date().toDateString());
 
-    if(today && time){
-        return moment(time).format("HH:mm")
+    if(today && date){
+        return moment(date).format("HH:mm")
     }
 
-    if(time)
-        return moment(time).format("MMMM D, YYYY");
+    if(date)
+        return moment(date).format("MMMM D, YYYY");
 
 });
 

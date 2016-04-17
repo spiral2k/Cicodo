@@ -6,13 +6,13 @@ Meteor.publish("usersFollowedByUser", function(userByID) {
 Meteor.publish("postsFollowedByUser", function(postsByID, limit, date) {
     limit = limit || 5;
     date = date || new Date();
-    return Posts.find({createdBy: postsByID, 'createdAt.date': {$lte: date} }, {sort: {'createdAt.date': -1}, limit: limit});
+    return Posts.find({createdBy: postsByID, 'createdAt': {$lte: date} }, {sort: {'createdAt': -1}, limit: limit});
 });
 
 
 Meteor.publish("liveFeedPostsFollowedByUser", function(postsByID, limit) {
     limit = limit || 5;
-    return Posts.find({createdBy: postsByID}, {sort: {'createdAt.date': -1}, limit: limit});
+    return Posts.find({createdBy: postsByID}, {sort: {'createdAt': -1}, limit: limit});
 });
 
 

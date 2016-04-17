@@ -14,30 +14,27 @@
 
 .post-content{
     float:left;
-    width: calc(100% - 50px);
-    margin: 3px 0 0 10px;
+    width: calc(100% - 180px);
+    margin: -4px 0 0 4px;
 }
 
 .post-author{
-    float:left;
-    font-size: 14px;
+    display: inline-block;
+    font-size: 13px;
     text-transform: capitalize;
-    color:rgba(0,0,0,.87);
+    color: #167ac6;
+    line-height: 15px;
+    margin-top:4px;
 }
 
-
-.post-author a:hover {
-    color:rgba(0,0,0,.87);
-}
-
-.post-author:hover{
+.post-author a:hover{
     text-decoration: underline;
 }
 
 .post-date{
-    font-size: 1em;
-    color: rgba(0,0,0,.4);
-    float: right;
+    font-size: 12px;
+    line-height: 18px;
+    color: rgba(144, 142, 142, 0.4) !important;
 }
 
 .post-date:hover{
@@ -132,7 +129,17 @@
 }
 
 .shared-post-wrap{
-    float:left;
-    width:100%;
-    border-left:1px solid #BABBBC;
+    float: left;
+    width: 100%;
+    padding: 0px 15px;
+    margin: 13px;
+    border-left: 1px solid #EFEFEF;
+}
+
+.shared-post-wrap .post-author{
+    color:#CACBCD;
+}
+
+.shared-post-wrap .post-text{
+    color:#CACBCD;
 }

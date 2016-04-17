@@ -23,8 +23,26 @@ Template.post.events({
     'click .liked':function(){
         Meteor.call("unlikePost", this._id);
     },
-    'click .share-button':function(){
-        Meteor.call("sharePost", this._id);
+    'click .share-button':function() {
+        if (this.type === "share") {
+            Meteor.call("sharePost", this.shared_post_id, function (error, result) {
+                if (error) {
+                    alert('Error');
+                } else {
+                    Session.set('mainPostsLoadLimit', Session.get('mainPostsLoadLimit') + 1);
+                }
+            });
+        } else {
+            Meteor.call("sharePost", this._id, function (error, result) {
+                if (error) {
+                    alert('Error');
+                } else {
+                    Session.set('mainPostsLoadLimit', Session.get('mainPostsLoadLimit') + 1);
+                }
+            });
+
+
+        }
     }
 });
 

@@ -13,7 +13,6 @@ Template.postInsert.events({
             return;
         }
 
-
         var content = template.find("#insert-posts-main").value;
 
         var lines = content.split('\n');
@@ -26,16 +25,7 @@ Template.postInsert.events({
             return;
         }
 
-        var createdAt = {
-            date: new Date(),
-            day: moment().format("D"),
-            month:  moment().format("M"),
-            year: moment().format("YYYY"),
-            displayDate: moment().format("MMMM D, YYYY"),
-            hour: moment().format("H:mm")
-        };
-
-        Meteor.call('insertPost', content, createdAt );
+        Meteor.call('insertPost', content );
 
         // all the posts that the user can see + the post that he submited
         Session.set('mainPostsLoadLimit', Session.get('mainPostsLoadLimit') + 1);
