@@ -96,9 +96,9 @@
 .post-comment-wrap{
     float: left;
     width: 100%;
-    -webkit-box-shadow: 0px 0px 3px 0px rgb(230, 222, 222);
-    -moz-box-shadow: 0px 0px 3px 0px rgb(230, 222, 222);
-    box-shadow: 0px 0px 2px 0px rgba(152, 152, 152, 0.5);
+    -webkit-box-shadow: 0px 0px 2px 0px rgba(152, 152, 152, 0.2);
+    -moz-box-shadow: 0px 0px 2px 0px rgba(152, 152, 152, 0.2);
+    box-shadow: 0px 0px 2px 0px rgba(152, 152, 152, 0.2);
     border-radius: .28571429rem;
     margin-top: 15px;
 }

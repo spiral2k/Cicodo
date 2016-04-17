@@ -17,9 +17,10 @@ UI.registerHelper('postContentParse', function (text) {
         username = /@([a-z0-9]+)/gi;
 
         var user;
+        //if username
         if(string.match(username)){
             var newUsername = string.match(username)[0].split('@');
-            console.log("string.match(username): ", string.match(username), string.match(username)[0].split('@'), newUsername);
+            Meteor.subscribe("getUserDataByUsername", newUsername[1])
             user = Meteor.users.findOne({username: newUsername[1]}) || {};
         }
 
@@ -33,13 +34,16 @@ UI.registerHelper('postContentParse', function (text) {
             }
         }
 
+
+
+
         if(!_.isEmpty(user)){
             string = string
                 .replace(youtube, '<iframe width="100%" height="315px" src="https://www.youtube.com/embed/$1?modestbranding=1&iv_load_policy=3&version=3&color=white&theme=light" frameborder="0" allowfullscreen></iframe>')
                 .replace(http, '<a href="$1" target="_blank">$1</a>')
                 .replace(www, '$1<a href="http://$2" target="_blank">$2</a>')
                 .replace(mailto, '<a href="mailto:$1">$1</a>')
-                .replace(username, '<a href="/@/$1">@$1</a>');
+                .replace(username, '<a class="capitalize" href="/@/$1">@$1</a>');
         }else{
             string = string
                 .replace(youtube, '<iframe width="100%" height="315px" src="https://www.youtube.com/embed/$1?modestbranding=1&iv_load_policy=3&version=3&color=white&theme=light" frameborder="0" allowfullscreen></iframe>')
