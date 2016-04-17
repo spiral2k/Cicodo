@@ -1,8 +1,9 @@
 <template name="post">
+    <div class="post-comment-wrap">
     <div class="post-warp">
         <div class="main-post">
             <a class="post-author" href="/@/{{username createdBy}}">
-                <img class="ui image main-posts-avatar" src="{{getAvatar createdBy}}">
+                <img class="ui avatar image" src="{{getAvatar createdBy}}">
             </a>
             <div class="post-content">
                 <a class="post-author" href="/@/{{username createdBy}}">@{{username createdBy}}</a>
@@ -17,19 +18,54 @@
             </div>
 
         </div>
-    </div>
 
-    <div class="post-comments">
+        <div class="post-states">
 
-        <div class="post-comments-list">
-            {{> commentsList postid=_id}}
+        </div>
+
+        <div class="post-buttons">
+
+                {{#if likedPost}}
+                    <div class="post-button like-button liked">
+                        <i class="like icon"></i>
+                        Unlike
+                    </div>
+                {{else}}
+                    <div class="post-button like-button">
+                      <i class="like icon"></i>
+                      Like
+                    </div>
+                {{/if}}
+
+
+                <div class="post-button share-button">
+                    <i class="refresh icon"></i>
+                    Share
+                </div>
+
+                <div class="post-button comment-button right">
+                    <i class="comment icon"></i>
+                    {{numberOfComments}} comments
+                </div>
+
+
+
         </div>
 
 
-
-        {{> comment postid=_id}}
     </div>
+    <div class="post-comments-wrap post-comments-wrap-{{_id}}">
+        <div class="post-comment-insert">
+            {{> comment postid=_id}}
+        </div>
 
+        <div class="post-comments">
+            <div class="post-comments-list">
+                {{> commentsListNolimit postid=_id}}
+            </div>
+        </div>
 
+    </div>
+    </div>
 
 </template>

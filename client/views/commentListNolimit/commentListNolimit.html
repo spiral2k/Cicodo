@@ -1,0 +1,37 @@
+<template name="commentsListNolimit">
+    <div class="ui comments">
+
+        {{#each comments}}
+            <div class="">
+                <div class="comment">
+                    <a class="avatar">
+                        <img src="{{avatarFromId user}}">
+                    </a>
+                    <div class="content">
+                        <a class="author">{{usernameFromId user}}</a>
+                        <div class="metadata">
+                            <span class="date">{{commentTime date}}</span>
+                        </div>
+                        <div class="text">
+                            {{text}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+
+        {{#if hasMoreComments}}
+            <div class="more-comments">
+                {{_ "viewMoreComments"}}
+            </div>
+        {{/if}}
+
+
+        {{#if hasMaxComments}}
+            <div class="reset-comments">
+                {{_ "hideComments"}}
+            </div>
+        {{/if}}
+
+    </div>
+</template>

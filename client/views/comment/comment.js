@@ -8,23 +8,21 @@ Template.comment.helpers({
 
 
 Template.comment.events({
-    'keyup #comment-text': function(e){
+    'keyup #comment-text': function(e, t){
             e.preventDefault();
 
-
-            console.log("fefef: ", this.postid);
-
-
-            var query_selector = $('#comment-text');
-            var inputVal = query_selector.val();
+            var inputVal = t.find('#comment-text').value;
 
             if(!!inputVal.trim() && inputVal != "") {
                 var charCode = (typeof e.which == "number") ? e.which : e.keyCode;
                 if (charCode == 13) {
 
+                    console.log("charCode: ", charCode, inputVal, this.postid);
+
                     Meteor.call('insertComment', inputVal, this.postid);
+
                     Session.set("commentForPost" + this.postid, Session.get("commentForPost" + this.postid) + 1);
-                    query_selector.val("");
+                    t.find('#comment-text').value = "";
                     return true;
                 }
             }

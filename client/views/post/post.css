@@ -1,12 +1,9 @@
 .post-warp{
     float:left;
     width:100%;
+    border-radius: .28571429rem;
     background:#fff;
-    padding:15px 0;
-    margin-top:15px;
-    -webkit-box-shadow: 0px 0px 15px 0px rgba(50, 50, 50, 0.01);
-    -moz-box-shadow:    0px 0px 15px 0px rgba(50, 50, 50, 0.01);
-    box-shadow:         0px 0px 15px 0px rgba(50, 50, 50, 0.01);
+    padding:15px 0 0 0;
 }
 
 .main-post{
@@ -17,12 +14,20 @@
 
 .post-content{
     float:left;
-    width: 90%;
+    width: calc(100% - 50px);
     margin: 3px 0 0 10px;
 }
 
 .post-author{
+    float:left;
     font-size: 14px;
+    text-transform: capitalize;
+    color:rgba(0,0,0,.87);
+}
+
+
+.post-author a:hover {
+    color:rgba(0,0,0,.87);
 }
 
 .post-author:hover{
@@ -30,8 +35,9 @@
 }
 
 .post-date{
-    font-size:11px;
-    color:#BEC0C3;
+    font-size: 1em;
+    color: rgba(0,0,0,.4);
+    float: right;
 }
 
 .post-date:hover{
@@ -45,6 +51,18 @@
     margin-top: 16px;
     word-break: break-all;
 }
+
+
+.post-buttons{
+    float: left;
+    width: 100%;
+    padding: 12px 0 12px 15px;
+    margin-top: 15px;
+    border-top: 1px solid #E6E6E6;
+    border-bottom: 1px solid #E6E6E6;
+    color:#888;
+}
+
 
 .main-posts-avatar{
     display: block;
@@ -74,7 +92,42 @@
     width:100%;
     background: #eaedf1;
     padding: 10px 20px;
-    -webkit-box-shadow: 0px 0px 15px 0px rgba(50, 50, 50, 0.01);
-    -moz-box-shadow:    0px 0px 15px 0px rgba(50, 50, 50, 0.01);
-    box-shadow:         0px 0px 15px 0px rgba(50, 50, 50, 0.01);
+    border-bottom-left-radius:.28571429rem;
+    border-bottom-right-radius:.28571429rem;
 }
+
+.post-comment-wrap{
+    float: left;
+    width: 100%;
+    -webkit-box-shadow: 0px 0px 3px 0px rgb(230, 222, 222);
+    -moz-box-shadow: 0px 0px 3px 0px rgb(230, 222, 222);
+    box-shadow: 0px 0px 2px 0px rgba(152, 152, 152, 0.5);
+    border-radius: .28571429rem;
+    margin-top: 15px;
+}
+
+.post-button{
+    float:left;
+    margin-right:20px;
+}
+
+.post-states{
+    float:left;
+    width:100%;
+}
+
+.like-button:hover{
+    color:#ff2733;
+    cursor: pointer;
+}
+
+.like-button.liked{
+    color:#ff2733;
+    cursor: pointer;
+}
+
+.share-button:hover{
+    color:#1e70bf;
+    cursor: pointer;
+}
+

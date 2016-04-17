@@ -36,7 +36,10 @@ Template.register.events({
                 notifications: [],
                 open_messages:[],
                 messages: [],
-                viewing_messages_of: null
+                viewing_messages_of: null,
+                posts_events:{
+                    liked_posts:[]
+                }
 
             }
         }, function(error){

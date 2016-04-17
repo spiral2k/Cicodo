@@ -1,5 +1,12 @@
 <template name="postView">
-    {{#with postData}}
-        {{>post}}
-    {{/with}}
+    <div class="ui grid">
+        <div class="twelve wide column ">
+            {{#with postData}}
+                {{>post}}
+            {{/with}}
+        </div>
+        <div class="four wide column computer only">
+            Right
+        </div>
+    </div>
 </template>

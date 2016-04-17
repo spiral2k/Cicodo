@@ -43,8 +43,12 @@ Meteor.publish("getOnePostById", function(postsID) {
     return Posts.find({_id: postsID});
 });
 
-Meteor.publish("postComments", function(postID, limit) {
+Meteor.publish("postCommentsLimit", function(postID, limit) {
     limit = limit || 10;
     return Comments.find({postid: postID}, {sort:{date: -1}, limit:limit});
+});
+
+Meteor.publish("postCommentsNolimit", function(postID) {
+    return Comments.find({postid: postID}, {sort:{date: -1}});
 });
 

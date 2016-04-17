@@ -1,6 +1,6 @@
-Template.commentsList.helpers({
+Template.commentsListNolimit.helpers({
     comments: function(){
-        Meteor.subscribe('postCommentsLimit', this.postid, Session.get("commentForPost" + this.postid)+ 5);
+        Meteor.subscribe('postCommentsNolimit', this.postid);
         var comments = Comments.find({postid: this.postid},{sort:{date:-1}, limit: Session.get("commentForPost" + this.postid)}).fetch();
 
         for(var i = 0; i < comments.length; i++){
@@ -8,9 +8,6 @@ Template.commentsList.helpers({
                 Meteor.subscribe("usersFollowedByUser", comments[i].user);
             }
         }
-
-
-
         return comments
     },
     hasMoreComments:function(){
@@ -25,12 +22,9 @@ Template.commentsList.helpers({
             return true;
         return false;
     }
-
-
-
 });
 
-Template.commentsList.events({
+Template.commentsListNolimit.events({
     'click .more-comments': function(){
         Session.set("commentForPost" + this.postid, Session.get("commentForPost" + this.postid) + 10);
         console.log(Session.get("commentForPost" + this.postid));
