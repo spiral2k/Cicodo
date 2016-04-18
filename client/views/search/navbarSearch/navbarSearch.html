@@ -11,8 +11,7 @@
     <div class="ui list search-list listQuerys">
         {{#each searchHasResults}}
             <div class="item searchQuery">
-                <div class="QueryWrap">
-                    <a href="/@/{{username}}">
+                <div class="QueryWrap usernameLink">
                     <img class="ui avatar image avatar-search" src="{{profile.avatar}}">
                     <div class="content">
                         <a class="header {{#unless profile.firstname}} only-username {{/unless}}">@{{username}}</a>
@@ -20,7 +19,6 @@
                             <div class="description capitalize font-size-12">{{profile.firstname}} {{profile.lastname}}</div>
                         {{/if}}
                     </div>
-                    </a>
                 </div>
             </div>
         {{/each}}

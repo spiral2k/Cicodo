@@ -1,70 +1,76 @@
 <template name="post">
-    <div class="post-comment-wrap">
-    <div class="post-warp">
-        <div class="main-post">
-            <a class="left" href="/@/{{username createdBy}}">
-                <img class="ui avatar image" src="{{getAvatar createdBy}}">
-            </a>
 
+    <div class="post-wrapper">
 
-            <div class="post-content">
-                <div>
-                    <div class="post-author">
-                    <a  href="/@/{{username createdBy}}">
+        <div class="post-user-image">
+            <img src="{{getAvatar createdBy}}">
+        </div>
+
+        <div class="inner-post-wrapper">
+            <div class="post-user-content">
+
+                {{! USERNAME}}
+
+                <div class="post-top-username">
+                    <a href="/@/{{username createdBy}}">
                         @{{username createdBy}}
                     </a>
-                    </div>
+
+                {{#if is_shared_post}}
+                    <span>{{_ "shared"}}</span>
+                    {{#with shared_post}}
+                            <a href="/@/{{username createdBy}}">
+                                @{{username createdBy}}
+                            </a>
+                    {{/with}}
+                    <span>{{_ "post's"}}.</span>
+                {{/if}}
+                </div>
+
+                <div class="post-time">
+                        {{contentTime createdAt}}
+                </div>
+
+                {{! POST CONTENT}}
+
+                <div class="post-user-content-content">
+
+                    {{! SHARED POST}}
+
                     {{#if is_shared_post}}
-                        <span>{{_ "shared"}}</span>
-                            {{#with shared_post}}
-                                <div class="post-author">
-                                    <a href="/@/{{username createdBy}}">@{{username createdBy}}</a>
+                        {{#with shared_post}}
+                                <div class="shared-post-content">
+                                    <a href="/@/{{username createdBy}}">
+                                        <img class="shared-post-user-avatar" src="{{getAvatar createdBy}}">
+                                    </a>
+
+                                    <div class="shared-post-meta">
+                                        <a href="/@/{{username createdBy}}">
+                                            @{{username createdBy}}
+                                        </a>
+
+                                        <div class="post-time">
+                                            {{contentTime createdAt}}
+                                        </div>
+                                    </div>
+                                    <div class="post-user-content-content">
+                                        {{postContentParse content}}
+                                    </div>
                                 </div>
-                            {{/with}}
-                        <span>{{_ "post's"}}.</span>
+                        {{/with}}
+                    {{else}}
+
+                            {{! REGULAR POST}}
+
+                            {{postContentParse content}}
                     {{/if}}
 
                 </div>
-
-                <div class="post-date">
-                <a  href="/@/{{username createdBy}}/{{_id}}">
-                    {{contentTime createdAt}}
-                </a>
-                </div>
             </div>
 
-            {{#if is_shared_post}}
-                {{#with shared_post}}
-                    <div class="shared-post-wrap">
-                        <a class="left" href="/@/{{username createdBy}}">
-                            <img class="ui avatar image" src="{{getAvatar createdBy}}">
-                        </a>
-                        <div class="post-content">
-                            <a class="post-author" href="/@/{{username createdBy}}">@{{username createdBy}}</a>
+            {{! POST BUTTONS}}
 
-                            <a href="/@/{{username createdBy}}/{{_id}}">
-                                <div class="post-date">{{contentTime createdAt}}</div>
-                            </a>
-                        </div>
-                        <div class="post-text">
-                            {{postContentParse content}}
-                        </div>
-                    </div>
-                {{/with}}
-            {{else}}
-                <div class="post-text">
-                    {{postContentParse content}}
-                </div>
-            {{/if}}
-
-        </div>
-
-        <div class="post-states">
-
-        </div>
-
-        <div class="post-buttons">
-
+            <div class="post-buttons">
                 {{#if likedPost}}
                     <div class="post-button like-button liked">
                         <i class="like icon"></i>
@@ -72,11 +78,10 @@
                     </div>
                 {{else}}
                     <div class="post-button like-button">
-                      <i class="like icon"></i>
-                      {{_ "like"}}
+                        <i class="like icon"></i>
+                        {{_ "like"}}
                     </div>
                 {{/if}}
-
 
                 <div class="post-button share-button">
                     <i class="retweet icon"></i>
@@ -88,24 +93,27 @@
                     {{numberOfComments}} {{_ "comments"}}
                 </div>
 
-
-
-        </div>
-
-
-    </div>
-    <div class="post-comments-wrap post-comments-wrap-{{_id}}">
-        <div class="post-comment-insert">
-            {{> insertComment postid=_id}}
-        </div>
-
-        <div class="post-comments">
-            <div class="post-comments-list">
-                {{> commentsListNolimit postid=_id}}
             </div>
+
+
+
+
+                {{> insertComment postid=_id}}
+
+            {{! COMMENTS}}
+
+            <div class="post-comments-wrapper post-comments-wrap-{{_id}}">
+
+                {{> commentsListNolimit postid=_id}}
+
+            </div>
+
+
         </div>
 
+
     </div>
-    </div>
+
+
 
 </template>

@@ -18,11 +18,6 @@
     float: right;
 }
 
-.messages-notification{
-    position: absolute;
-    right: -5px;
-    top: -6px;
-}
 
 .masseges-dropdown{
     position: relative;
@@ -112,4 +107,19 @@
     width: 100%;
     text-align: center;
     padding: 10px;
+}
+
+.notification{
+    background: #ff0042;
+    color: #fff;
+    padding: 0px 5px;
+    font-size: 10px;
+    line-height: 15px;
+    border-radius: 5px;
+    text-align: center;
+}
+.navbar-messages-notification{
+    position: absolute;
+    right: -4px;
+    top: -6px;
 }

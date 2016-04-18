@@ -68,6 +68,9 @@ Template.navbarSearch.events({
     'click .searchQuery': function(event){
         $('#navbar-search').val("");
         Session.set('searchHasResults', null);
+    },
+    'click .usernameLink': function(){
+        FlowRouter.go("/@/" + this.username);
     }
 });
 

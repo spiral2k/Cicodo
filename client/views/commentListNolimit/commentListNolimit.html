@@ -1,21 +1,22 @@
 <template name="commentsListNolimit">
-    <div class="ui comments">
-
+    <div class="post-comments">
         {{#each comments}}
-            <div class="">
-                <div class="comment">
-                    <a class="avatar-comment">
-                        <img src="{{avatarFromId user}}">
-                    </a>
-                    <div class="content">
-                        <a class="author capitalize">@{{usernameFromId user}}</a>
-                        <div class="metadata">
-                            <span class="date">{{contentTime date}}</span>
-                        </div>
-                        <div class="text">
-                            {{text}}
-                        </div>
+            <div class="post-comment">
+                <div class="comment-user-avatar">
+                    <img src="{{avatarFromId user}}">
+                </div>
+                <div class="comment-meta">
+                    <div class="comment-username">
+                        @{{usernameFromId user}}
                     </div>
+
+                    <div>·</div>
+                    <div class="comment-date">
+                        {{contentTime date}}
+                    </div>
+                </div>
+                <div class="comment-content">
+                    {{text}}
                 </div>
             </div>
         {{/each}}
@@ -32,6 +33,5 @@
                 {{_ "hideComments"}}
             </div>
         {{/if}}
-
     </div>
 </template>
