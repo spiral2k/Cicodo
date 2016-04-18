@@ -109,15 +109,6 @@
     padding: 10px;
 }
 
-.notification{
-    background: #ff0042;
-    color: #fff;
-    padding: 0px 5px;
-    font-size: 10px;
-    line-height: 15px;
-    border-radius: 5px;
-    text-align: center;
-}
 .navbar-messages-notification{
     position: absolute;
     right: -4px;

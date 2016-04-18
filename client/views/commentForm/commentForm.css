@@ -3,6 +3,8 @@
     width:100%;
     padding:10px 15px;
     background: #fff;
+    border-bottom-left-radius: .28571429rem;
+    border-bottom-right-radius: .28571429rem;
 }
 
 

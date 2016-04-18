@@ -1,4 +1,4 @@
-Template.commentsListNolimit.helpers({
+Template.comments.helpers({
     comments: function(){
 
         Meteor.subscribe('postCommentsNolimit', this.postid);
@@ -27,7 +27,7 @@ Template.commentsListNolimit.helpers({
     }
 });
 
-Template.commentsListNolimit.events({
+Template.comments.events({
     'click .more-comments': function(){
         Session.set("commentForPost" + this.postid, Session.get("commentForPost" + this.postid) + 10);
         console.log(Session.get("commentForPost" + this.postid));

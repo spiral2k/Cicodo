@@ -95,25 +95,16 @@
 
             </div>
 
-
-
-
-                {{> insertComment postid=_id}}
+            {{> commentForm postid=_id}}
 
             {{! COMMENTS}}
 
             <div class="post-comments-wrapper post-comments-wrap-{{_id}}">
-
-                {{> commentsListNolimit postid=_id}}
-
+                {{> comments postid=_id}}
             </div>
-
 
         </div>
 
-
     </div>
-
-
 
 </template>
