@@ -1,6 +1,23 @@
 <template name="messagesView">
-    {{#each messages}}
-        {{> message text=text user=send_from timestamp=timestamp avatar=avatar}}
-    {{/each}}
-    <textarea class="textMessage"></textarea>
+
+    {{#if Template.subscriptionsReady}}
+
+
+
+        <div class="top-messageView-panel">
+
+
+            <div class="panel-content">
+                <span>{{_ "conversationWith"}} <a href="/@/{{userMessage.username}}">@{{userMessage.username}}</a></span>
+            </div>
+        </div>
+
+        <div id="messages-view-warp">
+            {{#each messages}}
+                {{> message text=text user=send_from timestamp=timestamp avatar=avatar}}
+            {{/each}}
+        </div>
+
+    {{/if}}
+    <textarea id="textMessage"></textarea>
 </template>

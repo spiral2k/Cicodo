@@ -1,84 +1,128 @@
-var username, userData, self;
-
-// user that resive that message contexet session var
-//Session.get("messageUserName");
 
 Template.messages.onCreated(function(){
-    self = this;
+    var self = this;
+
+    Session.set("messageUserName", null);
+
     self.autorun(function() {
-        username = FlowRouter.getParam('username'); // Get the user username from the route parameter
-
-
-        if(username === Meteor.user().username){
-            history.pushState({}, null, '/messages/');
+        if(Meteor.user()) {
+            self.subscribe('usersListByID', Meteor.user().profile.open_messages);
         }
-
-
-        Session.set("messageUserName", username);
-        self.subscribe('getUserDataByUsername', username);
-        userData = Meteor.users.findOne({
-                username: username
-            }) || {};
-
-        self.subscribe('usersListByID', Meteor.user().profile.open_messages);
-        // need fix
-        if(username){
-            Session.set("isMessagesMain", false);
-        }else{
-            Session.set("isMessagesMain", true);
-        }
-        self.subscribe('messages');
     });
 });
 
-Template.messages.events({
-    'click .messages-sidebar-user': function(){
-
-        Session.set("messageUserName", this.username);
-        Session.set("isMessagesMain", false);
-
-        // change without reload
-        history.pushState({}, null, '/messages/' + this.username);
-
-        return true;
-    },
-    'keyup .textMessage': function(e) {
-
-        var query_selector = $('.textMessage');
-        var inputVal = query_selector.val();
-
-        if(!!inputVal) {
-            var charCode = (typeof e.which == "number") ? e.which : e.keyCode;
-            if (charCode == 13) {
-                e.stopPropagation();
-
-
-                console.log("inputVal: ", inputVal);
-
-                Meteor.call('newMessage', {
-                    text: query_selector.val()
-                },
-                    // what person will recive that message
-                    Session.get("messageUserName"));
-
-                query_selector.val("");
-                return false;
-            }
-        }
-    }
-
-});
 
 Template.messages.helpers({
     isMainMessages:function(){
-        return Session.get("isMessagesMain");
+
+        FlowRouter.watchPathChange();
+
+        var path = FlowRouter.current();
+
+        console.log("path: ", path)
+
+          if(path.path === "/messages"){
+            return true;
+          }
+
+        return false
 
     },
-    usernames: function () {
-                return Meteor.users.find({
-                    '_id': { $in: Meteor.user().profile.open_messages }
-                }, { fields: { 'username': 1, 'profile.avatar': 1 } }, function (err, docs) {
-                    console.log("Error getting usernames", docs);
-                });
+    usernames:function(){
+        if(Meteor.user()){
+
+            var open_messages = Meteor.user().profile.open_messages;
+
+            var users_list = Meteor.users.find({
+                '_id': {$in: open_messages}
+            }, {fields: {'username': 1, 'profile.avatar': 1, 'status.online': 1}}, function (err, docs) {
+                console.log("Template.messages.helpers: Error getting usernames ", docs);
+            }).fetch();
+
+
+            if(FlowRouter.current().route.path === '/messages/:username'){
+
+                var userInTheList = false;
+
+                var username = FlowRouter.getParam('username');
+                var user = Meteor.users.findOne({username: username});
+
+                if(open_messages && user != undefined)
+                    for(var i = 0; i < open_messages.length; i++){
+                        if(open_messages[i] === user._id) {
+                            userInTheList = true;
+                            i = open_messages.length;
+                        }
+                    }
+
+                if(!userInTheList){
+                    Meteor.subscribe("getUserDataByUsername", username)
+                        if(user != undefined)
+                            users_list.unshift({
+                                profile:{
+                                    avatar: user.profile.avatar
+                                },
+                                user_message_id: user._id,
+                                username: user.username
+                            });
+                }
+
+            }
+            //if we want that the first user in the users list will display what enter to  "/messages"
+            //////////////////////////////////////////////////////////////////////////////////////////
+            //if(FlowRouter.current().route.path === '/messages'){
+            //    if(users_list && users_list.length > 0){
+            //        Session.set("messageUserName", users_list[0].username);
+            //        FlowRouter.go('/messages/' + users_list[0].username);
+            //    }
+            //}
+
+            return users_list;
+
+        }
+
+    },
+    no_users:function(){
+        if(Meteor.user()){
+            var open_messages = Meteor.user().profile.open_messages;
+
+
+            if(open_messages.length > 0)
+                return false;
+            else
+                return true
+
+        }
+    },
+    currentMessageUser:function(){
+        if(this.username == Session.get("messageUserName")){
+            return true;
+        }
+        return false;
     }
+});
+
+
+Template.messages.events({
+    'click .messages-sidebar-user': function(){
+        Session.set("messageUserName", this.username);
+
+        FlowRouter.go('/messages/' + this.username);
+        return true;
+    },
+    'keyup #user-messages-search': function(e){
+        var value = $('#user-messages-search').val();
+        $(".messages-sidebar-user").each(function() {
+            if ($(this).find('.username-sidebar').text().search(new RegExp(value, "i")) > -1) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+        return true;
+    }
+});
+
+Template.messages.onDestroyed(function() {
+    Session.set("currentMessagesPath", null);
 });

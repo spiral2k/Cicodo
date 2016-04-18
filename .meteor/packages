@@ -16,25 +16,18 @@ es5-shim                # ECMAScript 5 compatibility for older browsers.
 ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 accounts-password
-
+email
 semantic:ui
-flemay:less-autoprefixer
+check
+underscore
+tap:i18n
+momentjs:moment
+raix:handlebar-helpers
 
+flemay:less-autoprefixer
 kadira:flow-router
 kadira:blaze-layout
-
-momentjs:moment
-underscore
-raix:handlebar-helpers
-cfs:standard-packages
-cfs:filesystem
-email
-tap:i18n
-meteorhacks:fast-render
-check
 standard-minifier-css
 standard-minifier-js
-anti:fake
-dburles:factory
 mizzao:user-status
 meteortoys:allthings

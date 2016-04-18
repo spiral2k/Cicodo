@@ -1,32 +1,24 @@
 var user;
 
-
-Template.profileEdit.onRendered(function(){
-
-
+Template.profileEdit.onCreated(function(){
     if(!Meteor.user()){
         FlowRouter.go('/login');
     }
 
-    $('#feedType').dropdown();
-    $('#langugage').dropdown();
+    // reset session var for form success
+    Session.set('formSuccess', undefined);
+
+});
+
+
+
+Template.profileEdit.onRendered(function(){
 
     document.getElementById("avatarUpload").addEventListener("change", Base64Avatar, false);
 
     ///////////////////////////////
     // get user setting from DB
     ///////////////////////////////
-
-    // private-profile events, save state in session
-    $(".private-profile").checkbox('setting', 'onChecked', function () {
-        Session.set('private-profile', true);
-    });
-
-    $(".private-profile").checkbox('setting', 'onUnchecked', function () {
-        Session.set('private-profile', false);
-    });
-
-
     this.autorun(function() {
             if ( Meteor.user() ) {
                 user = Meteor.user();
@@ -34,9 +26,6 @@ Template.profileEdit.onRendered(function(){
             }
         }
     );
-
-    // reset session var for form success
-    Session.set('formSuccess', undefined);
 
 });
 
@@ -60,7 +49,6 @@ Template.profileEdit.events({
         }else{
             privateProfile = false;
         }
-
 
         var aboutMe = template.find('#about-me').value;
 
@@ -98,11 +86,8 @@ Template.profileEdit.events({
         });
     },
     'click #discard-changes': function(){
-
         setTemplateValue();
-
         return true;
-
     }
 });
 
@@ -140,3 +125,18 @@ function setTemplateValue(){
     return true;
 }
 
+function eventsInit(){
+
+    // private-profile events, save state in session
+    $(".private-profile").checkbox('setting', 'onChecked', function () {
+        Session.set('private-profile', true);
+    });
+
+    $(".private-profile").checkbox('setting', 'onUnchecked', function () {
+        Session.set('private-profile', false);
+    });
+
+
+    $('#feedType').dropdown();
+    $('#langugage').dropdown();
+}

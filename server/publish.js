@@ -1,42 +1,66 @@
 
-Meteor.publish("usersFollowedByUser", function(userByID) {
-    return Meteor.users.find({_id: userByID}, {fields: {'username': 1, 'profile': 1, "status.online": 1}});
+// Basic user info publish function.
+Meteor.publish("basicUserInfo", function(userByID) {
+    return Meteor.users.find({_id: userByID}, {fields: {'username': 1, 'profile.avatar': 1}});
 });
+
 
 Meteor.publish("postsFollowedByUser", function(postsByID, limit, date) {
     limit = limit || 5;
     date = date || new Date();
-    return Posts.find({createdBy: postsByID, 'createdAt.date': {$lte: date} }, {sort: {'createdAt.date': -1}, limit: limit});
+    return Posts.find({createdBy: postsByID, 'createdAt': {$lte: date} }, {sort: {'createdAt': -1}, limit: limit});
 });
 
 
 Meteor.publish("liveFeedPostsFollowedByUser", function(postsByID, limit) {
     limit = limit || 5;
-    return Posts.find({createdBy: postsByID}, {sort: {'createdAt.date': -1}, limit: limit});
+    return Posts.find({createdBy: postsByID}, {sort: {'createdAt': -1}, limit: limit});
 });
 
 
-Meteor.publish("getUserDataByUsername", function(user_name) {
+Meteor.publish("getUserDataByUsername", function(username) {
     return Meteor.users.find(
-        {username: user_name},
-        {fields: {'username': 1, 'profile': 1, "status.online": 1}
-        }
-    );
+        {username: username},
+        {
+            fields: {'username': 1, 'profile.avatar': 1, 'status.online': 1}
+        });
 });
 
+// generic for profile
+Meteor.publish("getUserProfileDataByUsername", function(username) {
+    return Meteor.users.find(
+        {username: username},
+        {
+            fields: {'username': 1, 'profile.avatar': 1,'profile.followers': 1 ,'profile.follow': 1, 'status.online': 1}
+        });
+});
+
+
+// for listing users
 Meteor.publish("usersListByID", function(arrayOfIDs) {
-    return Meteor.users.find({_id: {$in: arrayOfIDs}}, {fields: {'username': 1, 'profile.avatar': 1, "status.online": 1}});
+    return Meteor.users.find({_id: {$in: arrayOfIDs}}, {fields: {'username': 1, 'profile.avatar': 1,'profile.followers': 1 ,'profile.follow': 1, 'status.online': 1}});
 });
 
-
-
-Meteor.publish('messages', function () {
-    return Messages.find();
+Meteor.publish('getMessagesForMessageView', function (username) {
+    var user = Meteor.users.findOne({'username': username});
+    if(user)
+        return Messages.find({$or: [{send_to: this.userId, send_from: user._id}, {send_to: user._id, send_from: this.userId}] },{sort: {timestamp: -1}, limit: 50});
 });
 
-
-Meteor.publish('lastMessageById', function (arrayOfIDs) {
-    return Messages.find({send_from: {$in: arrayOfIDs}, send_to: this.userId},{limit: 5});
+Meteor.publish('lastMessageById', function (userMessageID) {
+    return Messages.find({send_from:  userMessageID, send_to: this.userId},{sort: {timestamp: 1}, limit: 1});
 });
 
+Meteor.publish("getOnePostById", function(postsID) {
+    return Posts.find({_id: postsID});
+});
+
+Meteor.publish("postCommentsLimit", function(postID, limit) {
+    limit = limit || 10;
+    return Comments.find({postid: postID}, {sort:{date: -1}, limit:limit});
+});
+
+Meteor.publish("postCommentsNolimit", function(postID) {
+    return Comments.find({postid: postID}, {sort:{date: -1}});
+});
 

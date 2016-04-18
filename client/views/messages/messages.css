@@ -1,21 +1,124 @@
+.messages-main {
+    position: fixed;
+    top:40px;
+    bottom: 0;
+    left:0;
+    right:0;
+    background: linear-gradient(
+            to right,
+            #2B323A 0%,
+            #2B323A 34.9%,
+            #EAEDF2 34.9%,
+            #EAEDF2 100% );
+
+
+}
+
+.user-status-messages{
+    position: absolute;
+    top: 7px;
+    left: 5px;
+    width: 7px !important;
+    height: 7px !important;
+    border-radius: 10px;
+    background: #DB2828;
+}
+
+.messages-top-from-navbar{
+    margin-top: 45px;
+}
 .messages-sidebar{
     float:left;
+    width:100%;
+    height:100%;
+    background: #2B323A;
+    text-align: center;
 }
 
 .messages-sidebar-user{
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 70px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.messages-sidebar-user.selected, .messages-sidebar-user:hover {
+    background:#343D45;
+    border-radius: 5px;
+}
+
+.username-sidebar{
+    float: left;
+    color: #fff;
+    text-transform: capitalize;
+    margin-left: 15px;
+    margin-top: 15px;
+    white-space: nowrap;
+    width: 170px;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.last-message-sidebar{
+    float:left;
+    color:#ABACAE;
+    margin-left: 15px;
+    width:55%;
+    text-align: left;
+    line-height: 16px;
+}
+
+.last-message-date-sidebar{
+    float: right;
+    width: 100%;
+    color: #64676B;
+    margin-top: -13px;
+    margin-right: 8px;
+    font-size: 12px;
+    text-align: right;
+}
+
+.messages-sidebar-user img{
+    width:50px;
+    height:50px;
+    border-radius:50px;
+    float:left;
+    margin-top: 10px;
+    margin-left:16px;
+}
+
+.messages-view{
     float:left;
     width:100%;
+    background: #EAEDF2;
 }
 
-.messages-sidebar-user img{
-    width:40px;
-    height:40px;
-    border-radius:40px;
+.top-messages-search{
     float:left;
+    width:100%;
+    position: relative;
 }
 
-.messages-sidebar-user img{
-    float:left;
-    margin-left:10px;
+.top-messages-search i{
+    position: absolute;
+    top: 5px;
+    right: 32px;
+    color: #CACACA;
+}
 
+#user-messages-search{
+    border: 0;
+    background: #363D45;
+    border-radius: 50px;
+    padding: 0 20px;
+    line-height: 30px;
+    text-transform: capitalize;
+    width: 80%;
+    display: inline-block;
+    color: #fff;
+    height: 30px;
+    margin-bottom: 20px;
 }

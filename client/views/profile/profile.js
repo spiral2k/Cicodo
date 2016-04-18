@@ -1,23 +1,18 @@
-// user profile data
-var userData, username, follows;
+//import steamAPI from 'steam-webapi';
 
 Template.profile.onCreated(function() {
-    // Subscribe only the relevant subscription to this page
+
     var self = this;
     self.autorun(function() { // Stops all current subscriptions
-
         //////////////////////////////////////////////////////////////////////
         // Get information about the user that the profile belong to him
         //////////////////////////////////////////////////////////////////////
-        username = FlowRouter.getParam('username'); // Get the user username from the route parameter
+        var username = FlowRouter.getParam('username');
+        self.subscribe('getUserProfileDataByUsername', username);
 
-        self.subscribe('getUserDataByUsername', username.trim());
-
-        userData = Meteor.users.findOne({
-                username: username
-            }) || {};
     });
 });
+
 
 Template.profile.onRendered(function(){
     setTimeout(function(){
@@ -28,10 +23,22 @@ Template.profile.onRendered(function(){
 
 Template.profile.events({
     'click #follow-user': function(){
+
+        var username = FlowRouter.getParam('username');
+        var userData = Meteor.users.findOne({
+                username: username
+            }) || {};
+
         Meteor.call('follow',userData._id);
         return true;
     },
     'click #unfollow-user': function(){
+
+        var username = FlowRouter.getParam('username');
+        var userData = Meteor.users.findOne({
+                username: username
+            }) || {};
+
         Meteor.call('unfollow', userData._id);
         return true;
     },
@@ -49,16 +56,17 @@ Template.profile.events({
 Template.profile.helpers({
     userProfileData: function() {
 
-        // important - to B reactive
-        /////////////////////////////////////////////////////////////////////////////
+        username = FlowRouter.getParam('username');
         userData = Meteor.users.findOne({
                 username: username
             }) || {};
-
         // Followers
-        Meteor.subscribe('usersListByID', userData.profile.followers);
+        if(userData.profile.followers)
+            Meteor.subscribe('usersListByID', userData.profile.followers);
+
         // Following
-        Meteor.subscribe('usersListByID', userData.profile.follow);
+        if(userData.profile.follow)
+            Meteor.subscribe('usersListByID', userData.profile.follow);
 
         if( _.isEmpty(userData)){
             FlowRouter.go('/404')
@@ -73,6 +81,11 @@ Template.profile.helpers({
     },
     isUserFollowing: function(){
 
+        var username = FlowRouter.getParam('username');
+        var userData = Meteor.users.findOne({
+                username: username
+            }) || {};
+
         //////////////////////////////////////////////////////////////////////
         // Get information about the user that viewing the profile | if following user
         //////////////////////////////////////////////////////////////////////
@@ -84,33 +97,48 @@ Template.profile.helpers({
             var follows = viewUser.profile.follow;
         }
 
-        if(!_.isEmpty(userData)){
+        // get the profile user ID
+        var userProfileId = userData._id;
 
-            // get the profile user ID
-            var userProfileId = userData._id;
+        // search if user is following the profile user
 
-            // search if user is following the profile user
+        var isTheUserFollowing = _.some(follows, function(id) {
+            return id == userProfileId;
+        });
 
-            var isTheUserFollowing = _.some(follows, function(id) {
-                return id == userProfileId;
-            });
+        return isTheUserFollowing
 
-            return isTheUserFollowing
-        }
         return false;
     },
     followersCount: function(){
-        if(typeof userData.followers !== "undefined" || !_.isEmpty(userData))
+        var username = FlowRouter.getParam('username');
+        var userData = Meteor.users.findOne({
+                username: username
+            }) || {};
+        console.log(userData)
+        if(userData.followers || !_.isEmpty(userData))
             return userData.profile.followers.length;
         else return 0
     },
     followingCount: function(){
+
+        var username = FlowRouter.getParam('username');
+        var userData = Meteor.users.findOne({
+                username: username
+            }) || {};
+
         if(typeof userData.follow !== "undefined" || !_.isEmpty(userData))
             return userData.profile.follow.length;
         else return 0
     },
     followersData: function(){
-            var followerUsers = Meteor.users.find({
+
+        var username = FlowRouter.getParam('username');
+        var userData = Meteor.users.findOne({
+                username: username
+            }) || {};
+
+        var followerUsers = Meteor.users.find({
                 '_id': { $in: userData.profile.followers}
             },{fields: {'username': 1, 'profile.avatar': 1}}, function(err, docs){
                 console.log(docs);
@@ -119,6 +147,12 @@ Template.profile.helpers({
         return followerUsers;
     },
     followsData: function(){
+
+        var username = FlowRouter.getParam('username');
+        var userData = Meteor.users.findOne({
+                username: username
+            }) || {};
+
         var followsUsers = Meteor.users.find({
             '_id': { $in: userData.profile.follow}
         },{fields: {'username': 1, 'profile.avatar': 1}}, function(err, docs){
@@ -128,11 +162,14 @@ Template.profile.helpers({
         return followsUsers;
     },
     userIsOnline:function(){
-        if(userData.status.online){
-            return true
-        }else{
-            return false
-        }
+
+        var username = FlowRouter.getParam('username');
+        var userData = Meteor.users.findOne({
+                username: username
+            }) || {};
+
+        return userData.status.online
+
     }
 
 });

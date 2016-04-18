@@ -1,26 +1,50 @@
 <template name="messages">
-    {{#if Template.subscriptionsReady}}
-    <div class="ui grid ">
-        <div class="three wide column computer only">
-            <div class="messages-sidebar">
-            <span>usernames: </span>
-            <br>
-            {{#each usernames}}
-                <div class="messages-sidebar-user">
-                    <img src="{{profile.avatar}}">
-                    <span>{{username}}</span>
+    <div class="messages-main">
+        <div class="ui container messages-top-from-navbar">
+            <div class="ui grid ">
+                <div class="four wide column">
+                    <div class="messages-sidebar">
+
+                        <div class="top-messages-search">
+                            <input type="text" id="user-messages-search" placeholder="{{_ "messagesUsersSearch"}}">
+                            <i class="search icon"></i>
+                        </div>
+                    {{#each usernames}}
+                        <div class="messages-sidebar-user {{#if currentMessageUser}} selected {{/if}}">
+                            <img src="{{profile.avatar}}">
+                            <span class="user-status-messages {{#if status.online}} online {{/if}}"></span>
+                            <span class="username-sidebar">{{username}}</span>
+                            <span class="last-message-sidebar">{{lastMessageByID _id}}</span>
+                            <span class="last-message-date-sidebar">{{lastMessageTimeByID _id}}</span>
+                        </div>
+                    {{/each}}
+                    </div>
                 </div>
-            {{/each}}
+
+                <div class="twelve wide column messages-view" style="height: 100vh;">
+                    {{#if isMainMessages}}
+                        {{#unless no_users}}
+
+                            <h2 class="ui center aligned icon header">
+                                <i class="circular users icon"></i>
+                                Select conversation from the list.
+                            </h2>
+
+                        {{/unless}}
+                        {{#if no_users}}
+                            <h2 class="ui center aligned icon header">
+                                <i class="circular users icon"></i>
+                                You have no messages yet.
+                            </h2>
+                        {{/if}}
+                    {{else}}
+                        {{> messagesView}}
+                    {{/if}}
+                    {{>footer}}
+                </div>
+
             </div>
         </div>
-
-        <div class="twelve wide column ">
-            {{#if isMainMessages}}
-                {{>mainMessages}}
-            {{else}}
-                {{> messagesView}}
-            {{/if}}
-        </div>
     </div>
-    {{/if}}
+
 </template>

@@ -35,8 +35,12 @@ Template.register.events({
                 // New
                 notifications: [],
                 open_messages:[],
-                messages: []
-
+                messages: [],
+                viewing_messages_of: null,
+                posts_events:{
+                    liked_posts:[],
+                    shared_posts:[]
+                }
             }
         }, function(error){
             if(error){
@@ -65,6 +69,7 @@ Template.register.rendered = function(){
     // reset session var for form errors
     Session.set('formErrors', undefined);
 
+   //Validation
     $('.loginForm').form({
         fields: {
             email: {

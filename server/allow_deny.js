@@ -1,15 +1,12 @@
 Meteor.users.deny({
-    update: function() {
-        return true;
+    update: function(userId) {
+        return userId === Meteor.userId();
     }
 });
 
 
 Messages.allow({
     insert: function (userId, doc) {
-
-        console.log("alaoow: ",userId, doc);
-
         return (userId && doc.send_from === userId);
     }
 });

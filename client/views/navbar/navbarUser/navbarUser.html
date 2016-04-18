@@ -2,8 +2,8 @@
 
     <div class="ui floating dropdown navbar-user-block username-dropdown">
         <div class="navbar-dropdown-header">
-            <i class="dropdown icon"></i>
             <img class="avatar small" src="{{avatar}}">
+            <i class="iconset top-down-arrow"></i>
             <span>@{{username}}</span>
         </div>
 
@@ -11,26 +11,57 @@
         <div class="menu">
             <a class="item" href="/"><i class="home icon"></i> {{_ "home"}}</a>
             <a class="item" href="/@/{{username}}"><i class="user icon"></i> {{_ "Profile"}}</a>
+            <a class="item" href="/messages"><i class="mail icon"></i> {{_ "messages"}}</a>
             <a class="item" href="/settings"><i class="setting icon"></i> {{_ "Settings"}}</a>
             <a class="item" id="logout" href="#"><i class="sign out icon"></i> {{_ "Logout"}}</a>
         </div>
 
     </div>
 
+
     {{!-- Messages TopBar --}}
+    <div class="ui top right pointing dropdown masseges-dropdown">
+        <i class="large ui-font-color mail icon"></i>
+        {{#if hasNewMessages}}
+        <a class="ui red circular mini label messages-notification">{{hasNewMessages}}</a>
+        {{/if}}
 
+            <div class="menu messages-panel-width">
+                {{#if messages}}
+                    {{#each messages}}
 
+                            <div class="item messagesUserItem">
+                                <img class="messages-panel-avatar" src="{{avatarFromId user_message_id}}">
+                                <div class="content">
+                                    <div class="header">{{usernameFromId user_message_id}}</div>
+                                    <span class="prev-message-text">{{messagesShortPreview last_message}}</span>
+                                    {{#if newMessages}}
+                                    <span class="new-messages">{{newMessages}}</span>
+                                    {{/if}}
 
+                                </div>
+                            </div>
 
-        <div class="ui top right pointing dropdown ">
-            <i class="big mail outline icon"></i>
-            <a class="ui red circular mini label messages-notification">{{hasNewMessages}}</a>
-            <div class="menu">
-                {{#each messages}}
-                    <div class="item"><i class="edit icon"></i> {{usernameFromId send_from}}g</div>
-                {{/each}}
+                    {{/each}}
+                    <div class="item allMessages">
+                        {{_ "viewAllMessages"}}
+                    </div>
+                {{/if}}
+
+                {{#unless messages}}
+                <div class="item">
+
+                    <span class="no-messages">
+                        <i class="big send outline icon"></i>
+                        <span>{{_ "noMessages"}}</span>
+                    </span>
+                </div>
+                {{/unless}}
+
             </div>
-        </div>
+
+    </div>
+
 
 
 
