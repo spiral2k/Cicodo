@@ -102,6 +102,7 @@ Template.navbaruser.events({
         FlowRouter.go("/messages/" + user.username);
     },
     'click .allMessages': function(){
+        Session.set("messageUserName", null);
         FlowRouter.go("/messages");
     }
 });
