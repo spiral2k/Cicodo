@@ -5,43 +5,33 @@ Template.messages.onCreated(function(){
     Session.set("messageUserName", null);
 
     self.autorun(function() {
-        self.subscribe('usersListByID', Meteor.user().profile.open_messages);
+        if(Meteor.user()) {
+            self.subscribe('usersListByID', Meteor.user().profile.open_messages);
+        }
     });
 });
 
 
 Template.messages.helpers({
-    isMainMessages: function(){
-        if(FlowRouter.current().route.path === '/messages'){
-            return true;
-        }
-        return false;
-    },
-    usernames: function () {
+    isMainMessages:function(){
 
-        var userInTheList = false;
-        if(FlowRouter.getParam('username')){
+        FlowRouter.watchPathChange();
+
+        var path = FlowRouter.current();
+
+        console.log("path: ", path)
+
+          if(path.path === "/messages"){
+            return true;
+          }
+
+        return false
+
+    },
+    usernames:function(){
+        if(Meteor.user()){
 
             var open_messages = Meteor.user().profile.open_messages;
-            var username = FlowRouter.getParam('username');
-            var user = Meteor.users.findOne({username: username});
-
-            if(open_messages && user != undefined)
-                for(var i = 0; i < open_messages.length; i++){
-                    if(open_messages[i] === user._id) {
-                        userInTheList = true;
-                        console.log("User is in the list")
-                    }
-                }
-
-            if(userInTheList) {
-                return Meteor.users.find({
-                    '_id': {$in: open_messages}
-                }, {fields: {'username': 1, 'profile.avatar': 1, 'status.online': 1}}, function (err, docs) {
-                    console.log("Template.messages.helpers: Error getting usernames ", docs);
-                });
-            }
-
 
             var users_list = Meteor.users.find({
                 '_id': {$in: open_messages}
@@ -50,18 +40,59 @@ Template.messages.helpers({
             }).fetch();
 
 
-            if(user != undefined)
-                users_list.unshift({
-                    profile:{
-                        avatar: user.profile.avatar
-                    },
-                    user_message_id: user._id,
-                    username: user.username
-                });
+            if(FlowRouter.current().route.path === '/messages/:username'){
+
+                var userInTheList = false;
+
+                var username = FlowRouter.getParam('username');
+                var user = Meteor.users.findOne({username: username});
+
+                if(open_messages && user != undefined)
+                    for(var i = 0; i < open_messages.length; i++){
+                        if(open_messages[i] === user._id) {
+                            userInTheList = true;
+                            i = open_messages.length;
+                        }
+                    }
+
+                if(!userInTheList){
+                    Meteor.subscribe("getUserDataByUsername", username)
+                        if(user != undefined)
+                            users_list.unshift({
+                                profile:{
+                                    avatar: user.profile.avatar
+                                },
+                                user_message_id: user._id,
+                                username: user.username
+                            });
+                }
+
+            }
+            //if we want that the first user in the users list will display what enter to  "/messages"
+            //////////////////////////////////////////////////////////////////////////////////////////
+            //if(FlowRouter.current().route.path === '/messages'){
+            //    if(users_list && users_list.length > 0){
+            //        Session.set("messageUserName", users_list[0].username);
+            //        FlowRouter.go('/messages/' + users_list[0].username);
+            //    }
+            //}
 
             return users_list;
+
         }
 
+    },
+    no_users:function(){
+        if(Meteor.user()){
+            var open_messages = Meteor.user().profile.open_messages;
+
+
+            if(open_messages.length > 0)
+                return false;
+            else
+                return true
+
+        }
     },
     currentMessageUser:function(){
         if(this.username == Session.get("messageUserName")){
@@ -71,10 +102,12 @@ Template.messages.helpers({
     }
 });
 
+
 Template.messages.events({
     'click .messages-sidebar-user': function(){
         Session.set("messageUserName", this.username);
-        FlowRouter.go('/messages/' + this.username)
+
+        FlowRouter.go('/messages/' + this.username);
         return true;
     },
     'keyup #user-messages-search': function(e){
@@ -88,4 +121,8 @@ Template.messages.events({
         });
         return true;
     }
+});
+
+Template.messages.onDestroyed(function() {
+    Session.set("currentMessagesPath", null);
 });

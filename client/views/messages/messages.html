@@ -20,16 +20,29 @@
                     {{/each}}
                     </div>
                 </div>
-            {{#if Template.subscriptionsReady}}
+
                 <div class="twelve wide column messages-view" style="height: 100vh;">
                     {{#if isMainMessages}}
-                        {{>mainMessages}}
+                        {{#unless no_users}}
+
+                            <h2 class="ui center aligned icon header">
+                                <i class="circular users icon"></i>
+                                Select conversation from the list.
+                            </h2>
+
+                        {{/unless}}
+                        {{#if no_users}}
+                            <h2 class="ui center aligned icon header">
+                                <i class="circular users icon"></i>
+                                You have no messages yet.
+                            </h2>
+                        {{/if}}
                     {{else}}
                         {{> messagesView}}
                     {{/if}}
                     {{>footer}}
                 </div>
-            {{/if}}
+
             </div>
         </div>
     </div>

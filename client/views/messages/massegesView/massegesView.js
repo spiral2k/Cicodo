@@ -1,53 +1,42 @@
-
-
 Template.messages.onCreated(function(){
     var self = this;
 
-
-
     self.autorun(function() {
+        if(Meteor.user()) {
+            if (FlowRouter.getParam('username') === Meteor.user().username) {
+                FlowRouter.go('/messages');
+            }
 
-        if(FlowRouter.getParam('username') === Meteor.user().username){
-            FlowRouter.go('/messages');
+            // set data of the user
+            if (!Session.get("messageUserName")) {
+                Session.set("messageUserName", FlowRouter.getParam('username'))
+            }
+
+            // Subs
+            self.subscribe('getUserDataByUsername', Session.get("messageUserName"));
+            self.subscribe('getMessagesForMessageView', Session.get("messageUserName"));
+
         }
 
-        // set data of the user
-        if(!Session.get("messageUserName")){
-            Session.set("messageUserName",FlowRouter.getParam('username'))
-        }
-
-        // Subs
-        self.subscribe('getUserDataByUsername',Session.get("messageUserName"));
-        self.subscribe('messageView',Session.get("messageUserName"));
     });
-
-
-
 });
 
 
 Template.messagesView.onRendered(function(){
-
-    var userData;
-
-    if(FlowRouter.getParam('username')) {
-        userData = Meteor.users.findOne({
+    var userData = Meteor.users.findOne({
                 username: Session.get("messageUserName")
             }, { fields: { username: 1, 'profile.avatar': 1 } }) || {};
-        if ( _.isEmpty(userData) ) {
-            FlowRouter.go('/messages');
-        }
-    }
-
-    if(FlowRouter.getParam('username')) {
-        Meteor.call("resetNewMessagesInMessage", Session.get("messageUserName"));
-        Meteor.call("updateUserMessagesPath", Session.get("messageUserName"));
-    }
 
     if(document.getElementById("messages-view-warp"))
         document.getElementById("messages-view-warp").scrollTop = document.getElementById("messages-view-warp").scrollHeight;
-});
 
+
+
+    if(FlowRouter.getParam('username') && Meteor.user()) {
+        Meteor.call("resetNewMessagesInMessage", Session.get("messageUserName"));
+        Meteor.call("updateUserMessagesPath", Session.get("messageUserName"));
+    }
+});
 
 
 Template.messagesView.helpers({

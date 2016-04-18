@@ -41,8 +41,7 @@ Meteor.publish("usersListByID", function(arrayOfIDs) {
     return Meteor.users.find({_id: {$in: arrayOfIDs}}, {fields: {'username': 1, 'profile.avatar': 1,'profile.followers': 1 ,'profile.follow': 1, 'status.online': 1}});
 });
 
-Meteor.publish('messageView', function (username) {
-
+Meteor.publish('getMessagesForMessageView', function (username) {
     var user = Meteor.users.findOne({'username': username});
     if(user)
         return Messages.find({$or: [{send_to: this.userId, send_from: user._id}, {send_to: user._id, send_from: this.userId}] },{sort: {timestamp: -1}, limit: 50});
