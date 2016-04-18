@@ -1,4 +1,4 @@
-Template.comment.helpers({
+Template.insertComment.helpers({
     avatar: function(){
         return Meteor.user().profile.avatar;
     }
@@ -7,7 +7,7 @@ Template.comment.helpers({
 
 
 
-Template.comment.events({
+Template.insertComment.events({
     'keyup #comment-text': function(e, t){
             e.preventDefault();
 

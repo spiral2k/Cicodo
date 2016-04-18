@@ -15,13 +15,13 @@
                     </a>
                     </div>
                     {{#if is_shared_post}}
-                        <span>Shared</span>
+                        <span>{{_ "shared"}}</span>
                             {{#with shared_post}}
                                 <div class="post-author">
                                     <a href="/@/{{username createdBy}}">@{{username createdBy}}</a>
                                 </div>
                             {{/with}}
-                        <span>post's.</span>
+                        <span>{{_ "post's"}}.</span>
                     {{/if}}
 
                 </div>
@@ -68,24 +68,24 @@
                 {{#if likedPost}}
                     <div class="post-button like-button liked">
                         <i class="like icon"></i>
-                        Unlike
+                        {{_ "unlike"}}
                     </div>
                 {{else}}
                     <div class="post-button like-button">
                       <i class="like icon"></i>
-                      Like
+                      {{_ "like"}}
                     </div>
                 {{/if}}
 
 
                 <div class="post-button share-button">
                     <i class="refresh icon"></i>
-                    Share
+                    {{_ "share"}}
                 </div>
 
                 <div class="post-button comment-button right">
                     <i class="comment icon"></i>
-                    {{numberOfComments}} comments
+                    {{numberOfComments}} {{_ "comments"}}
                 </div>
 
 
@@ -96,7 +96,7 @@
     </div>
     <div class="post-comments-wrap post-comments-wrap-{{_id}}">
         <div class="post-comment-insert">
-            {{> comment postid=_id}}
+            {{> insertComment postid=_id}}
         </div>
 
         <div class="post-comments">

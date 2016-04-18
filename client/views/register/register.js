@@ -41,7 +41,6 @@ Template.register.events({
                     liked_posts:[],
                     shared_posts:[]
                 }
-
             }
         }, function(error){
             if(error){

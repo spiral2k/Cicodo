@@ -15,7 +15,7 @@ Template.liveFeed.onCreated(function(){
         //Subscribe to user followed posts
         for ( var i = 0; i < followArray.length; i++ ) {
             // User data
-            this.posts = this.subscribe('usersFollowedByUser', followArray[i]);
+            this.posts = this.subscribe('basicUserInfo', followArray[i]);
             // Post data
             this.posts = this.subscribe('liveFeedPostsFollowedByUser', followArray[i], Session.get('mainPostsSERVERLoadLimit'));
         }
@@ -48,7 +48,7 @@ Template.liveFeed.helpers({
             //Subscribe to user followed posts
             for ( var i = 0; i < followArray.length; i++ ) {
                 // User data
-                Template.instance().posts = Template.instance().subscribe('usersFollowedByUser', followArray[i]);
+                Template.instance().posts = Template.instance().subscribe('basicUserInfo', followArray[i]);
                 // Post data
                 Template.instance().posts = Template.instance().subscribe('liveFeedPostsFollowedByUser', followArray[i], Session.get('mainPostsSERVERLoadLimit'));
             }

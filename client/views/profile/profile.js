@@ -1,14 +1,14 @@
 //import steamAPI from 'steam-webapi';
 
 Template.profile.onCreated(function() {
-    // Subscribe only the relevant subscription to this page
+
     var self = this;
     self.autorun(function() { // Stops all current subscriptions
         //////////////////////////////////////////////////////////////////////
         // Get information about the user that the profile belong to him
         //////////////////////////////////////////////////////////////////////
         var username = FlowRouter.getParam('username');
-        self.subscribe('getUserDataByUsername', username);
+        self.subscribe('getUserProfileDataByUsername', username);
 
     });
 });
@@ -60,11 +60,13 @@ Template.profile.helpers({
         userData = Meteor.users.findOne({
                 username: username
             }) || {};
-
         // Followers
-        Meteor.subscribe('usersListByID', userData.profile.followers);
+        if(userData.profile.followers)
+            Meteor.subscribe('usersListByID', userData.profile.followers);
+
         // Following
-        Meteor.subscribe('usersListByID', userData.profile.follow);
+        if(userData.profile.follow)
+            Meteor.subscribe('usersListByID', userData.profile.follow);
 
         if( _.isEmpty(userData)){
             FlowRouter.go('/404')
@@ -109,13 +111,12 @@ Template.profile.helpers({
         return false;
     },
     followersCount: function(){
-
         var username = FlowRouter.getParam('username');
         var userData = Meteor.users.findOne({
                 username: username
             }) || {};
-
-        if(typeof userData.followers !== "undefined" || !_.isEmpty(userData))
+        console.log(userData)
+        if(userData.followers || !_.isEmpty(userData))
             return userData.profile.followers.length;
         else return 0
     },

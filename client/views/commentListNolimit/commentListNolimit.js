@@ -1,13 +1,16 @@
 Template.commentsListNolimit.helpers({
     comments: function(){
+
         Meteor.subscribe('postCommentsNolimit', this.postid);
+
         var comments = Comments.find({postid: this.postid},{sort:{date:-1}, limit: Session.get("commentForPost" + this.postid)}).fetch();
 
         for(var i = 0; i < comments.length; i++){
-            if(comments[i].user != Meteor.userId){
-                Meteor.subscribe("usersFollowedByUser", comments[i].user);
+            if(comments[i].user != Meteor.user()._id){
+                Meteor.subscribe("basicUserInfo", comments[i].user);
             }
         }
+
         return comments
     },
     hasMoreComments:function(){

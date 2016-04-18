@@ -20,7 +20,7 @@ UI.registerHelper('postContentParse', function (text) {
         //if username
         if(string.match(username)){
             var newUsername = string.match(username)[0].split('@');
-            Meteor.subscribe("getUserDataByUsername", newUsername[1])
+            Meteor.subscribe("basicUserInfo", newUsername[1])
             user = Meteor.users.findOne({username: newUsername[1]}) || {};
         }
 
@@ -33,9 +33,6 @@ UI.registerHelper('postContentParse', function (text) {
                 youtube = /https?:\/\/(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube(?:-nocookie)?\.com\S*?[^\w\s-])([\w-]{11})(?=[^\w-]|$)(?![?=&+%\w.-]*(?:['"][^<>]*>|<\/a>))[?=&+%\w.-]*/gi;
             }
         }
-
-
-
 
         if(!_.isEmpty(user)){
             string = string

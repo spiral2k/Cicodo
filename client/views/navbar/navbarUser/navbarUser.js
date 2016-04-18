@@ -1,6 +1,5 @@
 var userMessages, usersMessagesArray = [];
 
-
 Template.navbaruser.onCreated(function(){
     self = this;
     self.autorun(function() {

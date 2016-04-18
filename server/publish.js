@@ -1,7 +1,9 @@
 
-Meteor.publish("usersFollowedByUser", function(userByID) {
-    return Meteor.users.find({_id: userByID}, {fields: {'username': 1, 'profile': 1, "status.online": 1}});
+// Basic user info publish function.
+Meteor.publish("basicUserInfo", function(userByID) {
+    return Meteor.users.find({_id: userByID}, {fields: {'username': 1, 'profile.avatar': 1}});
 });
+
 
 Meteor.publish("postsFollowedByUser", function(postsByID, limit, date) {
     limit = limit || 5;
@@ -16,27 +18,38 @@ Meteor.publish("liveFeedPostsFollowedByUser", function(postsByID, limit) {
 });
 
 
-Meteor.publish("getUserDataByUsername", function(user_name) {
+Meteor.publish("getUserDataByUsername", function(username) {
     return Meteor.users.find(
-        {username: user_name},
-        {fields: {'username': 1, 'profile': 1, "status.online": 1}
-        }
-    );
+        {username: username},
+        {
+            fields: {'username': 1, 'profile.avatar': 1, 'status.online': 1}
+        });
 });
 
+// generic for profile
+Meteor.publish("getUserProfileDataByUsername", function(username) {
+    return Meteor.users.find(
+        {username: username},
+        {
+            fields: {'username': 1, 'profile.avatar': 1,'profile.followers': 1 ,'profile.follow': 1, 'status.online': 1}
+        });
+});
+
+
+// for listing users
 Meteor.publish("usersListByID", function(arrayOfIDs) {
-    return Meteor.users.find({_id: {$in: arrayOfIDs}}, {fields: {'username': 1, 'profile.avatar': 1, "status.online": 1}});
+    return Meteor.users.find({_id: {$in: arrayOfIDs}}, {fields: {'username': 1, 'profile.avatar': 1,'profile.followers': 1 ,'profile.follow': 1, 'status.online': 1}});
 });
 
 Meteor.publish('messageView', function (username) {
 
     var user = Meteor.users.findOne({'username': username});
-
-    return  Messages.find({$or: [{send_to: this.userId, send_from: user._id}, {send_to: user._id, send_from: this.userId}] },{sort: {timestamp: -1}, limit: 50});
+    if(user)
+        return Messages.find({$or: [{send_to: this.userId, send_from: user._id}, {send_to: user._id, send_from: this.userId}] },{sort: {timestamp: -1}, limit: 50});
 });
 
 Meteor.publish('lastMessageById', function (userMessageID) {
-    return  Messages.find({send_from:  userMessageID, send_to: this.userId},{sort: {timestamp: 1}, limit: 1});
+    return Messages.find({send_from:  userMessageID, send_to: this.userId},{sort: {timestamp: 1}, limit: 1});
 });
 
 Meteor.publish("getOnePostById", function(postsID) {
