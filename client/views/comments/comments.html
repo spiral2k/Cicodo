@@ -3,11 +3,15 @@
         {{#each comments}}
             <div class="post-comment">
                 <div class="comment-user-avatar">
-                    <img src="{{avatarFromId user}}">
+                    <a href="/@/{{usernameFromId user}}">
+                        <img src="{{avatarFromId user}}">
+                    </a>
                 </div>
                 <div class="comment-meta">
                     <div class="comment-username">
-                        @{{usernameFromId user}}
+                        <a href="/@/{{usernameFromId user}}">
+                            @{{usernameFromId user}}
+                        </a>
                     </div>
 
                     <div>·</div>

@@ -44,7 +44,7 @@
 .post-time{
     font-size: 12px;
     line-height: 18px;
-    color: rgba(144, 142, 142, 0.4);
+    color: rgba(144, 142, 142, 0.8);
 }
 
 .post-user-content-content{
@@ -58,7 +58,7 @@
     width:100%;
     border-left: 2px solid #d3d7dc;
     padding: 0 15px;
-    color: rgba(144, 142, 142, 0.4);
+    color: #656565;
 }
 
 .shared-post-user-avatar{
@@ -78,7 +78,7 @@
 }
 
 .shared-post-meta a{
-    color: rgba(144, 142, 142, 0.4);
+    color: #656565;
 }
 
 

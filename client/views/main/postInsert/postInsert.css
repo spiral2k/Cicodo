@@ -1,6 +1,6 @@
 #insert-posts-main {
-    width:calc(90% - 50px);
-    float:left;
+    width:calc(100% - 90px);
+    float:right;
     min-height:50px;
     max-height:1200px;
     resize:none;
@@ -17,9 +17,13 @@
     border-bottom: 1px solid #dcdee2;
 }
 
-.post-insert-wrap img{
-    float:left;
-    margin-left:15px;
+.post-insert-avatar{
+    float: left;
+    width: 50px;
+    height: 50px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
 }
 
 .post-insert-buttons{
@@ -28,8 +32,8 @@
 }
 
 .post-insert{
-    float: left;
-    width: 100%;
+    float: right;
+    width: calc(100% - 65px);
     border-radius: .28571429rem;
     background: #fff;
     padding: 15px 0 15px 0;
