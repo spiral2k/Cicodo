@@ -11,6 +11,11 @@ Template.post.onCreated(function(){
 Template.post.onRendered(function(){
     //important to comment system!
     Session.set("commentForPost" + this.data._id, 5);
+
+    $('.post-options').dropdown({
+        transition: 'drop'
+    });
+
 });
 
 Template.post.events({
@@ -43,6 +48,13 @@ Template.post.events({
 
 
         }
+    },
+    'click .deletePost': function(){
+
+        console.log(this);
+
+        Meteor.call("deletePost", this._id);
+
     }
 });
 
@@ -96,5 +108,8 @@ Template.post.helpers({
             return post[0];
         }
 
+    },
+    userIsOwner:function(){
+        return Meteor.userId() === this.createdBy;
     }
 });

@@ -29,6 +29,7 @@
 
 
 .post-user-content{
+    position: relative;
     float:left;
     width:100%;
     padding: 15px;
@@ -129,6 +130,11 @@
     margin-bottom:10px;
 }
 
+.post-options{
+    position: absolute;
+    top: 7px;
+    right: 12px;
+}
 
 
 /* Comments */
