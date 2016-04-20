@@ -31,3 +31,6 @@ standard-minifier-css
 standard-minifier-js
 mizzao:user-status
 meteortoys:allthings
+cfs:standard-packages
+cfs:filesystem
+ostrio:meteor-root

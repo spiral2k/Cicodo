@@ -1,16 +1,9 @@
 var user;
 
 Template.profileEdit.onCreated(function(){
-    if(!Meteor.user()){
-        FlowRouter.go('/login');
-    }
-
     // reset session var for form success
     Session.set('formSuccess', undefined);
-
 });
-
-
 
 Template.profileEdit.onRendered(function(){
 
@@ -20,6 +13,11 @@ Template.profileEdit.onRendered(function(){
     // get user setting from DB
     ///////////////////////////////
     this.autorun(function() {
+
+            if(!Meteor.user()){
+                FlowRouter.go('/login');
+            }
+
             if ( Meteor.user() ) {
                 user = Meteor.user();
                 setTemplateValue();
@@ -88,6 +86,14 @@ Template.profileEdit.events({
     'click #discard-changes': function(){
         setTemplateValue();
         return true;
+    },
+    'change #wallpaper': function(event, template) {
+        FS.Utility.eachFile(event, function(file) {
+            var image = Images.insert(file, function (err, fileObj) {
+                // Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
+            });
+            console.log("image: ", image)
+        });
     }
 });
 
