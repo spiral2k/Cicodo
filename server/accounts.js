@@ -1,3 +1,4 @@
+
 Accounts.config({
     sendVerificationEmail: true
 });

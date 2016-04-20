@@ -14,10 +14,6 @@ Template.profileEdit.onRendered(function(){
     ///////////////////////////////
     this.autorun(function() {
 
-            if(!Meteor.user()){
-                FlowRouter.go('/login');
-            }
-
             if ( Meteor.user() ) {
                 user = Meteor.user();
                 setTemplateValue();
@@ -87,13 +83,17 @@ Template.profileEdit.events({
         setTemplateValue();
         return true;
     },
-    'change #wallpaper': function(event, template) {
+    'change #profileCover': function(event, template) {
+        event.preventDefault();
+
         FS.Utility.eachFile(event, function(file) {
-            var image = Images.insert(file, function (err, fileObj) {
+            var image = profileCover.insert(file, function (err, fileObj) {
                 // Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
             });
             console.log("image: ", image)
         });
+
+
     }
 });
 
