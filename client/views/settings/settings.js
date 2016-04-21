@@ -28,6 +28,19 @@ Template.profileEdit.helpers({
     formSuccess: function() {
         var formSuccess = Session.get("formSuccess");
         return formSuccess;
+    },
+    profileCover: function(){
+
+        Meteor.subscribe("profileCover");
+
+        console.log(profileCover.find().fetch());
+
+
+
+
+
+        return profileCover.find();
+
     }
 });
 
@@ -90,10 +103,7 @@ Template.profileEdit.events({
             var image = profileCover.insert(file, function (err, fileObj) {
                 // Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
             });
-            console.log("image: ", image)
         });
-
-
     }
 });
 

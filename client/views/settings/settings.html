@@ -46,7 +46,11 @@
             </div>
 
 
-
+                {{#each profileCover}}
+                        <div>
+                            <a href="{{this.url}}" target="_blank"><img src="{{this.url}}" alt="" class="thumbnail" /></a>
+                        </div>
+                {{/each}}
 
             <div class="setting-label">
                 {{_ "language"}}
@@ -92,8 +96,6 @@
                     <textarea rows="5" name="about-me" id="about-me"></textarea>
                 </div>
             </div>
-
-
 
             <div class="setting-label">
                 {{_ "feedSettings"}}

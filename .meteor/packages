@@ -34,3 +34,4 @@ meteortoys:allthings
 cfs:standard-packages
 cfs:filesystem
 ostrio:meteor-root
+cfs:graphicsmagick

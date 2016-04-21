@@ -64,3 +64,6 @@ Meteor.publish("postCommentsNolimit", function(postID) {
     return Comments.find({postid: postID}, {sort:{date: -1}});
 });
 
+Meteor.publish("profileCover", function() {
+    return profileCover.find();
+});
