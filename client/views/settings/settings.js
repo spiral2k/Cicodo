@@ -20,7 +20,6 @@ Template.profileEdit.onRendered(function(){
             }
         }
     );
-
 });
 
 
@@ -28,19 +27,6 @@ Template.profileEdit.helpers({
     formSuccess: function() {
         var formSuccess = Session.get("formSuccess");
         return formSuccess;
-    },
-    profileCover: function(){
-
-        Meteor.subscribe("profileCover");
-
-        console.log(profileCover.find().fetch());
-
-
-
-
-
-        return profileCover.find();
-
     }
 });
 
@@ -95,15 +81,6 @@ Template.profileEdit.events({
     'click #discard-changes': function(){
         setTemplateValue();
         return true;
-    },
-    'change #profileCover': function(event, template) {
-        event.preventDefault();
-
-        FS.Utility.eachFile(event, function(file) {
-            var image = profileCover.insert(file, function (err, fileObj) {
-                // Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
-            });
-        });
     }
 });
 

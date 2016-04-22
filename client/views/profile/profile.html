@@ -2,130 +2,86 @@
 {{#if Template.subscriptionsReady}}
     {{#with userProfileData}}
 
-        <h2 class="ui center profile-header">
-
-            <!--if its the profile of the viewing user-->
-            {{#if userProfile}}
-                <div class="user-profile-buttons-edit">
-                    <a class="ui green button" href="/settings">
-                        <i class="settings icon"></i>
-                        {{_ "settings"}}
-                    </a>
-                </div>
-            {{/if}}
-
-        {{#if userProfile}}
-            <div class="profile-avatar-warp">
-                <div class="ui circular image centered user-profile-avatar user-edit-avatar" style="background-image:url({{profile.avatar}});background-size: 100% 100%;">
-
-                    <a class="edit-avatar-mask" href="/settings">
-                        <i class="file image outline icon"></i>
-                        <span>{{_ "edit"}}</span>
-                    </a>
-                </div>
-                <span class="user-status online"></span>
-            </div>
-        {{else}}
-            <div class="profile-avatar-warp">
-                <img class="ui circular image centered user-profile-avatar" src="{{profile.avatar}}">
-                <span class="user-status {{#if userIsOnline}} online {{/if}}"></span>
-            </div>
-        {{/if}}
-
-
-            <span>@{{username}}</span>
-            <div class="about-me">{{profile.about}}</div>
-        </h2>
-
-        <!--if its NOT the profile of the viewing user-->
-        {{#if currentUser}}
-            {{#unless userProfile}}
-                {{#if isUserFollowing}}
-                    <div class="user-profile-buttons">
-                        <button class="ui red button" id="unfollow-user">
-                            <i class="user icon"></i>
-                            {{_ "unfollow"}}
-                        </button>
-                    </div>
-                {{else}}
-                    <div class="user-profile-buttons">
-                        <button class="ui green button" id="follow-user">
-                            <i class="user icon"></i>
-                            {{_ "follow"}}
-                        </button>
-                    </div>
-                {{/if}}
-            {{/unless}}
-        {{/if}}
-
-        <div class="ui center profile-header">
-            <div class="seven wide column centered">
-
-
-                <a class="ui label fireFollowersModal">
-                    {{_ "followers"}}
-                    <div class="detail">{{followersCount}}</div>
-                </a>
-
-
-                <a class="ui label fireFollowingModal">
-                    {{_ "following"}}
-                    <div class="detail">{{followingCount}}</div>
-                </a>
-
-            </div>
+        <div class="profile-cover-image">
+s
         </div>
+    <div class="ui container top-from-navbar">
+                    <h2 class="ui center profile-header">
+                        <!--if its the profile of the viewing user-->
+                        {{#if userProfile}}
+                            <div class="user-profile-buttons-edit">
+                                <a class="ui green button" href="/settings">
+                                    <i class="settings icon"></i>
+                                    {{_ "settings"}}
+                                </a>
+                            </div>
+                        {{/if}}
+
+                    {{#if userProfile}}
+                        <div class="profile-avatar-warp">
+                            <div class="ui circular image centered user-profile-avatar user-edit-avatar" style="background-image:url({{profile.avatar}});background-size: 100% 100%;">
+
+                                <a class="edit-avatar-mask" href="/settings">
+                                    <i class="file image outline icon"></i>
+                                    <span>{{_ "edit"}}</span>
+                                </a>
+                            </div>
+                            <span class="user-status online"></span>
+                        </div>
+                    {{else}}
+                        <div class="profile-avatar-warp">
+                            <img class="ui circular image centered user-profile-avatar" src="{{profile.avatar}}">
+                            <span class="user-status {{#if userIsOnline}} online {{/if}}"></span>
+                        </div>
+                    {{/if}}
 
 
+                        <span>@{{username}}</span>
+                        <div class="about-me">{{profile.about}}</div>
+                    </h2>
+
+                    <!--if its NOT the profile of the viewing user-->
+                    {{#if currentUser}}
+                        {{#unless userProfile}}
+                            {{#if isUserFollowing}}
+                                <div class="user-profile-buttons">
+                                    <button class="ui red button" id="unfollow-user">
+                                        <i class="user icon"></i>
+                                        {{_ "unfollow"}}
+                                    </button>
+                                </div>
+                            {{else}}
+                                <div class="user-profile-buttons">
+                                    <button class="ui green button" id="follow-user">
+                                        <i class="user icon"></i>
+                                        {{_ "follow"}}
+                                    </button>
+                                </div>
+                            {{/if}}
+                        {{/unless}}
+                    {{/if}}
+
+                    <div class="ui center profile-header">
+                        <div class="seven wide column centered">
+
+
+                            <a class="ui label fireFollowersModal">
+                                {{_ "followers"}}
+                                <div class="detail">{{followersCount}}</div>
+                            </a>
+
+
+                            <a class="ui label fireFollowingModal">
+                                {{_ "following"}}
+                                <div class="detail">{{followingCount}}</div>
+                            </a>
+
+                        </div>
+                    </div>
+    </div>
 
     {{/with}}
 
-
-    <div class="ui tiny followers modal">
-        <i class="close icon"></i>
-        <div class="header">
-            {{username}} {{_ "followers"}}
-        </div>
-
-        <div class="ui middle aligned selection list">
-        {{#each followersData}}
-            <div class="item">
-                <img class="ui avatar image" src="{{profile.avatar}}">
-                <div class="content">
-                    <div class="header">{{username}}</div>
-                </div>
-            </div>
-        {{/each}}
-        </div>
-        <div class="actions">
-            <div class="ui cancel button">{{_ "close"}}</div>
-        </div>
-    </div>
-
-
-
-
-    <div class="ui tiny following modal">
-        <i class="close icon"></i>
-        <div class="header">
-            {{username}} {{_ "following"}}
-        </div>
-
-            <div class="ui middle aligned selection list">
-                {{#each followsData}}
-                    <div class="item">
-                        <img class="ui avatar image" src="{{profile.avatar}}">
-                        <div class="content">
-                            <div class="header">{{username}}</div>
-                        </div>
-                    </div>
-                {{/each}}
-            </div>
-
-        <div class="actions">
-            <div class="ui cancel button">{{_ "close"}}</div>
-        </div>
-    </div>
 
 
 
@@ -137,3 +93,68 @@
 
 
 </template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="ui tiny followers modal">
+    <i class="close icon"></i>
+    <div class="header">
+        {{username}} {{_ "followers"}}
+    </div>
+
+    <div class="ui middle aligned selection list">
+        {{#each followersData}}
+            <div class="item">
+                <img class="ui avatar image" src="{{profile.avatar}}">
+                <div class="content">
+                    <div class="header">{{username}}</div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+    <div class="actions">
+        <div class="ui cancel button">{{_ "close"}}</div>
+    </div>
+</div>
+
+
+
+
+<div class="ui tiny following modal">
+    <i class="close icon"></i>
+    <div class="header">
+        {{username}} {{_ "following"}}
+    </div>
+
+    <div class="ui middle aligned selection list">
+        {{#each followsData}}
+            <div class="item">
+                <img class="ui avatar image" src="{{profile.avatar}}">
+                <div class="content">
+                    <div class="header">{{username}}</div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+
+    <div class="actions">
+        <div class="ui cancel button">{{_ "close"}}</div>
+    </div>
+</div> -->

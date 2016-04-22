@@ -41,16 +41,22 @@
 
             <div class="setting-block fields">
                 <div class="field">
-                    <input id="profileCover" type="file" />
+                    <div class="avatarUploadRegister">
+
+                        <div class="float-width">
+                            <label for="avatarUpload">
+                                <div id="avatar"></div>
+                            </label>
+
+                            <input id="CoverUpload" type="file" />
+                            <label for="CoverUpload" class="ui button coverUploadButton">{{_ "uploadAvatar"}}</label>
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
 
-
-                {{#each profileCover}}
-                        <div>
-                            <a href="{{this.url}}" target="_blank"><img src="{{this.url}}" alt="" class="thumbnail" /></a>
-                        </div>
-                {{/each}}
 
             <div class="setting-label">
                 {{_ "language"}}
