@@ -1,8 +1,11 @@
 //import steamAPI from 'steam-webapi';
-var pos = 0;
+var pos = 0, srcData;
+
 Template.profile.onCreated(function() {
 
+    Session.set("profileEdit", false);
     Session.set("coverEdit", false);
+    Session.set("CoverImageBase64", false);
 
     var self = this;
     self.autorun(function() { // Stops all current subscriptions
@@ -11,16 +14,12 @@ Template.profile.onCreated(function() {
         //////////////////////////////////////////////////////////////////////
         var username = FlowRouter.getParam('username');
         self.subscribe('getUserProfileDataByUsername', username);
-
     });
 });
 
 
 Template.profile.onRendered(function(){
-    console.log($('.coverEdit'));
-    $('.coverEdit').dropdown({
-        transition: 'drop'
-    });
+
 
     $("body").on('change','#CoverUpload' , function(){
 
@@ -32,6 +31,9 @@ Template.profile.onRendered(function(){
 
             fileReader.onload = function (fileLoadedEvent) {
                 var srcData = fileLoadedEvent.target.result; // <--- data: base64
+
+                Session.set("CoverImageBase64", srcData);
+
 
                 $("#profile-cover-image").attr("style", "background-image: url(" + srcData + ")");
 
@@ -64,9 +66,6 @@ Template.profile.events({
         Meteor.call('unfollow', userData._id);
         return true;
     },
-    'click #showModal': function(){
-        $('.ui.modal').modal('attach events', '#showModal', 'show');
-    },
     'mouseenter .user-edit-avatar':function(){
         $('.edit-avatar-mask').show();
     },
@@ -75,7 +74,8 @@ Template.profile.events({
     },
     'drag #profile-cover-image': function (evt) {
         // only if in edit mode
-        if(Session.get("editProfile")) {
+
+        if(Session.get("coverEdit")) {
 
             if (evt.drag.type === 'dragstart') {
                 console.log('You start dragging! ', evt.drag)
@@ -87,17 +87,28 @@ Template.profile.events({
             }
         }
     },
-    'click .editProfile': function(){
+    'click .profileEdit': function(){
+        Session.set("profileEdit", true);
+    },
+    'click .finishEditProfile': function(){
+        Session.set("profileEdit", false);
+    },
+    'click .profileEditBlock': function(){
         Session.set("coverEdit", true);
+
     },
-    'click .okEditProfile': function(){
+    'click .cancelCoverEdit': function(){
         Session.set("coverEdit", false);
     },
-    'click .cancelEditProfile': function(){
+    'click .finishCoverEdit': function(){
         Session.set("coverEdit", false);
+        if(Session.get("CoverImageBase64")) {
+            Meteor.call("updateCoverImage", pos, Session.get("CoverImageBase64"));
+        }
+        if(Meteor.user().profile.cover_position !== pos){
+            Meteor.call("updateCoverImage", pos);
+        }
     }
-
-
 
 });
 
@@ -219,18 +230,20 @@ Template.profile.helpers({
         return userData.status.online
 
     },
+    profileEdit: function(){
+
+        return Session.get("profileEdit");
+
+
+    },
     coverEdit: function(){
-        // only if in edit cover mode
-        if(Session.get("coverEdit")) {
-            return true;
-        }
-        return false;
+        return Session.get("coverEdit");
     }
 
 });
 
 Template.profile.onDestroyed(function(){
-
+    Session.set("profileEdit", false);
     Session.set("coverEdit", false);
-
+    Session.set("CoverImageBase64", false);
 });

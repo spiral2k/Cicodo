@@ -2,71 +2,92 @@
 {{#if Template.subscriptionsReady}}
     {{#with userProfileData}}
 
-        <div id="profile-cover-image">
+        <div id="profile-cover-image" class="{{#if coverEdit}} profile-cover-image-on {{/if}}" style="background-image: url({{profile.cover}}); background-position-y: {{profile.cover_position}}px">
+
+        {{#if profileEdit}}
+            <div id="profile-edit-cover">
+
+                {{#unless coverEdit}}
+                    <div class="profileEditBlock">
+                        <i class="rocket icon"></i>
+                            <span>Edit cover image</span>
+                    </div>
+                {{/unless}}
+
+                {{#if coverEdit}}
 
 
-            <div class="ui top right pointing dropdown button coverEdit">
-                <i class="settings icon"></i>
-                <div class="menu">
-                    <div class="item"><i class="edit icon"></i> Edit</div>
-                    <div class="item"><i class="delete icon"></i> Remove</div>
-                    <div class="item"><i class="hide icon"></i> Hide</div>
-                </div>
+                    <div id="profile-edit-cover">
+                        <div class="cover-upload-button">
+                            <input id="CoverUpload" type="file" />
+                            <label for="CoverUpload" class="ui button coverUploadButton">{{_ "changeCoverImage"}}</label>
+                        </div>
+                    </div>
+
+
+
+
+                {{/if}}
+
+
             </div>
 
 
-        {{#if coverEdit}}
-                <div class="user-profile-buttons-edit">
-                    <div class="ui button cancelEditProfile">
-                        <i class="edit icon"></i>
-                        {{_ "cancel"}}
-                    </div>
 
-                    <div class="ui blue button okEditProfile">
-                        <i class="edit icon"></i>
-                        {{_ "ok"}}
-                    </div>
-                </div>
-        {{/if}}
+            {{#if coverEdit}}
+                <div class="cover-upload-bar">
 
 
+                        <div class="ui tiny button cancelCoverEdit">
+                            <i class="edit icon"></i>
+                            {{_ "cancel"}}
+                        </div>
 
-            {{#if profileEditble}}
-                <div id="profile-edit-cover">
-                    <div class="cover-upload-button">
-                            <input id="CoverUpload" type="file" />
-                            <label for="CoverUpload" class="ui button coverUploadButton">{{_ "changeCoverImage"}}</label>
-                    </div>
+                        <div class="ui blue tiny button finishCoverEdit">
+                            <i class="edit icon"></i>
+                            {{_ "ok"}}
+                        </div>
+
+
                 </div>
             {{/if}}
+
+
+        {{/if}}
+
         </div>
+
     <div class="ui container top-from-navbar">
                     <h2 class="ui center profile-header">
                         <!--if its the profile of the viewing user-->
                         {{#if userProfile}}
                             <div class="user-profile-buttons-edit">
 
+                            {{#if profileEdit}}
+                                <div class="ui blue button finishEditProfile">
+                                    <i class="edit icon"></i>
+                                    Finish editing
+                                </div>
+
+                            {{else}}
+
                                 <a class="ui green button" href="/settings">
                                     <i class="settings icon"></i>
                                     {{_ "settings"}}
                                 </a>
 
-                                <div class="ui button editProfile">
+
+                                <div class="ui button profileEdit">
                                     <i class="edit icon"></i>
                                     {{_ "edit"}}
                                 </div>
-
+                            {{/if}}
                             </div>
                         {{/if}}
 
                     {{#if userProfile}}
                         <div class="profile-avatar-warp">
-                            <div class="ui circular image centered user-profile-avatar user-edit-avatar" style="background-image:url({{profile.avatar}});background-size: 100% 100%;">
-
-                                <a class="edit-avatar-mask" href="/settings">
-                                    <i class="file image outline icon"></i>
-                                    <span>{{_ "edit"}}</span>
-                                </a>
+                            <div class="user-profile-avatar user-edit-avatar" style="background-image:url({{profile.avatar}});background-size: 100% 100%;">
                             </div>
                             <span class="user-status online"></span>
                         </div>
