@@ -2,62 +2,77 @@
 {{#if Template.subscriptionsReady}}
     {{#with userProfileData}}
 
-        <div id="profile-cover-image" class="{{#if coverEdit}} profile-cover-image-on {{/if}}" style="background-image: url({{profile.cover}}); background-position-y: {{profile.cover_position}}px">
 
-        {{#if profileEdit}}
-            <div id="profile-edit-cover">
+    {{! Cover image functionalty}}
 
-                {{#unless coverEdit}}
-                    <div class="profileEditBlock">
-                        <i class="rocket icon"></i>
-                            <span>Edit cover image</span>
-                    </div>
-                {{/unless}}
+    <div id="profile-cover-image" class="{{#if coverEdit}} profile-cover-image-on {{/if}}" style="background-image: url({{profile.cover}}); background-position-y: {{profile.cover_position}}px">
 
-                {{#if coverEdit}}
+    {{#if profileEdit}}
+        <div id="profile-edit-cover" class="opacity">
 
-
-                    <div id="profile-edit-cover">
-                        <div class="cover-upload-button">
-                            <input id="CoverUpload" type="file" />
-                            <label for="CoverUpload" class="ui button coverUploadButton">{{_ "changeCoverImage"}}</label>
-                        </div>
-                    </div>
-
-
-
-
-                {{/if}}
-
-
-            </div>
-
-
+            {{#unless coverEdit}}
+                <div class="profileEditBlock">
+                    <i class="rocket icon"></i>
+                        <span>Edit cover image</span>
+                </div>
+            {{/unless}}
 
             {{#if coverEdit}}
-                <div class="cover-upload-bar">
-
-
-                        <div class="ui tiny button cancelCoverEdit">
-                            <i class="edit icon"></i>
-                            {{_ "cancel"}}
-                        </div>
-
-                        <div class="ui blue tiny button finishCoverEdit">
-                            <i class="edit icon"></i>
-                            {{_ "ok"}}
-                        </div>
-
-
+                <div id="profile-edit-cover">
+                    <div class="cover-upload-button">
+                        <input id="CoverUpload" type="file" />
+                        <label for="CoverUpload" class="ui button coverUploadButton">{{_ "changeCoverImage"}}</label>
+                    </div>
                 </div>
             {{/if}}
 
+        </div>
 
+        {{#if coverEdit}}
+            <div class="cover-upload-bar">
+
+                    <div class="ui tiny button cancelCoverEdit">
+                        <i class="edit icon"></i>
+                        {{_ "cancel"}}
+                    </div>
+
+                    <div class="ui blue tiny button finishCoverEdit">
+                        <i class="edit icon"></i>
+                        {{_ "ok"}}
+                    </div>
+
+            </div>
         {{/if}}
+
+    {{/if}}
+
+    </div>
+
+    {{! Cover image functionalty ENDS}}
+
+
+    <div class="ui container">
+
+        <div class="left-profile">
+
+            <div class="profile-avatar-warp">
+                <div class="user-profile-avatar user-edit-avatar" style="background-image:url({{profile.avatar}});background-size: 100% 100%;">
+                </div>
+                <span class="user-status {{#if userIsOnline}} online {{/if}}"></span>
+            </div>
+
+            <div class="profile-left-username-about">
+                <span>@{{username}}</span>
+                <div class="about-me">{{profile.about}}</div>
+            </div>
 
         </div>
 
-    <div class="ui container top-from-navbar">
+
+
+
+
+
                     <h2 class="ui center profile-header">
                         <!--if its the profile of the viewing user-->
                         {{#if userProfile}}
@@ -85,22 +100,10 @@
                             </div>
                         {{/if}}
 
-                    {{#if userProfile}}
-                        <div class="profile-avatar-warp">
-                            <div class="user-profile-avatar user-edit-avatar" style="background-image:url({{profile.avatar}});background-size: 100% 100%;">
-                            </div>
-                            <span class="user-status online"></span>
-                        </div>
-                    {{else}}
-                        <div class="profile-avatar-warp">
-                            <img class="ui circular image centered user-profile-avatar" src="{{profile.avatar}}">
-                            <span class="user-status {{#if userIsOnline}} online {{/if}}"></span>
-                        </div>
-                    {{/if}}
 
 
-                        <span>@{{username}}</span>
-                        <div class="about-me">{{profile.about}}</div>
+
+
                     </h2>
 
                     <!--if its NOT the profile of the viewing user-->

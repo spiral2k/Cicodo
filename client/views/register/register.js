@@ -1,6 +1,7 @@
 Template.register.events({
     'submit form': function(event, template){
         event.preventDefault();
+        Session.set("formErrors", false);
 
         var email = template.find('#email').value;
         var username = template.find('#username').value;
@@ -17,40 +18,29 @@ Template.register.events({
             avatar = $('#avatar img').attr('src');
         }
 
+        Meteor.call('register',username, password, email, avatar, function(error, result) {
 
-        Accounts.createUser({
-            email:email,
-            username:username,
-            password: password,
-            profile:{
-                avatar: avatar,
-                private: EDIT_PROFILE_PRIVATE_PROFILE,
-                about: EDIT_PROFILE_ABOUT,
-                firstname:"",
-                lastname:"",
-                feedType: EDIT_PROFILE_FEED_TYPE,
-                follow: [],
-                followers:[],
-                language:"en",
-                // New
-                notifications: [],
-                open_messages:[],
-                messages: [],
-                viewing_messages_of: null,
-                posts_events:{
-                    liked_posts:[],
-                    shared_posts:[]
-                }
-            }
-        }, function(error){
+            console.log(error, result)
+
             if(error){
                 console.log(error.reason);
                 Session.set("formErrors", error.reason);
-            } else {
-                FlowRouter.go('/');
+                return;
             }
-        });
 
+            Meteor.loginWithPassword(username, password, function(error, result) {
+                
+                if (error) {
+                    console.log(error.reason);
+                    Session.set("formErrors", error.reason);
+                    return;
+                }
+
+                FlowRouter.go('/');
+            });
+
+
+        });
     }
 });
 
