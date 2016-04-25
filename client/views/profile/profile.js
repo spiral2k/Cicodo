@@ -1,6 +1,8 @@
 //import steamAPI from 'steam-webapi';
-
+var pos = 0;
 Template.profile.onCreated(function() {
+
+    Session.set("coverEdit", false);
 
     var self = this;
     self.autorun(function() { // Stops all current subscriptions
@@ -15,10 +17,30 @@ Template.profile.onCreated(function() {
 
 
 Template.profile.onRendered(function(){
-    setTimeout(function(){
-        $('.ui.followers.modal').modal('attach events', '.fireFollowersModal', 'show').modal({blurring: true});
-        $('.ui.following.modal').modal('attach events', '.fireFollowingModal', 'show').modal({blurring: true});
-    }, 500);
+    console.log($('.coverEdit'));
+    $('.coverEdit').dropdown({
+        transition: 'drop'
+    });
+
+    $("body").on('change','#CoverUpload' , function(){
+
+        var filesSelected = document.getElementById("CoverUpload").files;
+        if (filesSelected.length > 0) {
+            var fileToLoad = filesSelected[0];
+
+            var fileReader = new FileReader();
+
+            fileReader.onload = function (fileLoadedEvent) {
+                var srcData = fileLoadedEvent.target.result; // <--- data: base64
+
+                $("#profile-cover-image").attr("style", "background-image: url(" + srcData + ")");
+
+            };
+
+            fileReader.readAsDataURL(fileToLoad);
+        }
+
+    });
 });
 
 Template.profile.events({
@@ -50,7 +72,33 @@ Template.profile.events({
     },
     'mouseleave .user-edit-avatar':function(){
         $('.edit-avatar-mask').hide();
+    },
+    'drag #profile-cover-image': function (evt) {
+        // only if in edit mode
+        if(Session.get("editProfile")) {
+
+            if (evt.drag.type === 'dragstart') {
+                console.log('You start dragging! ', evt.drag)
+            } else if (evt.drag.type === 'dragend') {
+                console.log('You stopped dragging!')
+            } else if (evt.drag.type === 'dragging') {
+                pos += evt.drag.dy;
+                $("#profile-cover-image").css("background-position-y", pos + "px");
+            }
+        }
+    },
+    'click .editProfile': function(){
+        Session.set("coverEdit", true);
+    },
+    'click .okEditProfile': function(){
+        Session.set("coverEdit", false);
+    },
+    'click .cancelEditProfile': function(){
+        Session.set("coverEdit", false);
     }
+
+
+
 });
 
 Template.profile.helpers({
@@ -115,7 +163,7 @@ Template.profile.helpers({
         var userData = Meteor.users.findOne({
                 username: username
             }) || {};
-        console.log(userData)
+
         if(userData.followers || !_.isEmpty(userData))
             return userData.profile.followers.length;
         else return 0
@@ -170,6 +218,19 @@ Template.profile.helpers({
 
         return userData.status.online
 
+    },
+    coverEdit: function(){
+        // only if in edit cover mode
+        if(Session.get("coverEdit")) {
+            return true;
+        }
+        return false;
     }
+
+});
+
+Template.profile.onDestroyed(function(){
+
+    Session.set("coverEdit", false);
 
 });

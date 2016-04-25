@@ -33,3 +33,4 @@ meteortoys:allthings
 ostrio:meteor-root
 kadira:flow-router@=2.11.0
 reactive-var
+grmmph:meteor-drag-event

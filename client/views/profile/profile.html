@@ -2,18 +2,60 @@
 {{#if Template.subscriptionsReady}}
     {{#with userProfileData}}
 
-        <div class="profile-cover-image">
-s
+        <div id="profile-cover-image">
+
+
+            <div class="ui top right pointing dropdown button coverEdit">
+                <i class="settings icon"></i>
+                <div class="menu">
+                    <div class="item"><i class="edit icon"></i> Edit</div>
+                    <div class="item"><i class="delete icon"></i> Remove</div>
+                    <div class="item"><i class="hide icon"></i> Hide</div>
+                </div>
+            </div>
+
+
+        {{#if coverEdit}}
+                <div class="user-profile-buttons-edit">
+                    <div class="ui button cancelEditProfile">
+                        <i class="edit icon"></i>
+                        {{_ "cancel"}}
+                    </div>
+
+                    <div class="ui blue button okEditProfile">
+                        <i class="edit icon"></i>
+                        {{_ "ok"}}
+                    </div>
+                </div>
+        {{/if}}
+
+
+
+            {{#if profileEditble}}
+                <div id="profile-edit-cover">
+                    <div class="cover-upload-button">
+                            <input id="CoverUpload" type="file" />
+                            <label for="CoverUpload" class="ui button coverUploadButton">{{_ "changeCoverImage"}}</label>
+                    </div>
+                </div>
+            {{/if}}
         </div>
     <div class="ui container top-from-navbar">
                     <h2 class="ui center profile-header">
                         <!--if its the profile of the viewing user-->
                         {{#if userProfile}}
                             <div class="user-profile-buttons-edit">
+
                                 <a class="ui green button" href="/settings">
                                     <i class="settings icon"></i>
                                     {{_ "settings"}}
                                 </a>
+
+                                <div class="ui button editProfile">
+                                    <i class="edit icon"></i>
+                                    {{_ "edit"}}
+                                </div>
+
                             </div>
                         {{/if}}
 
