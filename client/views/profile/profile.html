@@ -61,10 +61,66 @@
                 <span class="user-status {{#if userIsOnline}} online {{/if}}"></span>
             </div>
 
-            <div class="profile-left-username-about">
-                <span>@{{username}}</span>
-                <div class="about-me">{{profile.about}}</div>
+            <div class="profile-left-content">
+                <div class="profile-about-me">{{profile.about}}</div>
             </div>
+
+        </div>
+
+
+        <div class="top-profile">
+            <span class="profile-usernmae capitalize">@{{username}}</span>
+
+            {{#if userProfile}}
+                <div class="user-profile-top-buttons">
+
+                    {{#if profileEdit}}
+                        <div class="ui blue button finishEditProfile">
+                            Finish editing
+                        </div>
+
+                    {{else}}
+
+                        <a class="ui button" href="/settings">
+                            {{_ "settings"}}
+                        </a>
+
+
+                        <div class="ui button profileEdit">
+                            {{_ "edit"}}
+                        </div>
+                    {{/if}}
+                </div>
+            {{/if}}
+
+
+
+
+
+
+        </div>
+
+
+        <div class="center-profile">
+
+
+
+                <div class="ui  secondary pointing menu">
+                    <a class="item active">
+                        Posts
+                    </a>
+                    <a class="item">
+                        Messages
+                    </a>
+                    <a class="item">
+                        Friends
+                    </a>
+                </div>
+
+
+            {{#each posts}}
+                {{>post}}
+            {{/each}}
 
         </div>
 
@@ -72,33 +128,9 @@
 
 
 
-
                     <h2 class="ui center profile-header">
                         <!--if its the profile of the viewing user-->
-                        {{#if userProfile}}
-                            <div class="user-profile-buttons-edit">
 
-                            {{#if profileEdit}}
-                                <div class="ui blue button finishEditProfile">
-                                    <i class="edit icon"></i>
-                                    Finish editing
-                                </div>
-
-                            {{else}}
-
-                                <a class="ui green button" href="/settings">
-                                    <i class="settings icon"></i>
-                                    {{_ "settings"}}
-                                </a>
-
-
-                                <div class="ui button profileEdit">
-                                    <i class="edit icon"></i>
-                                    {{_ "edit"}}
-                                </div>
-                            {{/if}}
-                            </div>
-                        {{/if}}
 
 
 

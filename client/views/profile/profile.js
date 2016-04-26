@@ -14,6 +14,7 @@ Template.profile.onCreated(function() {
         //////////////////////////////////////////////////////////////////////
         var username = FlowRouter.getParam('username');
         self.subscribe('getUserProfileDataByUsername', username);
+        self.subscribe('getUserPostsByUsername', 5);
     });
 });
 
@@ -75,6 +76,8 @@ Template.profile.events({
     'drag #profile-cover-image': function (evt) {
         // only if in edit mode
 
+        console.log("cover ed: ", Session.get("coverEdit"), evt.drag);
+
         if(Session.get("coverEdit")) {
 
             if (evt.drag.type === 'dragstart') {
@@ -98,6 +101,10 @@ Template.profile.events({
 
     },
     'click .cancelCoverEdit': function(){
+
+        Session.set("CoverImageBase64", false);
+        $("#profile-cover-image").attr("style", "background-image: url(" + Meteor.user().profile.cover + ")");
+
         Session.set("coverEdit", false);
     },
     'click .finishCoverEdit': function(){
@@ -137,6 +144,10 @@ Template.profile.helpers({
         }
 
         return userData;
+    },
+    posts: function(){
+
+        return Posts.find({createdBy: Meteor.userId()});
     },
     isUserFollowing: function(){
 

@@ -29,7 +29,7 @@ Template.register.events({
             }
 
             Meteor.loginWithPassword(username, password, function(error, result) {
-                
+
                 if (error) {
                     console.log(error.reason);
                     Session.set("formErrors", error.reason);
@@ -43,9 +43,6 @@ Template.register.events({
         });
     }
 });
-
-
-
 
 Template.register.helpers({
     formErrors: function() {
