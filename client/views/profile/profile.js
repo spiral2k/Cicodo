@@ -1,11 +1,12 @@
-//import steamAPI from 'steam-webapi';
-var pos = 0, srcData;
+var pos = 0;
 
 Template.profile.onCreated(function() {
 
     Session.set("profileEdit", false);
     Session.set("coverEdit", false);
     Session.set("CoverImageBase64", false);
+    Session.set("profileCurrentPage", "posts");
+
 
     var self = this;
     self.autorun(function() { // Stops all current subscriptions
@@ -20,7 +21,6 @@ Template.profile.onCreated(function() {
 
 
 Template.profile.onRendered(function(){
-
 
     $("body").on('change','#CoverUpload' , function(){
 
@@ -47,6 +47,21 @@ Template.profile.onRendered(function(){
 });
 
 Template.profile.events({
+    'click .profile-posts': function(event, t){
+        $('.ui .item').removeClass('active');
+        $(event.target).addClass('active');
+        Session.set("profileCurrentPage", "posts");
+    },
+    'click .profile-following': function(event, t){
+        $('.ui .item').removeClass('active');
+        $(event.target).addClass('active');
+        Session.set("profileCurrentPage", "following");
+    },
+    'click .profile-followers': function(event, t){
+        $('.ui .item').removeClass('active');
+        $(event.target).addClass('active');
+        Session.set("profileCurrentPage", "followers");
+    },
     'click #follow-user': function(){
 
         var username = FlowRouter.getParam('username');
@@ -65,6 +80,7 @@ Template.profile.events({
             }) || {};
 
         Meteor.call('unfollow', userData._id);
+
         return true;
     },
     'mouseenter .user-edit-avatar':function(){
@@ -123,6 +139,7 @@ Template.profile.helpers({
     userProfileData: function() {
 
         username = FlowRouter.getParam('username');
+
         userData = Meteor.users.findOne({
                 username: username
             }) || {};
@@ -249,6 +266,29 @@ Template.profile.helpers({
     },
     coverEdit: function(){
         return Session.get("coverEdit");
+    },
+    currentIsPosts: function(){
+
+        if(Session.get("profileCurrentPage") === "posts"){
+            return true
+        }
+
+        return false;
+
+    },
+    currentIsFollowing: function(){
+        if(Session.get("profileCurrentPage") === "following"){
+            return true
+        }
+
+        return false;
+    },
+    currentIsFollowers: function(){
+        if(Session.get("profileCurrentPage") === "followers"){
+            return true
+        }
+
+        return false;
     }
 
 });
@@ -257,4 +297,5 @@ Template.profile.onDestroyed(function(){
     Session.set("profileEdit", false);
     Session.set("coverEdit", false);
     Session.set("CoverImageBase64", false);
+    Session.set("profileCurrentPage", null);
 });

@@ -2,126 +2,131 @@
 {{#if Template.subscriptionsReady}}
     {{#with userProfileData}}
 
+    {{! Top Profile functionalty}}
 
-    {{! Cover image functionalty}}
+        {{! Cover image functionalty}}
 
-    <div id="profile-cover-image" class="{{#if coverEdit}} profile-cover-image-on {{/if}}" style="background-image: url({{profile.cover}}); background-position-y: {{profile.cover_position}}px">
+        <div id="profile-cover-image" class="{{#if coverEdit}} profile-cover-image-on {{/if}}" style="background-image: url({{profile.cover}}); background-position-y: {{profile.cover_position}}px">
 
-    {{#if profileEdit}}
-        <div id="profile-edit-cover" class="opacity">
+        {{#if profileEdit}}
+            <div id="profile-edit-cover" class="opacity">
 
-            {{#unless coverEdit}}
-                <div class="profileEditBlock">
-                    <i class="rocket icon"></i>
-                        <span>Edit cover image</span>
-                </div>
-            {{/unless}}
+                {{#unless coverEdit}}
+                    <div class="profileEditBlock">
+                        <i class="rocket icon"></i>
+                            <span>Edit cover image</span>
+                    </div>
+                {{/unless}}
+
+                {{#if coverEdit}}
+                    <div id="profile-edit-cover">
+                        <div class="cover-upload-button">
+                            <input id="CoverUpload" type="file" />
+                            <label for="CoverUpload" class="ui button coverUploadButton">{{_ "changeCoverImage"}}</label>
+                        </div>
+                    </div>
+                {{/if}}
+
+            </div>
 
             {{#if coverEdit}}
-                <div id="profile-edit-cover">
-                    <div class="cover-upload-button">
-                        <input id="CoverUpload" type="file" />
-                        <label for="CoverUpload" class="ui button coverUploadButton">{{_ "changeCoverImage"}}</label>
-                    </div>
+                <div class="cover-upload-bar">
+
+                        <div class="ui tiny button cancelCoverEdit">
+                            <i class="edit icon"></i>
+                            {{_ "cancel"}}
+                        </div>
+
+                        <div class="ui blue tiny button finishCoverEdit">
+                            <i class="edit icon"></i>
+                            {{_ "ok"}}
+                        </div>
+
                 </div>
             {{/if}}
 
-        </div>
-
-        {{#if coverEdit}}
-            <div class="cover-upload-bar">
-
-                    <div class="ui tiny button cancelCoverEdit">
-                        <i class="edit icon"></i>
-                        {{_ "cancel"}}
-                    </div>
-
-                    <div class="ui blue tiny button finishCoverEdit">
-                        <i class="edit icon"></i>
-                        {{_ "ok"}}
-                    </div>
-
-            </div>
         {{/if}}
 
-    {{/if}}
-
-    </div>
-
-    {{! Cover image functionalty ENDS}}
-
-
-    <div class="ui container">
-
-        <div class="left-profile">
-
-            <div class="profile-avatar-warp">
-                <div class="user-profile-avatar user-edit-avatar" style="background-image:url({{profile.avatar}});background-size: 100% 100%;">
-                </div>
-                <span class="user-status {{#if userIsOnline}} online {{/if}}"></span>
-            </div>
-
-            <div class="profile-left-content">
-                <div class="profile-about-me">{{profile.about}}</div>
-            </div>
-
         </div>
 
-
-        <div class="top-profile">
-            <span class="profile-usernmae capitalize">@{{username}}</span>
-
-            {{#if userProfile}}
-                <div class="user-profile-top-buttons">
-
-                    {{#if profileEdit}}
-                        <div class="ui blue button finishEditProfile">
-                            Finish editing
-                        </div>
-
-                    {{else}}
-
-                        <a class="ui button" href="/settings">
-                            {{_ "settings"}}
-                        </a>
+        {{! Cover image functionalty ENDS}}
 
 
-                        <div class="ui button profileEdit">
-                            {{_ "edit"}}
-                        </div>
-                    {{/if}}
+        <div class="ui container">
+
+            <div class="left-profile">
+
+                <div class="profile-avatar-warp">
+                    <div class="user-profile-avatar user-edit-avatar" style="background-image:url({{profile.avatar}});background-size: 100% 100%;">
+                    </div>
+                    <span class="user-status {{#if userIsOnline}} online {{/if}}"></span>
                 </div>
-            {{/if}}
+
+                <div class="profile-left-content">
+                    <div class="profile-about-me">{{profile.about}}</div>
+                </div>
+
+            </div>
 
 
+            <div class="top-profile">
+                <span class="profile-usernmae capitalize">@{{username}}</span>
+
+                {{#if userProfile}}
+                    <div class="user-profile-top-buttons">
+
+                        {{#if profileEdit}}
+                            <div class="ui blue button finishEditProfile">
+                                Finish editing
+                            </div>
+
+                        {{else}}
+
+                            <a class="ui button" href="/settings">
+                                {{_ "settings"}}
+                            </a>
 
 
+                            <div class="ui button profileEdit">
+                                {{_ "edit"}}
+                            </div>
+                        {{/if}}
+                    </div>
+                {{/if}}
+            </div>
 
-
-        </div>
-
+        {{! Top Profile functionalty ENDS}}
 
         <div class="center-profile">
 
-
-
-                <div class="ui  secondary pointing menu">
-                    <a class="item active">
+                <div class="ui secondary pointing menu">
+                    <a class="profile-posts item active">
                         Posts
                     </a>
-                    <a class="item">
-                        Messages
+                    <a class="profile-following item">
+                        Following
                     </a>
-                    <a class="item">
-                        Friends
+                    <a class="profile-followers item">
+                        Followers
                     </a>
                 </div>
 
+            {{#if currentIsPosts}}
+                {{#each posts}}
+                    {{>post}}
+                {{/each}}
+            {{/if}}
 
-            {{#each posts}}
-                {{>post}}
-            {{/each}}
 
+        {{#if currentIsFollowing}}
+            following list
+        {{/if}}
+
+
+
+        {{#if currentIsFollowers}}
+            followers list
+        {{/if}}
         </div>
 
 
