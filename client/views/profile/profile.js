@@ -22,6 +22,22 @@ Template.profile.onCreated(function() {
 
 Template.profile.onRendered(function(){
 
+    setTimeout(function()
+    {
+    $(".profile-cover-image")
+        .mousedown(function(e){
+            $(this).on("mousemove",function(e){
+                var p1 = { x: e.pageX, y: e.pageY };
+                var p0 = $(this).data("p0") || p1;
+                console.log( p0.y - p1.y);
+                $(this).data("p0", p1);
+            });
+        })
+        .mouseup(function(){
+            $(this).off("mousemove");
+        });
+    }, 0);
+
     $("body").on('change','#CoverUpload' , function(){
 
         var filesSelected = document.getElementById("CoverUpload").files;
@@ -89,10 +105,8 @@ Template.profile.events({
     'mouseleave .user-edit-avatar':function(){
         $('.edit-avatar-mask').hide();
     },
-    'drag #profile-cover-image': function (evt) {
+    'click #profile-cover-image': function (evt) {
         // only if in edit mode
-
-        console.log("cover ed: ", Session.get("coverEdit"), evt.drag);
 
         if(Session.get("coverEdit")) {
 
