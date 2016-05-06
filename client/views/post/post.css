@@ -37,6 +37,7 @@
 }
 
 .post-top-username a{
+    float:left;
     color:#311823;
     font-weight:bold;
     font-size: 14px;
@@ -44,6 +45,7 @@
 }
 
 .post-time{
+    float:right;
     font-size: 12px;
     line-height: 18px;
     color: rgba(144, 142, 142, 0.8);
@@ -132,9 +134,10 @@
 }
 
 .post-options{
+    display: none;
     position: absolute;
-    top: 7px;
-    right: 12px;
+    top: 6px;
+    right: 9px;
 }
 
 

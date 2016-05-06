@@ -117,6 +117,8 @@ Template.profile.events({
 
         var pos = $("#profile-cover-image").css("background-position-y").match(/\d/g).join("");
 
+        console.log(Meteor.user().profile.cover_position,pos )
+
         if(Session.get("CoverImageBase64")) {
             Meteor.call("updateCoverImage", pos, Session.get("CoverImageBase64"));
         }

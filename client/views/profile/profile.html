@@ -112,9 +112,12 @@
                 </div>
 
             {{#if currentIsPosts}}
-                {{#each posts}}
-                    {{>post}}
-                {{/each}}
+                <div class="profile-posts-wrap">
+                    {{#each posts}}
+                        {{>post}}
+                    {{/each}}
+                </div>
+
             {{/if}}
 
 
@@ -175,9 +178,6 @@
 
     {{/with}}
 
-
-
-
 {{else}}
 
     {{>loader}}
@@ -186,18 +186,6 @@
 
 
 </template>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

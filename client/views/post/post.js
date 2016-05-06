@@ -55,6 +55,21 @@ Template.post.events({
 
         Meteor.call("deletePost", this._id);
 
+    },
+    'mouseover .post-wrapper': function(e,template){
+
+        console.log(template.find('.post-time'))
+        $(template.find('.post-time')).hide();
+        $(template.find('.post-options')).show();
+
+
+    },
+    'mouseout .post-wrapper': function(e,template){
+
+        $(template.find('.post-time')).show();
+        $(template.find('.post-options')).hide();
+
+
     }
 });
 
