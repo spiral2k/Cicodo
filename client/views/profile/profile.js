@@ -22,6 +22,17 @@ Template.profile.onCreated(function() {
 
 Template.profile.onRendered(function(){
 
+
+    Meteor.autorun(function(){
+
+        
+    })
+    Tracker.afterFlush(function () {
+        // Use Tracker.afterFlush to wait for the UI to re-render
+        // then use highlight.js to highlight a code snippet
+        highlightBlock(template.find('.code'));
+    });
+
     setTimeout(function()
     {
     $(".profile-cover-image")
