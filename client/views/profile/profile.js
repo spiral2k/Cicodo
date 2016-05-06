@@ -4,7 +4,9 @@ Template.profile.onCreated(function() {
     Session.set("profileEdit", false);
     Session.set("coverEdit", false);
     Session.set("CoverImageBase64", false);
+    Session.set("CoverPosition", false);
     Session.set("profileCurrentPage", "posts");
+
 
     var self = this;
     self.autorun(function() { // Stops all current subscriptions
@@ -115,9 +117,7 @@ Template.profile.events({
 
         Session.set("coverEdit", false);
 
-        var pos = $("#profile-cover-image").css("background-position-y").match(/\d/g).join("");
-
-        console.log(Meteor.user().profile.cover_position,pos )
+        var pos = Session.get("CoverPosition",);
 
         if(Session.get("CoverImageBase64")) {
             Meteor.call("updateCoverImage", pos, Session.get("CoverImageBase64"));
@@ -292,6 +292,7 @@ Template.profile.onDestroyed(function(){
     Session.set("coverEdit", false);
     Session.set("CoverImageBase64", false);
     Session.set("profileCurrentPage", null);
+    Session.set("CoverPosition", false);
 });
 
 
@@ -406,6 +407,8 @@ Template.profile.onDestroyed(function(){
                 y0 = y;
 
 
+
+                    Session.set("CoverPosition", yPos);
                     $el.css('background-position', xPos + 'px ' + yPos + 'px');
 
             });
