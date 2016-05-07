@@ -5,6 +5,7 @@ Template.profile.onCreated(function() {
     Session.set("coverEdit", false);
     Session.set("CoverImageBase64", false);
     Session.set("CoverPosition", false);
+    Session.set("photoEdit", false);
     Session.set("profileCurrentPage", "posts");
 
 
@@ -101,10 +102,10 @@ Template.profile.events({
     },
     'click .finishEditProfile': function(){
         Session.set("profileEdit", false);
+        Session.set("photoEdit", false);
     },
-    'click .profileEditBlock': function(){
+    'click .cover-image-edit-block': function(){
         Session.set("coverEdit", true);
-
     },
     'click .cancelCoverEdit': function(){
 
@@ -125,6 +126,9 @@ Template.profile.events({
         if(Meteor.user().profile.cover_position !== pos){
             Meteor.call("updateCoverImage", pos);
         }
+    },
+    'click .profile-image-edit-block': function(){
+        Session.set("photoEdit", true);
     }
 
 });
@@ -283,6 +287,9 @@ Template.profile.helpers({
         }
 
         return false;
+    },
+    photoEdit: function(){
+        return Session.get("photoEdit");
     }
 
 });
@@ -293,12 +300,8 @@ Template.profile.onDestroyed(function(){
     Session.set("CoverImageBase64", false);
     Session.set("profileCurrentPage", null);
     Session.set("CoverPosition", false);
+    Session.set("photoEdit", false);
 });
-
-
-
-
-
 
 /* DRAG */
 ;(function($) {
@@ -374,7 +377,9 @@ Template.profile.onDestroyed(function(){
 
         $el.on('mousedown.dbg touchstart.dbg', function(e) {
 
-            if (!$(e.target).hasClass('cover-upload-button')) {
+            console.log(e.target)
+
+            if (!$(e.target).is("#profile-edit-cover")) {
                 return;
             }
             e.preventDefault();
@@ -405,6 +410,7 @@ Template.profile.onDestroyed(function(){
                 yPos = options.axis === 'x' ? yPos : limit($el.innerHeight()-imageDimensions.height, 0, yPos+y-y0, options.bound);
                 x0 = x;
                 y0 = y;
+
 
 
 

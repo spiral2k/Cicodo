@@ -12,7 +12,7 @@
             <div id="profile-edit-cover" class="opacity">
 
                 {{#unless coverEdit}}
-                    <div class="profileEditBlock">
+                    <div class="profileEditBlock cover-image-edit-block">
                         <i class="rocket icon"></i>
                             <span>Edit cover image</span>
                     </div>
@@ -20,10 +20,20 @@
 
                 {{#if coverEdit}}
                     <div id="profile-edit-cover">
-                        <div class="cover-upload-button">
-                            <input id="CoverUpload" type="file" />
-                            <label for="CoverUpload" class="ui button coverUploadButton">{{_ "changeCoverImage"}}</label>
+                        <!--<div class="cover-upload-button">-->
+                            <!--<input id="CoverUpload" type="file" />-->
+                            <!--<label for="CoverUpload" class="ui button coverUploadButton">{{_ "changeCoverImage"}}</label>-->
+                        <!--</div>-->
+                        <input id="CoverUpload" type="file" />
+                        <div class="large ui buttons profile-cover-edit-buttons">
+
+                            <button class="ui button">
+                                <label for="CoverUpload" class="coverUploadButton">{{_ "changeCoverImage"}}</label>
+                            </button>
+                            <button class="ui button">Change Position</button>
                         </div>
+
+
                     </div>
                 {{/if}}
 
@@ -58,6 +68,23 @@
 
                 <div class="profile-avatar-warp">
                     <div class="user-profile-avatar user-edit-avatar" style="background-image:url({{profile.avatar}});background-size: 100% 100%;">
+                    {{#if profileEdit}}
+
+                    <div id="profile-edit-profile-image" class="opacity">
+
+                        {{#if photoEdit}}
+                           <div class="">cacacsacsa;kcvhewpghnfwevhewnvpe</div>
+                        {{/if}}
+
+                        {{#unless photoEdit}}
+                                <div class="profileEditBlock profile-image-edit-block">
+                                    <i class="photo icon"></i>
+                                    <span>Edit cover image</span>
+                                </div>
+                        {{/unless}}
+
+                    </div>
+                    {{/if}}
                     </div>
                     <span class="user-status {{#if userIsOnline}} online {{/if}}"></span>
                 </div>
