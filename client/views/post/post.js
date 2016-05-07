@@ -46,19 +46,13 @@ Template.post.events({
                 }
             });
 
-
         }
     },
     'click .deletePost': function(){
-
-        console.log(this);
-
         Meteor.call("deletePost", this._id);
 
     },
     'mouseover .post-wrapper': function(e,template){
-
-        console.log(template.find('.post-time'))
         $(template.find('.post-time')).hide();
         $(template.find('.post-options')).show();
 
