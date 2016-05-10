@@ -7,7 +7,7 @@ Template.profile.onCreated(function() {
     Session.set("CoverPosition", false);
     Session.set("photoEdit", false);
     Session.set("profileCurrentPage", "posts");
-
+    Session.set("coverPositionEdit", false);
 
     var self = this;
     self.autorun(function() { // Stops all current subscriptions
@@ -51,85 +51,38 @@ Template.profile.onRendered(function(){
         }
 
     });
-});
 
-Template.profile.events({
-    'click .profile-posts': function(event, t){
-        $('.ui .item').removeClass('active');
-        $(event.target).addClass('active');
-        Session.set("profileCurrentPage", "posts");
-    },
-    'click .profile-following': function(event, t){
-        $('.ui .item').removeClass('active');
-        $(event.target).addClass('active');
-        Session.set("profileCurrentPage", "following");
-    },
-    'click .profile-followers': function(event, t){
-        $('.ui .item').removeClass('active');
-        $(event.target).addClass('active');
-        Session.set("profileCurrentPage", "followers");
-    },
-    'click #follow-user': function(){
 
-        var username = FlowRouter.getParam('username');
-        var userData = Meteor.users.findOne({
-                username: username
-            }) || {};
+    $("body").on('change','#avatarUpload' , function(){
 
-        Meteor.call('follow',userData._id);
-        return true;
-    },
-    'click #unfollow-user': function(){
+        var filesSelected = document.getElementById("avatarUpload").files;
 
-        var username = FlowRouter.getParam('username');
-        var userData = Meteor.users.findOne({
-                username: username
-            }) || {};
+        if (filesSelected.length > 0) {
+            var fileToLoad = filesSelected[0];
 
-        Meteor.call('unfollow', userData._id);
+            var fileReader = new FileReader();
 
-        return true;
-    },
-    'mouseenter .user-edit-avatar':function(){
-        $('.edit-avatar-mask').show();
-    },
-    'mouseleave .user-edit-avatar':function(){
-        $('.edit-avatar-mask').hide();
-    },
+            fileReader.onload = function (fileLoadedEvent) {
+                var srcData = fileLoadedEvent.target.result; // <--- data: base64
 
-    'click .profileEdit': function(){
-        Session.set("profileEdit", true);
-    },
-    'click .finishEditProfile': function(){
-        Session.set("profileEdit", false);
-        Session.set("photoEdit", false);
-    },
-    'click .cover-image-edit-block': function(){
-        Session.set("coverEdit", true);
-    },
-    'click .cancelCoverEdit': function(){
+                $(".user-profile-avatar").attr("style", "background-image: url(" + srcData + "); background-size: 100% 100%;");
 
-        Session.set("CoverImageBase64", false);
-        $("#profile-cover-image").attr("style", "background-image: url(" + Meteor.user().profile.cover + ")");
 
-        Session.set("coverEdit", false);
-    },
-    'click .finishCoverEdit': function(){
 
-        Session.set("coverEdit", false);
+                Meteor.call("updateProfileImage", srcData);
 
-        var pos = Session.get("CoverPosition",);
+                Session.set("profileEdit", false);
+                Session.set("photoEdit", false);
 
-        if(Session.get("CoverImageBase64")) {
-            Meteor.call("updateCoverImage", pos, Session.get("CoverImageBase64"));
+            };
+
+            fileReader.readAsDataURL(fileToLoad);
         }
-        if(Meteor.user().profile.cover_position !== pos){
-            Meteor.call("updateCoverImage", pos);
-        }
-    },
-    'click .profile-image-edit-block': function(){
-        Session.set("photoEdit", true);
-    }
+
+    });
+
+
+
 
 });
 
@@ -224,10 +177,10 @@ Template.profile.helpers({
             }) || {};
 
         var followerUsers = Meteor.users.find({
-                '_id': { $in: userData.profile.followers}
-            },{fields: {'username': 1, 'profile.avatar': 1}}, function(err, docs){
-                console.log(docs);
-            });
+            '_id': { $in: userData.profile.followers}
+        },{fields: {'username': 1, 'profile.avatar': 1}}, function(err, docs){
+            console.log(docs);
+        });
 
         return followerUsers;
     },
@@ -290,9 +243,100 @@ Template.profile.helpers({
     },
     photoEdit: function(){
         return Session.get("photoEdit");
+    },
+    coverPositionEdit:function(){
+        return Session.get("coverPositionEdit");
+    }
+});
+
+
+
+Template.profile.events({
+    'click .profile-posts': function(event, t){
+        $('.ui .item').removeClass('active');
+        $(event.target).addClass('active');
+        Session.set("profileCurrentPage", "posts");
+    },
+    'click .profile-following': function(event, t){
+        $('.ui .item').removeClass('active');
+        $(event.target).addClass('active');
+        Session.set("profileCurrentPage", "following");
+    },
+    'click .profile-followers': function(event, t){
+        $('.ui .item').removeClass('active');
+        $(event.target).addClass('active');
+        Session.set("profileCurrentPage", "followers");
+    },
+    'click #follow-user': function(){
+
+        var username = FlowRouter.getParam('username');
+        var userData = Meteor.users.findOne({
+                username: username
+            }) || {};
+
+        Meteor.call('follow',userData._id);
+        return true;
+    },
+    'click #unfollow-user': function(){
+
+        var username = FlowRouter.getParam('username');
+        var userData = Meteor.users.findOne({
+                username: username
+            }) || {};
+
+        Meteor.call('unfollow', userData._id);
+
+        return true;
+    },
+    'mouseenter .user-edit-avatar':function(){
+        $('.edit-avatar-mask').show();
+    },
+    'mouseleave .user-edit-avatar':function(){
+        $('.edit-avatar-mask').hide();
+    },
+
+    'click .profileEdit': function(){
+        Session.set("profileEdit", true);
+    },
+    'click .finishEditProfile': function(){
+        Session.set("profileEdit", false);
+        Session.set("photoEdit", false);
+        Session.set("coverPositionEdit", false);
+    },
+    'click .cover-image-edit-block': function(){
+        Session.set("coverEdit", true);
+    },
+    'click .cancelCoverEdit': function(){
+
+        $("#profile-cover-image").attr("style", "background-image: url(" + Meteor.user().profile.cover + "); background-position-y: "+ Meteor.user().profile.cover_position + "px");
+
+        Session.set("CoverImageBase64", false);
+        Session.set("coverEdit", false);
+        Session.set("coverPositionEdit", false);
+    },
+    'click .finishCoverEdit': function(){
+
+        Session.set("coverEdit", false);
+        Session.set("coverPositionEdit", false);
+
+        var pos = Session.get("CoverPosition");
+
+        if(Session.get("CoverImageBase64")) {
+            Meteor.call("updateCoverImage", pos, Session.get("CoverImageBase64"));
+        }
+        if(Meteor.user().profile.cover_position !== pos){
+            Meteor.call("updateCoverImage", pos);
+        }
+    },
+    'click .profile-image-edit-block': function(){
+        Session.set("photoEdit", true);
+    },
+    'click .positionCoverEdit': function(){
+        Session.set("coverPositionEdit", true);
     }
 
 });
+
 
 Template.profile.onDestroyed(function(){
     Session.set("profileEdit", false);
@@ -301,6 +345,7 @@ Template.profile.onDestroyed(function(){
     Session.set("profileCurrentPage", null);
     Session.set("CoverPosition", false);
     Session.set("photoEdit", false);
+    Session.set("coverPositionEdit", false);
 });
 
 /* DRAG */
@@ -379,7 +424,7 @@ Template.profile.onDestroyed(function(){
 
             console.log(e.target)
 
-            if (!$(e.target).is("#profile-edit-cover")) {
+            if (!$(e.target).is(".profile-edit-cover-position-mask")) {
                 return;
             }
             e.preventDefault();

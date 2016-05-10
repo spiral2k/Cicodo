@@ -99,13 +99,11 @@ Template.post.helpers({
 
         return false;
     },
+    // IF POST IS OF TYPE SHARED
     is_shared_post: function(){
-
         if(this.type === "share"){
-            console.log("SHERED: ",this.shared_post_id);
             Meteor.subscribe("getOnePostById", this.shared_post_id);
             return true;
-
         }
         return false;
     },

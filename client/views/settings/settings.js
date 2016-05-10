@@ -7,8 +7,6 @@ Template.profileEdit.onCreated(function(){
 
 Template.profileEdit.onRendered(function(){
 
-    document.getElementById("avatarUpload").addEventListener("change", Base64Avatar, false);
-
     ///////////////////////////////
     // get user setting from DB
     ///////////////////////////////

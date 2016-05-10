@@ -68,12 +68,49 @@
 }
 
 
-#profile-edit-cover{
+.profile-edit-cover{
     float:left;
     text-align: center;
     width:100%;
     height:400px;
 }
+
+.profile-edit-cover-position{
+    float:left;
+    text-align: center;
+    width:100%;
+    height:400px;
+
+}
+
+.profile-edit-cover-position-mask {
+    position: absolute;
+    top: 0;
+    text-align: center;
+    min-width:100%;
+    min-height:400px;
+    cursor: s-resize;
+}
+
+.profile-edit-cover-position span{
+    float:left;
+    width:100%;
+    font-size: 24px;
+    display:inline-block;
+    color:#fff;
+    margin-top:10px;
+}
+
+.profile-edit-cover-position i{
+    display:inline-block;
+    color:#fff;
+    font-size: 30px;
+    margin-top:180px;
+}
+
+
+
+
 
 .profile-cover-edit-buttons{
     padding-top: 180px;
@@ -115,8 +152,15 @@
 
 #profile-edit-profile-image{
     float: left;
+    text-align: center;
     width: 100%;
+    height:170px;
     border-radius: 3px;
+}
+
+
+#profile-edit-profile-image label {
+    margin-top:70px;
 }
 
 .profileEditBlock:hover{
@@ -127,7 +171,8 @@
 .profileEditBlock i{
     display: inline-block;
     color:#fff;
-    font-size: 40px;
+    font-size: 34px;
+    margin-bottom: 10px;
 }
 
 .profileEditBlock span{
@@ -144,8 +189,8 @@
     background: #2B323A;
     color: #fff;
     text-align: center;
-    bottom: -56px;
-    padding: 13px 0;
+    bottom: -68px;
+    padding: 19px 0;
 }
 
 .profile-cover-image-on{
@@ -198,6 +243,6 @@
     margin-top:20px;
 }
 
-#CoverUpload {
+#CoverUpload,#avatarUpload {
     display:none;
 }

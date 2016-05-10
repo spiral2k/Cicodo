@@ -9,34 +9,39 @@
         <div id="profile-cover-image" class="{{#if coverEdit}} profile-cover-image-on {{/if}}" style="background-image: url({{profile.cover}}); background-position-y: {{profile.cover_position}}px">
 
         {{#if profileEdit}}
-            <div id="profile-edit-cover" class="opacity">
+            <div class="profile-edit-cover opacity">
 
                 {{#unless coverEdit}}
-                    <div class="profileEditBlock cover-image-edit-block">
-                        <i class="rocket icon"></i>
-                            <span>Edit cover image</span>
-                    </div>
+                    {{#unless photoEdit}}
+                        <div class="profileEditBlock cover-image-edit-block">
+                            <i class="rocket icon"></i>
+                                <span>Edit cover image</span>
+                        </div>
+                    {{/unless}}
                 {{/unless}}
 
+                {{! COVER EDIT }}
+
                 {{#if coverEdit}}
-                    <div id="profile-edit-cover">
-                        <!--<div class="cover-upload-button">-->
-                            <!--<input id="CoverUpload" type="file" />-->
-                            <!--<label for="CoverUpload" class="ui button coverUploadButton">{{_ "changeCoverImage"}}</label>-->
-                        <!--</div>-->
-                        <input id="CoverUpload" type="file" />
-                        <div class="large ui buttons profile-cover-edit-buttons">
-
-                            <button class="ui button">
-                                <label for="CoverUpload" class="coverUploadButton">{{_ "changeCoverImage"}}</label>
-                            </button>
-                            <button class="ui button">Change Position</button>
+                    {{#unless coverPositionEdit}}
+                        <div class="profile-edit-cover">
+                            <input id="CoverUpload" type="file" />
+                            <div class="large ui buttons profile-cover-edit-buttons">
+                                <button class="ui button">
+                                    <label for="CoverUpload" class="coverUploadButton">{{_ "changeCoverImage"}}</label>
+                                </button>
+                                <button class="ui button positionCoverEdit">Change Position</button>
+                            </div>
                         </div>
-
-
-                    </div>
+                    {{/unless}}
+                    {{#if coverPositionEdit}}
+                        <div class="profile-edit-cover-position">
+                            <i class="resize vertical icon"></i>
+                            <span>drag to move your cover image</span>
+                            <div class="profile-edit-cover-position-mask"></div>
+                        </div>
+                    {{/if}}
                 {{/if}}
-
             </div>
 
             {{#if coverEdit}}
@@ -73,13 +78,18 @@
                     <div id="profile-edit-profile-image" class="opacity">
 
                         {{#if photoEdit}}
-                           <div class="">cacacsacsa;kcvhewpghnfwevhewnvpe</div>
+                           <div class="">
+
+                               <input id="avatarUpload" type="file" />
+                               <label for="avatarUpload" class="ui button">{{_ "uploadAvatar"}}</label>
+
+                           </div>
                         {{/if}}
 
                         {{#unless photoEdit}}
                                 <div class="profileEditBlock profile-image-edit-block">
                                     <i class="photo icon"></i>
-                                    <span>Edit cover image</span>
+                                    <span>Edit profile image</span>
                                 </div>
                         {{/unless}}
 
