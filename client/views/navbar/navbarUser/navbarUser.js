@@ -24,6 +24,10 @@ Template.navbaruser.onRendered(function(){
         transition: 'drop'
     });
 
+    $('.notifications-dropdown').dropdown({
+        transition: 'drop'
+    });
+
     $('.masseges-dropdown').dropdown({
         transition: 'drop'
     });

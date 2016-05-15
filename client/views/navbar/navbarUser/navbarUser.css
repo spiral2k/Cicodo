@@ -1,7 +1,4 @@
-.navbar-dropdown-header{
-    float: right;
-    line-height: 56px;
-}
+
 
 .navbar-dropdown-header i{
     float: right;
@@ -16,6 +13,20 @@
 .navbar-dropdown-header img{
     margin-top: 10px;
     float: right;
+}
+
+.username-dropdown .menu{
+    left: -60px !important;
+}
+
+.notifications-dropdown .alarm.icon{
+    font-size: 20px;
+    transform: rotate(15deg);
+}
+
+.notifications-dropdown{
+    position: relative;
+    margin: 18px 0px 0px 0px;
 }
 
 
