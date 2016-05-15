@@ -96,7 +96,7 @@
                     </div>
                     {{/if}}
                     </div>
-                    <span class="user-status {{#if userIsOnline}} online {{/if}}"></span>
+                    <!--{{!<span class="user-status {{#if userIsOnline}} online {{!{{/if}}">{{!</span>}}-->
                 </div>
 
                 <div class="profile-left-content">
@@ -153,6 +153,25 @@
                     {{#each posts}}
                         {{>post}}
                     {{/each}}
+
+
+                    {{#if $eq postsCount 'hasPosts'}}
+
+                        <button id="load-more-posts" class="fluid ui teal button">{{_ "LoadMorePosts"}}</button>
+
+                    {{else}}
+
+                        {{#if $eq postsCount 'noPostsToLoad'}}
+                            <button class="fluid ui disabled button">{{_ "noPostsToShow"}}</button>
+                        {{else}}
+
+                            <button class="fluid ui disabled button">{{_ "noMorePostsToLoad"}}</button>
+                        {{/if}}
+                    {{/if}}
+
+
+
+
                 </div>
 
             {{/if}}

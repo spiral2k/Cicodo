@@ -4,9 +4,12 @@ Meteor.publish("basicUserInfo", function(userByID) {
     return Meteor.users.find({_id: userByID}, {fields: {'username': 1, 'profile.avatar': 1}});
 });
 
-Meteor.publish("getUserPostsByUsername", function(limit) {
+Meteor.publish("getUserPostsByUsername", function(username, limit) {
+
+    var user = Meteor.users.findOne({'username': username});
+
     limit = limit || 5;
-    return Posts.find({createdBy: this.userId}, {sort: {'createdAt': -1}, limit: limit});
+    return Posts.find({createdBy: user._id}, {sort: {'createdAt': -1}, limit: limit});
 });
 
 Meteor.publish("postsFollowedByUser", function(postsByID, limit, date) {
@@ -35,14 +38,14 @@ Meteor.publish("getUserProfileDataByUsername", function(username) {
     return Meteor.users.find(
         {username: username},
         {
-            fields: {'username': 1, 'profile.avatar': 1,'profile.followers': 1 ,'profile.follow': 1, 'status.online': 1}
+            fields: {'username': 1, 'profile.avatar': 1,'profile.cover': 1,'profile.cover_position': 1,'profile.followers': 1 ,'profile.follow': 1}
         });
 });
 
 
 // for listing users
 Meteor.publish("usersListByID", function(arrayOfIDs) {
-    return Meteor.users.find({_id: {$in: arrayOfIDs}}, {fields: {'username': 1, 'profile.avatar': 1,'profile.followers': 1 ,'profile.follow': 1, 'status.online': 1}});
+    return Meteor.users.find({_id: {$in: arrayOfIDs}}, {fields: {'username': 1, 'profile.avatar': 1,'profile.followers': 1 ,'profile.follow': 1}});
 });
 
 Meteor.publish('getMessagesForMessageView', function (username) {

@@ -8,23 +8,26 @@ Template.profile.onCreated(function() {
     Session.set("photoEdit", false);
     Session.set("profileCurrentPage", "posts");
     Session.set("coverPositionEdit", false);
+    Session.set("postsLimit", 5);
+    Session.set("postsLoadLimit", 10);
+
 
     var self = this;
-    self.autorun(function() { // Stops all current subscriptions
+
         //////////////////////////////////////////////////////////////////////
         // Get information about the user that the profile belong to him
         //////////////////////////////////////////////////////////////////////
         var username = FlowRouter.getParam('username');
         self.subscribe('getUserProfileDataByUsername', username);
-        self.subscribe('getUserPostsByUsername', 5);
-    });
+        self.subscribe('getUserPostsByUsername', username, Session.get("postsLoadLimit"));
+
 
 });
 
 
 Template.profile.onRendered(function(){
-
-    Template.instance().subscribe('getUserPostsByUsername', 5, function(){
+    var username = FlowRouter.getParam('username');
+    Template.instance().subscribe('getUserPostsByUsername', username, 5, function(){
         Tracker.afterFlush(function () {
                 $('#profile-cover-image').backgroundDraggable({bound: false, axis: 'y'});
         });
@@ -114,8 +117,12 @@ Template.profile.helpers({
         return userData;
     },
     posts: function(){
+        var username = FlowRouter.getParam('username');
+        var user = Meteor.users.findOne({'username': username});
 
-        return Posts.find({createdBy: Meteor.userId()});
+        Meteor.subscribe('getUserPostsByUsername', username, Session.get("postsLoadLimit"));
+
+        return Posts.find({createdBy: user._id}, {limit: Session.get("postsLimit"), sort:{'createdAt': -1}});
     },
     isUserFollowing: function(){
 
@@ -199,16 +206,6 @@ Template.profile.helpers({
 
         return followsUsers;
     },
-    userIsOnline:function(){
-
-        var username = FlowRouter.getParam('username');
-        var userData = Meteor.users.findOne({
-                username: username
-            }) || {};
-
-        return userData.status.online
-
-    },
     profileEdit: function(){
 
         return Session.get("profileEdit");
@@ -246,6 +243,21 @@ Template.profile.helpers({
     },
     coverPositionEdit:function(){
         return Session.get("coverPositionEdit");
+    },
+    postsCount: function(){
+        //check if need to show 'Load more posts' OR 'no more posts' OR 'no posts at all'.
+        if(Posts.find().count() > Session.get('postsLimit')){
+            return 'hasPosts'
+        }else{
+            var username = FlowRouter.getParam('username');
+            var user = Meteor.users.findOne({'username': username});
+
+            if(Posts.find({createdBy: user._id}).count() === 0){
+                return 'noPostsToLoad';
+            }
+
+            return false
+        }
     }
 });
 
@@ -294,7 +306,6 @@ Template.profile.events({
     'mouseleave .user-edit-avatar':function(){
         $('.edit-avatar-mask').hide();
     },
-
     'click .profileEdit': function(){
         Session.set("profileEdit", true);
     },
@@ -333,6 +344,14 @@ Template.profile.events({
     },
     'click .positionCoverEdit': function(){
         Session.set("coverPositionEdit", true);
+    },
+    'click #load-more-posts': function(event){
+        event.preventDefault();
+
+        // increase session post limit
+        Session.set('postsLoadLimit', Session.get('postsLoadLimit') + MAIN_POSTS_INCRESE_LOAD_LIMIT);
+        Session.set('postsLimit', Session.get('postsLimit') + MAIN_POSTS_INCRESE_LOAD_LIMIT);
+
     }
 
 });
@@ -346,6 +365,8 @@ Template.profile.onDestroyed(function(){
     Session.set("CoverPosition", false);
     Session.set("photoEdit", false);
     Session.set("coverPositionEdit", false);
+    Session.set("postsLimit", 5);
+    Session.set("postsLoadLimit", 10);
 });
 
 /* DRAG */

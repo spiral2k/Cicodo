@@ -75,7 +75,7 @@ Template.regularFeed.helpers({
         }else{
 
             if(Posts.find().count() === 0){
-                return noPostsToLoad;
+                return 'noPostsToLoad';
             }
 
             // no more posts to load

@@ -66,7 +66,7 @@ Template.liveFeed.helpers({
             return 'hasPosts'
         }else{
             if(Posts.find().count() === 0){
-                return noPostsToLoad;
+                return 'noPostsToLoad';
             }
 
             return false
