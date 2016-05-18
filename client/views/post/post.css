@@ -7,11 +7,11 @@
 .inner-post-wrapper{
     float: right;
     width: calc(100% - 65px);
-    background: #fff;
-    border-radius: .28571429rem;
-    box-shadow: 0 1px 2px rgba(0,0,0,.1);
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(224, 227, 233);
+    border-radius: 3px;
+    background: rgb(255, 255, 255);
 
 }
 
@@ -129,6 +129,17 @@
     color:#1e70bf;
     cursor: pointer;
 }
+.shared-button{
+    color:#1e70bf;
+    cursor: default;
+}
+
+
+.shared-disable-gray{
+    color:#C7C7C7;
+    cursor: default;
+}
+
 
 .code{
     float:left;
@@ -160,7 +171,7 @@
     float:left;
     width:100%;
     padding: 0 15px;
-    background: #eaedf1;
+    background: #F8F8F8;
     box-shadow: 0px 0px 2px 0px rgba(152, 152, 152, 0.2);
 }
 

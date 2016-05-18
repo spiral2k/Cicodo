@@ -97,10 +97,27 @@
                     </div>
                 {{/if}}
 
-                <div class="post-button share-button">
-                    <i class="retweet icon"></i>
-                    {{_ "share"}}
-                </div>
+                {{#if userSharedPost}}
+                    <div class="post-button shared-button">
+                        <i class="retweet icon"></i>
+                        {{_ "shared"}}
+                    </div>
+                {{else}}
+                    {{! If this post has type share and has been shared by the current user, dont display the share button }}
+                    {{#if ifThisIsUserSharePost}}
+                        <div class="post-button shared-disable-gray">
+                            <i class="retweet icon"></i>
+                            {{_ "share"}}
+                        </div>
+                    {{else}}
+                        <div class="post-button share-button">
+                            <i class="retweet icon"></i>
+                            {{_ "share"}}
+                        </div>
+                    {{/if}}
+
+
+                {{/if}}
 
                 <div class="post-button comment-button right">
                     <i class="comment icon"></i>

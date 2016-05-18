@@ -118,5 +118,37 @@ Template.post.helpers({
     },
     userIsOwner:function(){
         return Meteor.userId() === this.createdBy;
+    },
+    userSharedPost:function(){
+
+        console.log("post: ", this)
+
+        if(this.type === 'regular') {
+            var shared_posts = Meteor.user().profile.posts_events.shared_posts;
+
+            for ( var i = 0; i < shared_posts.length; i++ ) {
+                if ( shared_posts[i] == this._id)
+                    return true;
+            }
+        }
+
+        return false;
+
+    },
+    ifThisIsUserSharePost: function(){
+
+
+        if(this.type === 'share') {
+            var shared_posts = Meteor.user().profile.posts_events.shared_posts;
+            for ( var i = 0; i < shared_posts.length; i++ ) {
+
+                if (shared_posts[i] === this.shared_post_id )
+                    return true;
+            }
+
+        }
+
+        return false;
+
     }
 });
