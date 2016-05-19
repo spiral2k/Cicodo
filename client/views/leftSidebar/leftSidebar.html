@@ -1,12 +1,11 @@
 <template name="leftSidebar">
-    <div class="ui small middle aligned selection list">
 
-            <!--<div class="item profileLink">-->
-                <!--<img class="ui avatar image" src="{{currentUserData.profile.avatar}}">-->
-                <!--<div class="content">-->
-                    <!--<div class="header capitalize">@{{currentUserData.username}}</div>-->
-                <!--</div>-->
-            <!--</div>-->
+    <div class="left-user-block">
+        <img src="{{currentUserData.profile.avatar}}">
+        <span>@{{currentUserData.username}}</span>
+    </div>
+
+    <div class="ui small middle aligned selection list">
 
             <div class="item settingsLink">
                 <i class="settings icon"></i>

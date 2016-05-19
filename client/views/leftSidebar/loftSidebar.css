@@ -1,0 +1,25 @@
+.left-user-block{
+    float:left;
+    width:100%;
+    background: #E6E6E6;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding:7px;
+    margin-bottom:20px;
+}
+
+.left-user-block img{
+    float:left;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    width:30px;
+    height:30px;
+}
+
+.left-user-block span{
+    float:left;
+    margin-left:15px;
+    text-transform: capitalize;
+}
