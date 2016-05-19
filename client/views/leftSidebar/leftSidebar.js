@@ -17,5 +17,9 @@ Template.leftSidebar.events({
     },
     'click .MessagesLink': function(){
         FlowRouter.go('/messages');
+    },
+    'click .left-user-block':function(){
+        if(Meteor.user())
+            FlowRouter.go('/@/' + Meteor.user().username);
     }
 });

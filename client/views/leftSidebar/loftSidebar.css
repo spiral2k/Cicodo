@@ -7,6 +7,7 @@
     border-radius: 5px;
     padding:7px;
     margin-bottom:20px;
+    cursor: pointer;
 }
 
 .left-user-block img{
@@ -19,7 +20,9 @@
 }
 
 .left-user-block span{
-    float:left;
-    margin-left:15px;
+    float: left;
+    margin-left: 15px;
     text-transform: capitalize;
+    line-height: 32px;
+    font-size: 16px;
 }
