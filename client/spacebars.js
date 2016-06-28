@@ -1,3 +1,27 @@
+
+UI.registerHelper('getUsernameByID', function (userID) {
+    Meteor.subscribe('basicUserInfo', userID);
+
+    var user = Meteor.users.findOne({_id: userID});
+
+    if(user != undefined)
+        return user.username;
+
+});
+
+
+UI.registerHelper('getUserAvatarByID', function (userID) {
+    Meteor.subscribe('basicUserInfo', userID);
+
+    var user = Meteor.users.findOne({_id: userID});
+
+    if(user != undefined)
+        return user.profile.avatar;
+
+});
+
+
+
 UI.registerHelper('postContentParse', function (text) {
 
     if (!text) {

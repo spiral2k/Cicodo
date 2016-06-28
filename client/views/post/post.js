@@ -23,7 +23,7 @@ Template.post.events({
         $('.post-comments-wrap-' + this._id).show()
     },
     'click .like-button':function(){
-        Meteor.call("likePost", this._id);
+        Meteor.call("likePost", this._id, this.createdBy);
     },
     'click .liked':function(){
         Meteor.call("unlikePost", this._id);

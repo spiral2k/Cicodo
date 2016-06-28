@@ -54,9 +54,6 @@ Meteor.publish("BasicUsersListByID", function(arrayOfIDs) {
     return Meteor.users.find({_id: {$in: arrayOfIDs}}, {fields: {'username': 1, 'profile.avatar': 1}});
 });
 
-
-
-
 Meteor.publish('getMessagesForMessageView', function (username) {
     var user = Meteor.users.findOne({'username': username});
     if(user)
@@ -78,6 +75,12 @@ Meteor.publish("postCommentsLimit", function(postID, limit) {
 
 Meteor.publish("postCommentsNolimit", function(postID) {
     return Comments.find({postid: postID}, {sort:{date: -1}});
+});
+
+
+Meteor.publish("userNotifications", function(limit) {
+    limit = limit || 20;
+    return Notifications.find({toUser: this.userId}, {sort:{createdAt: -1}, limit:limit});
 });
 
 

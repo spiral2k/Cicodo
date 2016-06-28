@@ -29,6 +29,63 @@
     margin: 21px 0px 0px 0px;
 }
 
+.notification-navbar-view{
+    min-width: 400px !important;
+    max-width: 400px !important;
+    max-height: 300px;
+    overflow: auto;
+}
+
+
+.notification-item{
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #f2f2f2 !important;
+}
+
+.notification-item img{
+    width:40px !important;
+    height:40px !important;
+    -webkit-border-radius:40px !important;
+    -moz-border-radius:40px !important;
+    border-radius:40px !important;
+    float: left !important;
+}
+
+
+.notification-item a{
+    font-weight:bold;
+    color: #000;
+}
+
+.notification-item a:hover{
+    text-decoration: underline;
+}
+
+
+
+
+.notification-time{
+    float: left;
+    font-size: 11px;
+    padding-top: 5px;
+}
+
+.new-notification{
+    position: absolute;
+    right: 20px;
+    top: 16px;
+    font-size: 10px;
+    background: #ff3589;
+    width: auto !important;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    color: #fff;
+    min-width: 12px !important;
+    min-height: 12px !important;
+    text-align: center;
+}
 
 .masseges-dropdown{
     position: relative;
@@ -42,12 +99,11 @@
 }
 
 .messages-panel-avatar{
-    width:40px;
-    height:40px;
-    -webkit-border-radius:40px;
-    -moz-border-radius:40px;
-    border-radius:40px;
-    margin-left:5px;
+    width:40px !important;
+    height:40px !important;
+    -webkit-border-radius:40px !important;
+    -moz-border-radius:40px !important;
+    border-radius:40px !important;
     float: left !important;
 }
 
@@ -125,4 +181,18 @@
     position: absolute;
     right: -4px;
     top: -6px;
+}
+
+
+
+.notification-navbar-view::-webkit-scrollbar {
+    width: 12px;
+}
+
+.notification-navbar-view::-webkit-scrollbar-track {
+
+}
+
+.notification-navbar-view::-webkit-scrollbar-thumb {
+    background: #cfcfcf;
 }

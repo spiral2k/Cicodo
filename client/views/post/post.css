@@ -118,7 +118,7 @@
     cursor: pointer;
 }
 
-.like-button.liked{
+.unlike-button.liked{
     color:#ff2733;
     cursor: pointer;
 }

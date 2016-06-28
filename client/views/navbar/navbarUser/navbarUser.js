@@ -1,4 +1,4 @@
-var userMessages, usersMessagesArray = [];
+var userMessages, usersMessagesArray = [], newNotificationsList = [];
 
 Template.navbaruser.onCreated(function(){
     self = this;
@@ -13,6 +13,7 @@ Template.navbaruser.onCreated(function(){
 
          self.subscribe('usersListByID', usersMessagesArray);
 
+         self.subscribe('userNotifications');
     });
 
 });
@@ -20,6 +21,7 @@ Template.navbaruser.onCreated(function(){
 
 
 Template.navbaruser.onRendered(function(){
+
     $('.username-dropdown').dropdown({
         transition: 'drop'
     });
@@ -27,6 +29,16 @@ Template.navbaruser.onRendered(function(){
     $('.notifications-dropdown').dropdown({
         transition: 'drop'
     });
+
+    $('.notifications-dropdown').click(function(){
+        if(newNotificationsList.length > 0) {
+            Meteor.setTimeout(function(){
+                Meteor.call('resetNotifications', newNotificationsList);
+                newNotificationsList = [];
+            }, 5000);
+        }
+    });
+
 
     $('.masseges-dropdown').dropdown({
         transition: 'drop'
@@ -39,12 +51,10 @@ Template.navbaruser.helpers({
         var username = Meteor.user().username;
         return username;
     },
-
     avatar: function(){
         var avatar = Meteor.user().profile.avatar;
         return avatar;
     },
-
     hasNewMessages:function(){
 
         userMessages = Meteor.user().profile.messages;
@@ -85,6 +95,33 @@ Template.navbaruser.helpers({
 
         }
 
+    },
+    notifications:function(){
+        Meteor.subscribe('userNotifications');
+
+        var notifications = Notifications.find({}, {sort:{createdAt: -1}}).fetch();
+
+        for (var i =0; i < notifications.length; i++){
+            if(notifications[i].new) {
+                newNotificationsList.push(notifications[i]);
+            }
+        }
+
+        return notifications;
+    },
+    hasNewNotifications: function(){
+        Meteor.subscribe('userNotifications');
+
+        var notifications = Notifications.find({}, {sort:{createdAt: -1}}).fetch();
+
+        var count = 0;
+
+        for (var i =0; i < notifications.length; i++) {
+            if (notifications[i].new)
+                count++;
+        }
+
+        return count;
     }
 });
 
