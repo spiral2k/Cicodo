@@ -30,8 +30,9 @@ Template.profileEdit.helpers({
 
 Template.profileEdit.events({
     'submit form': function(event, template){
-
         event.preventDefault();
+
+        $('.save-settings').addClass('loading');
 
         var privateProfile = Session.get('private-profile');
 
@@ -54,26 +55,15 @@ Template.profileEdit.events({
 
         var language = $('#language').dropdown('get value');
 
-        //avatar
-        var filesSelected = document.getElementById("avatarUpload").files;
 
 
-        avatar = user.profile.avatar;
-
-        if (filesSelected.length > 0)
-        {
-            avatar = $('#avatar img').attr('src');
-        }
-
-        Meteor.call('updateProfile', aboutMe, privateProfile, firstName, lastName, feedType[0], avatar, language[0], function(error, result){
+        Meteor.call('updateProfile', aboutMe, privateProfile, firstName, lastName, feedType[0], language[0], function(error, result){
             if(error){
                 console.log("ERROR: Cant save profile setting!");
                 return;
-            }
-            if(result){
+            }   $('.save-settings').removeClass('loading');
                 Session.set('formSuccess', "saved!");
                 $('.success').show();
-            }
         });
     },
     'click #discard-changes': function(){
@@ -83,7 +73,6 @@ Template.profileEdit.events({
 });
 
 Template.profileEdit.onDestroyed(function(){
-
     // reset session var for form success
     Session.set('formSuccess', undefined);
 
@@ -100,12 +89,6 @@ function setTemplateValue(){
     $('#feedType').dropdown('set selected', user.profile.feedType);
 
     $('#language').dropdown('set selected', user.profile.language);
-
-    if(user.profile.avatar) {
-        var newImage = document.createElement('img');
-        newImage.src = user.profile.avatar;
-        document.getElementById("avatar").innerHTML = newImage.outerHTML;
-    }
 
     if(user.profile.private)
         $(".private-profile").checkbox('check');

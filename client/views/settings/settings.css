@@ -41,8 +41,8 @@
 }
 
 .form-masseges{
-    float:left;
-    width:100%;
+    width: 60%;
+    margin: 0 auto;
 }
 
 .profile-edit-buttons{

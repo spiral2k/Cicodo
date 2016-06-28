@@ -93,10 +93,12 @@ ul{
     border-radius: 2px;
     box-shadow: inset 0 0 0 1px #eee;
     background: #fff;
+    cursor: pointer;
 }
 
-
-
+.flex-users-box:hover{
+    background: #f7f5f5;
+}
 
 .flex-users-box img {
     float: left;
@@ -114,4 +116,5 @@ ul{
     background-color: #e8e8e8;
     padding: 0.5833em 0.833em;
     color: rgba(0, 0, 0, 0.6);
+    border-radius: 2px;
 }
