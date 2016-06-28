@@ -70,3 +70,8 @@ Meteor.publish("postCommentsLimit", function(postID, limit) {
 Meteor.publish("postCommentsNolimit", function(postID) {
     return Comments.find({postid: postID}, {sort:{date: -1}});
 });
+
+
+
+
+

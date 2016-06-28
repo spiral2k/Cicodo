@@ -27,6 +27,7 @@ Template.profile.onCreated(function() {
 
 Template.profile.onRendered(function(){
     var username = FlowRouter.getParam('username');
+    
     Template.instance().subscribe('getUserPostsByUsername', username, 5, function(){
         Tracker.afterFlush(function () {
                 $('#profile-cover-image').backgroundDraggable({bound: false, axis: 'y'});

@@ -1,0 +1,38 @@
+<template name="rightSidebar">
+
+    <div class="user-info-right">
+
+        <div class="user-info-right-bg" style="background-image:url({{currentUserData.profile.avatar}}); "></div>
+
+        <img class="user-info-right-image profileLink" src="{{currentUserData.profile.avatar}}">
+
+        <div class="user-info-right-username">
+            @{{currentUserData.username}}
+        </div>
+
+
+
+        <div class="user-info-right-stats">
+
+            <div class="user-info-field first">
+                <span class="numbers">{{postsCount}}</span>
+                <span class="headline">{{_ "posts"}}</span>
+            </div>
+
+            <div class="user-info-field">
+                <span class="numbers">{{followersCont}}</span>
+                <span class="headline">{{_ "followers"}}</span>
+            </div>
+
+            <div class="user-info-field">
+                <span class="numbers">{{followsCont}}</span>
+                <span class="headline">{{_ "following"}}</span>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+</template>

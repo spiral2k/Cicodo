@@ -7,11 +7,9 @@
 .inner-post-wrapper{
     float: right;
     width: calc(100% - 65px);
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgb(224, 227, 233);
-    border-radius: 3px;
-    background: rgb(255, 255, 255);
+    border-radius: 2px;
+    box-shadow: inset 0 0 0 1px #eee;
+    background: #fff;
 
 }
 

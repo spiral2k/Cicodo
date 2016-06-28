@@ -1,25 +1,24 @@
 <template name="leftSidebar">
 
+
     <div class="left-user-block">
         <img src="{{currentUserData.profile.avatar}}">
         <span>@{{currentUserData.username}}</span>
     </div>
 
+
     <div class="ui small middle aligned selection list">
-
-            <div class="item settingsLink">
-                <i class="settings icon"></i>
-                <div class="content">
-                    <div class="header">Edit Profile</div>
-                </div>
+        <div class="item settingsLink">
+            <i class="settings icon"></i>
+            <div class="content">
+                <div class="header">Edit Profile</div>
             </div>
-
+        </div>
         <div class="item MessagesLink">
             <i class="send icon"></i>
             <div class="content">
                 <div class="header">Messages</div>
             </div>
         </div>
-
     </div>
 </template>

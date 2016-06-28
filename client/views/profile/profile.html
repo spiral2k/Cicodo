@@ -130,21 +130,61 @@
                         {{/if}}
                     </div>
                 {{/if}}
+
+
+                <!--if its NOT the profile of the viewing user-->
+                {{#if currentUser}}
+                    {{#unless userProfile}}
+                        {{#if isUserFollowing}}
+                            <div class="user-profile-buttons">
+                                <button class="ui red button" id="unfollow-user">
+                                    <i class="user icon"></i>
+                                    {{_ "unfollow"}}
+                                </button>
+                            </div>
+                        {{else}}
+                            <div class="user-profile-buttons">
+                                <button class="ui green button" id="follow-user">
+                                    <i class="user icon"></i>
+                                    {{_ "follow"}}
+                                </button>
+                            </div>
+                        {{/if}}
+
+
+
+                        <a class="ui button top-buttons-sep" href="/messages/{{username}}">
+                            <i class="comment outline icon"></i>
+                            {{_ "message"}}
+                        </a>
+
+
+
+
+                    {{/unless}}
+                {{/if}}
+
+
+
             </div>
 
         {{! Top Profile functionalty ENDS}}
 
+
+
+        {{! Center Profile contents }}
+
         <div class="center-profile">
 
                 <div class="ui secondary pointing menu">
-                    <a class="profile-posts item active">
+                    <a class="profile-posts item active" style="line-height: 24px;">
                         {{_ "posts"}}
                     </a>
                     <a class="profile-following item">
-                        {{_ "following"}}
+                        {{_ "following"}} <span class="ui grey circular label">{{followingCount}}</span>
                     </a>
                     <a class="profile-followers item">
-                        {{_ "followers"}}
+                        {{_ "followers"}} <span class="ui grey circular label">{{followersCount}}</span>
                     </a>
                 </div>
 
@@ -169,67 +209,24 @@
                         {{/if}}
                     {{/if}}
 
-
-
-
                 </div>
 
             {{/if}}
 
-
-        {{#if currentIsFollowing}}
-            following list
-        {{/if}}
+            {{! Center Profile contents ENDS}}
 
 
+            {{#if currentIsFollowing}}
+                following list
+            {{/if}}
 
-        {{#if currentIsFollowers}}
-            followers list
-        {{/if}}
+
+
+            {{#if currentIsFollowers}}
+                followers list
+            {{/if}}
         </div>
 
-                    <h2 class="ui center profile-header">
-                        <!--if its the profile of the viewing user-->
-                    </h2>
-
-                    <!--if its NOT the profile of the viewing user-->
-                    {{#if currentUser}}
-                        {{#unless userProfile}}
-                            {{#if isUserFollowing}}
-                                <div class="user-profile-buttons">
-                                    <button class="ui red button" id="unfollow-user">
-                                        <i class="user icon"></i>
-                                        {{_ "unfollow"}}
-                                    </button>
-                                </div>
-                            {{else}}
-                                <div class="user-profile-buttons">
-                                    <button class="ui green button" id="follow-user">
-                                        <i class="user icon"></i>
-                                        {{_ "follow"}}
-                                    </button>
-                                </div>
-                            {{/if}}
-                        {{/unless}}
-                    {{/if}}
-
-                    <div class="ui center profile-header">
-                        <div class="seven wide column centered">
-
-
-                            <a class="ui label fireFollowersModal">
-                                {{_ "followers"}}
-                                <div class="detail">{{followersCount}}</div>
-                            </a>
-
-
-                            <a class="ui label fireFollowingModal">
-                                {{_ "following"}}
-                                <div class="detail">{{followingCount}}</div>
-                            </a>
-
-                        </div>
-                    </div>
     </div>
 
     {{/with}}

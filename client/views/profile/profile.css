@@ -39,11 +39,16 @@
 }
 
 .user-profile-buttons{
-    float: left;
+    float: right;
     text-align: center;
     margin: 0 0 20px 0;
-    width: 100%;
 }
+
+.top-buttons-sep{
+    float: right;
+    margin-right: 20px;
+}
+
 
 .about-me{
     font-size:12px;

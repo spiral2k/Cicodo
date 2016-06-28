@@ -110,8 +110,6 @@ Template.post.helpers({
     shared_post: function(){
         if(this.type === "share"){
             var post = Posts.find({_id: this.shared_post_id}).fetch();
-                console.log("post: ", post);
-
             return post[0];
         }
 
@@ -120,8 +118,6 @@ Template.post.helpers({
         return Meteor.userId() === this.createdBy;
     },
     userSharedPost:function(){
-
-        console.log("post: ", this)
 
         if(this.type === 'regular') {
             var shared_posts = Meteor.user().profile.posts_events.shared_posts;
