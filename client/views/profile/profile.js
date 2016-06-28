@@ -195,6 +195,8 @@ Template.profile.helpers({
                 username: username
             }) || {};
 
+        console.log("userData.profile.follow.length ", userData.profile.follow.length)
+
         if(typeof userData.follow !== "undefined" || !_.isEmpty(userData))
             return userData.profile.follow.length;
         else return 0
@@ -243,22 +245,18 @@ Template.profile.helpers({
         if(Session.get("profileCurrentPage") === "posts"){
             return true
         }
-
         return false;
-
     },
     currentIsFollowing: function(){
         if(Session.get("profileCurrentPage") === "following"){
             return true
         }
-
         return false;
     },
     currentIsFollowers: function(){
         if(Session.get("profileCurrentPage") === "followers"){
             return true
         }
-
         return false;
     },
     photoEdit: function(){
@@ -278,7 +276,6 @@ Template.profile.helpers({
             if(Posts.find({createdBy: user._id}).count() === 0){
                 return 'noPostsToLoad';
             }
-
             return false
         }
     }

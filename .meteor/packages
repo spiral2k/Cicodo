@@ -28,10 +28,7 @@ flemay:less-autoprefixer
 kadira:blaze-layout
 standard-minifier-css
 standard-minifier-js
-mizzao:user-status
 meteortoys:allthings
 ostrio:meteor-root
 kadira:flow-router@=2.11.0
 reactive-var
-grmmph:meteor-drag-event
-kadira:debug

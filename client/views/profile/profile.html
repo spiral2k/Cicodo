@@ -233,6 +233,14 @@
                             <span>@{{username}}</span>
                         </div>
                     {{/each}}
+
+
+                    {{#unless followingCount}}
+                        <div class="ui big label noDataFollowingProfile">
+                            {{_ "noData"}}
+                        </div>
+                    {{/unless}}
+
                 </div>
             {{/if}}
 
@@ -244,6 +252,13 @@
                             <span>@{{username}}</span>
                         </div>
                     {{/each}}
+
+                    {{#unless followersCount}}
+                        <div class="ui big label noDataFollowingProfile">
+                            {{_ "noData"}}
+                        </div>
+                    {{/unless}}
+
                 </div>
             {{/if}}
 
