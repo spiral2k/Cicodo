@@ -1,8 +1,7 @@
 <template name="messages">
     <div class="messages-main">
-        <div class="ui container messages-top-from-navbar">
-            <div class="ui grid ">
-                <div class="four wide column">
+        <div class="messages-container messages-top-from-navbar">
+                <div class="messages-users-list">
                     <div class="messages-sidebar">
 
                         <div class="top-messages-search">
@@ -12,7 +11,7 @@
                     {{#each usernames}}
                         <div class="messages-sidebar-user {{#if currentMessageUser}} selected {{/if}}">
                             <img src="{{profile.avatar}}">
-                            <span class="user-status-messages {{#if status.online}} online {{/if}}"></span>
+                            <!--<span class="user-status-messages {{!#if status.online}} online {{!/if}}"></span>-->
                             <span class="username-sidebar">{{username}}</span>
                             <span class="last-message-sidebar">{{lastMessageByID _id}}</span>
                             <span class="last-message-date-sidebar">{{lastMessageTimeByID _id}}</span>
@@ -21,7 +20,7 @@
                     </div>
                 </div>
 
-                <div class="twelve wide column messages-view" style="height: 100vh;">
+                <div class="messages-messages-view">
                     {{#if isMainMessages}}
                         {{#unless no_users}}
 
@@ -43,7 +42,6 @@
                     {{>footer}}
                 </div>
 
-            </div>
         </div>
     </div>
 

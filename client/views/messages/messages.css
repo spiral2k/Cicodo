@@ -4,14 +4,24 @@
     bottom: 0;
     left:0;
     right:0;
-    background: linear-gradient(
-            to right,
-            #2B323A 0%,
-            #2B323A 34.9%,
-            #EAEDF2 34.9%,
-            #EAEDF2 100% );
+    /*background: linear-gradient(*/
+            /*to right,*/
+            /*#2B323A 0%,*/
+            /*#2B323A 34.9%,*/
+            /*#EAEDF2 34.9%,*/
+            /*#EAEDF2 100% );*/
+
+    /*background: linear-gradient( to right, #2B323A 0%, #2B323A 31.9%, #EAEDF2 31.9%, #EAEDF2 100% );*/
+
+    background-image: url("/images/general/messages-bg.png");
+    background-position: top center;
+
+}
 
 
+.messages-container{
+    margin:0 auto;
+    width:1127px;
 }
 
 .user-status-messages{
@@ -27,6 +37,19 @@
 .messages-top-from-navbar{
     margin-top: 45px;
 }
+
+.messages-users-list{
+    float:left;
+    width:280px;
+}
+
+
+.messages-messages-view {
+    float:right;
+    width: 830px;
+    height: 100vh;
+}
+
 .messages-sidebar{
     float:left;
     width:100%;
