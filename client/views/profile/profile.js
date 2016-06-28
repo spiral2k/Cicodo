@@ -14,26 +14,51 @@ Template.profile.onCreated(function() {
 
     var self = this;
 
-        //////////////////////////////////////////////////////////////////////
-        // Get information about the user that the profile belong to him
-        //////////////////////////////////////////////////////////////////////
-        var username = FlowRouter.getParam('username');
-        self.subscribe('getUserProfileDataByUsername', username);
-        self.subscribe('getUserPostsByUsername', username, Session.get("postsLoadLimit"));
+    //////////////////////////////////////////////////////////////////////
+    // Get information about the user that the profile belong to him
+    //////////////////////////////////////////////////////////////////////
+    var username = FlowRouter.getParam('username');
+    self.subscribe('getUserProfileDataByUsername', username);
+    self.subscribe('getUserPostsByUsername', username, Session.get("postsLoadLimit"));
 
 
 });
 
 
 Template.profile.onRendered(function(){
+
+
+    Session.set("profileEdit", false);
+    Session.set("coverEdit", false);
+    Session.set("CoverImageBase64", false);
+    Session.set("CoverPosition", false);
+    Session.set("photoEdit", false);
+    Session.set("profileCurrentPage", "posts");
+    Session.set("coverPositionEdit", false);
+    Session.set("postsLimit", 5);
+    Session.set("postsLoadLimit", 10);
+
+
+    var self = this;
+
+    //////////////////////////////////////////////////////////////////////
+    // Get information about the user that the profile belong to him
+    //////////////////////////////////////////////////////////////////////
     var username = FlowRouter.getParam('username');
-    
+    self.subscribe('getUserProfileDataByUsername', username);
+    self.subscribe('getUserPostsByUsername', username, Session.get("postsLoadLimit"));
+
+
+
+
+
+
+
     Template.instance().subscribe('getUserPostsByUsername', username, 5, function(){
         Tracker.afterFlush(function () {
                 $('#profile-cover-image').backgroundDraggable({bound: false, axis: 'y'});
         });
     });
-
 
     $("body").on('change','#CoverUpload' , function(){
 
@@ -55,7 +80,6 @@ Template.profile.onRendered(function(){
         }
 
     });
-
 
     $("body").on('change','#avatarUpload' , function(){
 
@@ -85,9 +109,6 @@ Template.profile.onRendered(function(){
 
     });
 
-
-
-
 });
 
 Template.profile.helpers({
@@ -98,13 +119,14 @@ Template.profile.helpers({
         userData = Meteor.users.findOne({
                 username: username
             }) || {};
+
         // Followers
         if(userData.profile.followers)
-            Meteor.subscribe('usersListByID', userData.profile.followers);
+            Meteor.subscribe('BasicUsersListByID', userData.profile.followers);
 
         // Following
         if(userData.profile.follow)
-            Meteor.subscribe('usersListByID', userData.profile.follow);
+            Meteor.subscribe('BasicUsersListByID', userData.profile.follow);
 
         if( _.isEmpty(userData)){
             FlowRouter.go('/404')
@@ -247,7 +269,7 @@ Template.profile.helpers({
     },
     postsCount: function(){
         //check if need to show 'Load more posts' OR 'no more posts' OR 'no posts at all'.
-        if(Posts.find().count() > Session.get('postsLimit')){
+        if(Posts.find({createdBy: Meteor.userId()}).count() > Session.get('postsLimit')){
             return 'hasPosts'
         }else{
             var username = FlowRouter.getParam('username');
@@ -353,6 +375,31 @@ Template.profile.events({
         Session.set('postsLoadLimit', Session.get('postsLoadLimit') + MAIN_POSTS_INCRESE_LOAD_LIMIT);
         Session.set('postsLimit', Session.get('postsLimit') + MAIN_POSTS_INCRESE_LOAD_LIMIT);
 
+    },
+    'click .flex-users-box': function(){
+
+        $('.profile-following').removeClass('active');
+        $('.profile-followers').removeClass('active');
+        $('.profile-posts').addClass('active');
+        Session.set("profileCurrentPage", "posts");
+        FlowRouter.go('/@/'+this.username);
+
+
+
+        Session.set("profileEdit", false);
+        Session.set("coverEdit", false);
+        Session.set("CoverImageBase64", false);
+        Session.set("CoverPosition", false);
+        Session.set("photoEdit", false);
+        Session.set("profileCurrentPage", "posts");
+        Session.set("coverPositionEdit", false);
+        Session.set("postsLimit", 5);
+        Session.set("postsLoadLimit", 10);
+
+        Meteor.subscribe('getUserProfileDataByUsername', this.username);
+        Meteor.subscribe('getUserPostsByUsername', this.username, Session.get("postsLoadLimit"));
+
+        console.log(this)
     }
 
 });

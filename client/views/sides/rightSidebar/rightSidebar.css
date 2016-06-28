@@ -11,7 +11,7 @@
     position: relative;
     background-size: cover;
     width: 100%;
-    height: 150px;
+    height: 125px;
 }
 
 
@@ -24,7 +24,7 @@
     bottom: 0;
     left: 0;
     display: block;
-    background: rgba(44,44,44,.9);
+    background: rgba(255, 255, 255,.7);
     width: 100%;
     height: 100%;
 }
@@ -34,10 +34,10 @@
 
 .user-info-right-image{
     position: relative;
-    margin-left: 82px;
+    margin-left: 95px;
     margin-top: -50px;
-    width:100px;
-    height:100px;
+    width:70px;
+    height:70px;
     border-radius: 2px;
 }
 
@@ -52,7 +52,7 @@
 
 .user-info-field{
     float: left;
-    min-width:23%;
+    min-width:30%;
 }
 
 .user-info-field.first{
@@ -86,8 +86,8 @@
     width:100%;
     text-align: center;
     color: #231f20;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
     line-height: normal;
-    padding: 10px 0;
+    padding: 5px 0 0px 0;
 }

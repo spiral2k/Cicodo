@@ -190,6 +190,15 @@
 
             {{#if currentIsPosts}}
                 <div class="profile-posts-wrap">
+
+                    {{#if currentUser}}
+                        {{#if userProfile}}
+                            <div class="profile-post-insert">
+                                {{>postInsert}}
+                            </div>
+                        {{/if}}
+                    {{/if}}
+
                     {{#each posts}}
                         {{>post}}
                     {{/each}}
@@ -217,14 +226,27 @@
 
 
             {{#if currentIsFollowing}}
-                following list
+                <div class="container-flex-list">
+                    {{#each followsData}}
+                        <div class="flex-users-box">
+                            <img src="{{profile.avatar}}">
+                            <span>@{{username}}</span>
+                        </div>
+                    {{/each}}
+                </div>
             {{/if}}
-
-
 
             {{#if currentIsFollowers}}
-                followers list
+                <div class="container-flex-list">
+                    {{#each followersData}}
+                        <div class="flex-users-box">
+                            <img src="{{profile.avatar}}">
+                            <span>@{{username}}</span>
+                        </div>
+                    {{/each}}
+                </div>
             {{/if}}
+
         </div>
 
     </div>

@@ -54,9 +54,6 @@
     font-size:12px;
 }
 
-
-
-
 .user-status {
     position: absolute;
     top: -5px;
@@ -250,4 +247,10 @@
 
 #CoverUpload,#avatarUpload {
     display:none;
+}
+
+.profile-post-insert{
+    float:left;
+    width:100%;
+    margin-bottom:15px;
 }

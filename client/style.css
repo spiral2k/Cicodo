@@ -80,3 +80,38 @@ ul{
     background:url("/images/general/opacity.png") repeat;
 }
 
+.container-flex-list{
+    flex-wrap: wrap;
+    display: flex;
+}
+
+.flex-users-box{
+    width: 125px;
+    height: 100px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    border-radius: 2px;
+    box-shadow: inset 0 0 0 1px #eee;
+    background: #fff;
+}
+
+
+
+
+.flex-users-box img {
+    float: left;
+    margin-left: 37px;
+    margin-top: 10px;
+    width: 50px;
+    height: 50px;
+}
+
+.flex-users-box span {
+    float:left;
+    width:100%;
+    text-align: center;
+    margin-top:10px;
+    background-color: #e8e8e8;
+    padding: 0.5833em 0.833em;
+    color: rgba(0, 0, 0, 0.6);
+}

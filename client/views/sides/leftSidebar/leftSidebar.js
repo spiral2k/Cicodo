@@ -1,9 +1,4 @@
-Template.leftSidebar.helpers({
-   currentUserData: function(){
-       if(Meteor.user())
-            return Meteor.user();
-   }
-});
+
 
 
 Template.leftSidebar.events({
