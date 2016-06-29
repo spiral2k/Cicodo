@@ -24,37 +24,42 @@
         <div class="notification navbar-messages-notification">{{hasNewMessages}}</div>
         {{/if}}
 
-            <div class="menu messages-panel-width">
-                {{#if messages}}
-                    {{#each messages}}
+            <div class="menu">
+                <div class="messages-panel-width">
+                    {{#if messages}}
+                        {{#each messages}}
 
-                            <div class="item messagesUserItem">
-                                <img class="messages-panel-avatar" src="{{avatarFromId user_message_id}}">
-                                <div class="content">
-                                    <div class="header">{{usernameFromId user_message_id}}</div>
-                                    <span class="prev-message-text">{{messagesShortPreview last_message}}</span>
-                                    {{#if newMessages}}
-                                    <span class="new-messages">{{newMessages}}</span>
-                                    {{/if}}
+                                <div class="item messagesUserItem">
+                                    <img class="messages-panel-avatar" src="{{avatarFromId user_message_id}}">
+                                    <div class="content">
+                                        <div class="header">{{usernameFromId user_message_id}}</div>
+                                        <span class="prev-message-text">{{messagesShortPreview last_message}}</span>
+                                        {{#if newMessages}}
+                                        <span class="new-messages">{{newMessages}}</span>
+                                        {{/if}}
 
+                                    </div>
                                 </div>
-                            </div>
 
-                    {{/each}}
+                        {{/each}}
+                    {{/if}}
+
+                    {{#unless messages}}
+                    <div class="item" style="text-align: center;">
+
+                        <span class="no-messages">
+                            <i class="big send outline icon"></i>
+                            <span>{{_ "noMessages"}}</span>
+                        </span>
+                    </div>
+                    {{/unless}}
+
+                </div>
+                {{#if messages}}
                     <div class="item allMessages">
                         {{_ "viewAllMessages"}}
                     </div>
                 {{/if}}
-
-                {{#unless messages}}
-                <div class="item" style="text-align: center;">
-
-                    <span class="no-messages">
-                        <i class="big send outline icon"></i>
-                        <span>{{_ "noMessages"}}</span>
-                    </span>
-                </div>
-                {{/unless}}
 
             </div>
 
@@ -63,7 +68,7 @@
 
     <div class="ui top right pointing dropdown notifications-dropdown">
         <div class="navbar-dropdown-header">
-            <i class="ui-font-color alarm icon"></i>
+            <i class="ui-font-color alarm alarm-topbar-only icon"></i>
             {{#if hasNewNotifications}}
                 <div class="notification navbar-messages-notification">{{hasNewNotifications}}</div>
             {{/if}}
@@ -71,8 +76,11 @@
         </div>
 
 
-        <div class="menu notification-navbar-view">
+        <div class="menu">
 
+            <div class="notification-navbar-view">
+
+            {{#if notifications}}
             {{#each notifications}}
                 <span class="item notification-item">
                     {{#if $eq type "like"}}
@@ -103,7 +111,20 @@
                 </span>
             {{/each}}
 
+            {{else}}
 
+            <span class="item notification-item">
+                <span class="no-notifications">
+                    <i class="check circle outline icon"></i>
+                    <span>{{_ "noNotifications"}}</span>
+                </span>
+            </span>
+
+
+            {{/if}}
+
+
+        </div>
         </div>
 
     </div>

@@ -19,7 +19,7 @@
     left: -60px !important;
 }
 
-.notifications-dropdown .alarm.icon{
+.notifications-dropdown .alarm-topbar-only.icon{
     font-size: 20px;
     transform: rotate(15deg);
 }
@@ -27,6 +27,11 @@
 .notifications-dropdown{
     position: relative;
     margin: 21px 0px 0px 0px;
+}
+
+
+.notifications-dropdown .navbar-messages-notification{
+    top:-10px;
 }
 
 .notification-navbar-view{
@@ -41,15 +46,19 @@
     float: left;
     width: 100%;
     border-bottom: 1px solid #f2f2f2 !important;
+    padding: 0.71428571rem 1.14285714rem !important;
+    cursor: pointer;
 }
 
 .notification-item img{
     width:40px !important;
     height:40px !important;
+    max-height:40px !important;
     -webkit-border-radius:40px !important;
     -moz-border-radius:40px !important;
     border-radius:40px !important;
     float: left !important;
+    margin-right: 10px;
 }
 
 
@@ -62,13 +71,28 @@
     text-decoration: underline;
 }
 
+.no-notifications{
+    float:left;
+    width:100%;
+    text-align: center;
+    padding: 10px 0 10px 0;
+}
 
+.no-notifications span{
+    float:left;
+    width:100%;
+}
+
+.no-notifications i{
+    margin-bottom: 10px;
+    font-size: 40px !important;
+    line-height: 40px;
+}
 
 
 .notification-time{
     float: left;
     font-size: 11px;
-    padding-top: 5px;
 }
 
 .new-notification{
@@ -93,14 +117,16 @@
 }
 
 .messages-panel-width{
-
     min-width: 400px !important;
     max-width: 400px !important;
+    max-height: 300px;
+    overflow: auto;
 }
 
 .messages-panel-avatar{
     width:40px !important;
     height:40px !important;
+    max-height:40px !important;
     -webkit-border-radius:40px !important;
     -moz-border-radius:40px !important;
     border-radius:40px !important;
@@ -110,6 +136,7 @@
 .messagesUserItem .content{
     float:right;
     width: calc(100% - 50px);
+
 }
 
 .messagesUserItem .content .prev-message-text, .messagesUserItem .content div {
@@ -130,8 +157,11 @@
 
 .messagesUserItem{
     float: left;
+    position: relative;
     width: 100%;
     border-bottom: 1px solid #f2f2f2 !important;
+    padding: 0.71428571rem 1.14285714rem !important;
+    cursor: pointer;
 }
 
 .messagesUserItem:hover{
@@ -147,11 +177,11 @@
     width: auto !important;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
-    border-radius: 10px;
+    border-radius: 50px;
     color: #fff;
-    /* padding: 5px; */
-    width: 15px !important;
-    padding: 1px 0;
+    min-width: 15px !important;
+    height: 15px;
+    line-height: 15px;
     text-align: center;
 }
 
@@ -185,7 +215,8 @@
 
 
 
-.notification-navbar-view::-webkit-scrollbar {
+
+.notification-navbar-view::-webkit-scrollbar, .messages-panel-width::-webkit-scrollbar {
     width: 12px;
 }
 
@@ -193,6 +224,6 @@
 
 }
 
-.notification-navbar-view::-webkit-scrollbar-thumb {
+.notification-navbar-view::-webkit-scrollbar-thumb, .messages-panel-width::-webkit-scrollbar-thumb {
     background: #cfcfcf;
 }
