@@ -1,7 +1,11 @@
 <template name="main">
-    {{#if currentUser}}
-        {{>mainUser}}
+    {{#if loggingIn}}
+        {{> loader}}
     {{else}}
-        {{>mainGuest}}
+        {{#if currentUser}}
+            {{>mainUser}}
+        {{else}}
+            {{>mainGuest}}
+        {{/if}}
     {{/if}}
 </template>

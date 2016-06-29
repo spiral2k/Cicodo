@@ -133,7 +133,6 @@ Template.post.helpers({
     },
     ifThisIsUserSharePost: function(){
 
-
         if(this.type === 'share') {
             var shared_posts = Meteor.user().profile.posts_events.shared_posts;
             for ( var i = 0; i < shared_posts.length; i++ ) {
