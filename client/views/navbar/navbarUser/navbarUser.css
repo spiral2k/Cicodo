@@ -150,11 +150,6 @@
 }
 
 
-.messagesUserItem .prev-message-text{
-    margin-top:4px;
-}
-
-
 .messagesUserItem{
     float: left;
     position: relative;
@@ -171,7 +166,7 @@
 .new-messages{
     position: absolute;
     right: 20px;
-    top: 16px;
+    top: 20px;
     font-size: 10px;
     background: #0084FF;
     width: auto !important;
@@ -188,6 +183,12 @@
 .allMessages{
     float:left;
     width:100%;
+    border-top: 1px solid #f2f2f2 !important;
+}
+
+
+.allMessages:hover {
+    background: #f9f9f9 !important;
 }
 
 .no-messages{
@@ -217,11 +218,11 @@
 
 
 .notification-navbar-view::-webkit-scrollbar, .messages-panel-width::-webkit-scrollbar {
-    width: 12px;
+    width: 8px;
 }
 
-.notification-navbar-view::-webkit-scrollbar-track {
-
+.notification-navbar-view::-webkit-scrollbar-track, .messages-panel-width::-webkit-scrollbar-track {
+    background: #f1f1f1;
 }
 
 .notification-navbar-view::-webkit-scrollbar-thumb, .messages-panel-width::-webkit-scrollbar-thumb {
