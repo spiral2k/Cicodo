@@ -63,7 +63,6 @@
                     {{else}}
 
                             {{! REGULAR POST}}
-
                             {{postContentParse content}}
                     {{/if}}
 
@@ -92,6 +91,16 @@
                         </div>
 
                 {{/if}}
+
+            </div>
+
+            <div class="post-states">
+                {{postLikes}} {{_ "likes"}}
+
+
+                    , {{postShares}} {{_ "shares"}}
+
+
             </div>
 
             {{! POST BUTTONS}}

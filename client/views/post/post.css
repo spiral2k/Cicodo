@@ -96,7 +96,7 @@
     float: left;
     width: 100%;
     padding: 12px 0 12px 15px;
-    margin-top: 15px;
+    margin-top: 5px;
     border-top: 1px solid #E6E6E6;
     border-bottom: 1px solid #E6E6E6;
     color:#888;
@@ -111,6 +111,8 @@
 .post-states{
     float:left;
     width:100%;
+    color:#bfbfbf;
+    text-indent: 15px;
 }
 
 .like-button:hover{
@@ -172,4 +174,3 @@
     background: #F8F8F8;
     box-shadow: 0px 0px 2px 0px rgba(152, 152, 152, 0.2);
 }
-

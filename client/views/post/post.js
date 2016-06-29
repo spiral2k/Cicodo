@@ -146,5 +146,19 @@ Template.post.helpers({
 
         return false;
 
+    },
+    postLikes:function(){
+
+        return this.likes;
+    },
+    postShares: function(){
+
+        if(this.type === "share"){
+            var post = Posts.findOne({_id: this.shared_post_id});
+            return post.shares;
+        }
+
+
+        return this.shares;       
     }
 });
