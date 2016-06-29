@@ -18,7 +18,7 @@ Template.profile.onCreated(function() {
     // Get information about the user that the profile belong to him
     //////////////////////////////////////////////////////////////////////
     var username = FlowRouter.getParam('username');
-    self.subscribe('getUserProfileDataByUsername', username);
+    Meteor.subscribe('getUserProfileDataByUsername', username);
     self.subscribe('getUserPostsByUsername', username, Session.get("postsLoadLimit"));
 
 
@@ -45,7 +45,7 @@ Template.profile.onRendered(function(){
     // Get information about the user that the profile belong to him
     //////////////////////////////////////////////////////////////////////
     var username = FlowRouter.getParam('username');
-    self.subscribe('getUserProfileDataByUsername', username);
+    Meteor.subscribe('getUserProfileDataByUsername', username);
     self.subscribe('getUserPostsByUsername', username, Session.get("postsLoadLimit"));
 
 
@@ -184,9 +184,13 @@ Template.profile.helpers({
                 username: username
             }) || {};
 
-        if(userData.followers || !_.isEmpty(userData))
-            return userData.profile.followers.length;
+        if(!_.isEmpty(userData)) {
+            if (typeof userData.profile.followers != "undefined")
+                return userData.profile.followers.length;
+            else return 0
+        }
         else return 0
+
     },
     followingCount: function(){
 
@@ -194,11 +198,11 @@ Template.profile.helpers({
         var userData = Meteor.users.findOne({
                 username: username
             }) || {};
-
-        console.log("userData.profile.follow.length ", userData.profile.follow.length)
-
-        if(typeof userData.follow !== "undefined" || !_.isEmpty(userData))
-            return userData.profile.follow.length;
+        if(!_.isEmpty(userData)) {
+            if (typeof userData.profile.follow != "undefined")
+                return userData.profile.follow.length;
+            else return 0
+        }
         else return 0
     },
     followersData: function(){
