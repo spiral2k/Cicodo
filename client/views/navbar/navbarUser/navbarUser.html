@@ -83,31 +83,61 @@
             {{#if notifications}}
             {{#each notifications}}
                 <span class="item notification-item">
-                    {{#if $eq type "like"}}
 
-                        <img src="{{getUserAvatarByID fromUser}}">
+                    <img src="{{getUserAvatarByID fromUser}}">
 
-                        <div class="content">
+                    <div class="content">
+                        {{#if $eq type "like"}}
+                                <div class="header">
+                                    <a href="/@/{{getUsernameByID fromUser}}">
+                                        @{{getUsernameByID fromUser}}
+                                    </a>
+                                    {{_ "likedYour"}}
+                                    <a href="/@/{{usernameFromId toUser}}/{{postID}}">
+                                        {{_ "post"}}
+                                    </a>
+                                </div>
+
+                        {{/if}}
+
+
+                        {{#if $eq type "follow"}}
                             <div class="header">
-                                <a href="/@/{{getUsernameByID fromUser}}">
-                                    @{{getUsernameByID fromUser}}
-                                </a>
-                                {{_ "likedYour"}}
+                                      <a href="/@/{{getUsernameByID fromUser}}">
+                                        @{{getUsernameByID fromUser}}
+                                    </a>
+
+                                {{_ "followYou"}}
+                            </div>
+                        {{/if}}
+
+
+                        {{#if $eq type "share"}}
+                            <div class="header">
+                                      <a href="/@/{{getUsernameByID fromUser}}">
+                                        @{{getUsernameByID fromUser}}
+                                    </a>
+
+                                {{_ "sharedYour"}}
+
                                 <a href="/@/{{usernameFromId toUser}}/{{postID}}">
                                     {{_ "post"}}
                                 </a>
                             </div>
+                        {{/if}}
 
-                            <span class="notification-time">
-                                <i class="wait icon"></i> {{contentTime createdAt}}
-                            </span>
 
-                            {{#if new}}
+
+
+                        <span class="notification-time">
+                            <i class="wait icon"></i> {{contentTime createdAt}}
+                        </span>
+
+                        {{#if new}}
                             <span class="new-notification"></span>
-                            {{/if}}
-                        </div>
+                        {{/if}}
 
-                    {{/if}}
+                     </div>
                 </span>
             {{/each}}
 

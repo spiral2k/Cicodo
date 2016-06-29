@@ -30,6 +30,7 @@ Template.post.events({
     },
     'click .share-button':function() {
         if (this.type === "share") {
+
             Meteor.call("sharePost", this.shared_post_id, function (error, result) {
                 if (error) {
                     alert('Error');
@@ -37,8 +38,10 @@ Template.post.events({
                     Session.set('mainPostsLoadLimit', Session.get('mainPostsLoadLimit') + 1);
                 }
             });
+
         } else {
-            Meteor.call("sharePost", this._id, function (error, result) {
+
+            Meteor.call("sharePost", this._id, this.createdBy, function (error, result) {
                 if (error) {
                     alert('Error');
                 } else {
@@ -101,8 +104,12 @@ Template.post.helpers({
     },
     // IF POST IS OF TYPE SHARED
     is_shared_post: function(){
+
+        console.log("shared: ", this);
+
         if(this.type === "share"){
             Meteor.subscribe("getOnePostById", this.shared_post_id);
+            Meteor.subscribe("getUserBasicDataByPostID", this.shared_post_id);
             return true;
         }
         return false;
@@ -154,9 +161,11 @@ Template.post.helpers({
 
         if(this.type === "share"){
             var post = Posts.findOne({_id: this.shared_post_id});
-            return post.shares;
+            if(post)
+                return post.shares;
+            else
+                return this.shares;
         }
-
 
         return this.shares;       
     }

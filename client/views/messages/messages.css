@@ -14,6 +14,7 @@
     /*background: linear-gradient( to right, #2B323A 0%, #2B323A 31.9%, #EAEDF2 31.9%, #EAEDF2 100% );*/
 
     background-image: url("/images/general/messages-bg.png");
+    background-repeat: repeat-y;
     background-position: top center;
 
 }

@@ -83,6 +83,14 @@ Meteor.publish("userNotifications", function(limit) {
     return Notifications.find({toUser: this.userId}, {sort:{createdAt: -1}, limit:limit});
 });
 
+Meteor.publish("getUserBasicDataByPostID", function(postID) {
+
+    var post = Posts.findOne({_id: postID});
+
+    var user = Meteor.users.find({_id: post.createdBy}, {fields: {'username': 1, 'profile.avatar': 1}});
+
+    return user;
+});
 
 
 

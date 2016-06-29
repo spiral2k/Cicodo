@@ -42,3 +42,8 @@
     width: calc(100% - 45px);
     padding: 4px 0;
 }
+
+.reset-comments:hover, .more-comments:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}

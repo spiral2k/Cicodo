@@ -40,6 +40,8 @@
   "unfollow": "Unfollow",
   "followers": "Followers",
   "following": "Following",
+  "followYou": "Started following you",
+  "sharedYour": "sharedYour",
   "close": "Close",
   "accountSettings": "Account Settings",
   "accountSettingsText": "Manage your account settings and set e-mail preferences.",
@@ -71,5 +73,5 @@
   "finishEditing": "Finish editing",
   "language": "Language",
   "english": "English",
-  "franch": "Franch"
+  "hebrew": "עברית"
 }
