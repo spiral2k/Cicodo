@@ -165,9 +165,9 @@
 
 .new-messages{
     position: absolute;
-    right: 20px;
+    right: 15px;
     top: 20px;
-    font-size: 10px;
+    font-size: 8px;
     background: #0084FF;
     width: auto !important;
     -webkit-border-radius: 10px;

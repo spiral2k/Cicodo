@@ -15,6 +15,9 @@
                             <span class="username-sidebar">{{username}}</span>
                             <span class="last-message-sidebar">{{lastMessageByID _id}}</span>
                             <span class="last-message-date-sidebar">{{lastMessageTimeByID _id}}</span>
+                            {{#if newMessages}}
+                                <span class="new-messages">{{newMessages}}</span>
+                            {{/if}}
                         </div>
                     {{/each}}
                     </div>

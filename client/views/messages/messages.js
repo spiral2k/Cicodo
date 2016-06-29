@@ -86,7 +86,6 @@ Template.messages.helpers({
         if(Meteor.user()){
             var open_messages = Meteor.user().profile.open_messages;
 
-
             if(open_messages.length > 0)
                 return false;
             else
@@ -99,6 +98,24 @@ Template.messages.helpers({
             return true;
         }
         return false;
+    },
+    newMessages:function(){
+
+            console.log("fwefew ", this);
+
+        var messages = Meteor.user().profile.messages;
+
+        for(var i = 0; i < messages.length; i++){
+            if(messages[i].user_message_id === this._id){
+                if(messages[i].new_messages > 0) {
+                    return messages[i].new_messages;
+                }
+                else
+                    return false;
+            }
+
+        }
+        
     }
 });
 
@@ -106,8 +123,11 @@ Template.messages.helpers({
 Template.messages.events({
     'click .messages-sidebar-user': function(){
         Session.set("messageUserName", this.username);
-
         FlowRouter.go('/messages/' + this.username);
+
+        Meteor.call("resetNewMessagesInMessage", this.username);
+        Meteor.call("updateUserMessagesPath", this.username);
+
         return true;
     },
     'keyup #user-messages-search': function(e){

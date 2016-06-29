@@ -29,9 +29,8 @@ Template.messagesView.onRendered(function(){
 
     if(document.getElementById("messages-view-warp"))
         document.getElementById("messages-view-warp").scrollTop = document.getElementById("messages-view-warp").scrollHeight;
-
-
-
+    
+    
     if(FlowRouter.getParam('username') && Meteor.user()) {
         Meteor.call("resetNewMessagesInMessage", Session.get("messageUserName"));
         Meteor.call("updateUserMessagesPath", Session.get("messageUserName"));
