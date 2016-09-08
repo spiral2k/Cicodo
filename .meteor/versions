@@ -78,6 +78,7 @@ mongo@1.1.9_1
 mongo-id@1.0.5
 msavin:jetsetter@1.5.2
 msavin:mongol@1.6.2
+newswim:particles@2.0.0
 npm-bcrypt@0.8.7
 npm-mongo@1.4.44_1
 observe-sequence@1.0.12
