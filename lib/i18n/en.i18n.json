@@ -74,5 +74,9 @@
   "language": "Language",
   "english": "English",
   "hebrew": "עברית",
-  "main_guest_text": "Real Time Social Network"
+  "main_guest_text": "Real Time Social Network",
+  "hi": "Hi",
+  "whatOnYourMind":"what's on your mind?",
+  "noMessagesYet": "You have no messages yet",
+  "selectConv": "Select conversation from the list."
 }

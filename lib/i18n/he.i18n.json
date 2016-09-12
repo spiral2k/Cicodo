@@ -74,5 +74,9 @@
   "language": "שפה",
   "english": "English",
   "hebrew": "עברית",
-  "main_guest_text": "רשת חברתית בזמן אמת"
+  "main_guest_text": "רשת חברתית בזמן אמת",
+  "hi": "שלום",
+  "whatOnYourMind":"על מה אתה חושב?",
+  "noMessagesYet": "אין הודעות להצגה",
+  "selectConv": "בחר שיחה על מנת להציגה"
 }
