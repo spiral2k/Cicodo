@@ -32,39 +32,43 @@ Template.profileEdit.events({
     'submit form': function(event, template){
         event.preventDefault();
 
-        $('.save-settings').addClass('loading');
+        if(Meteor.user()){
 
-        var privateProfile = Session.get('private-profile');
+            $('.save-settings').addClass('loading');
 
-        if(privateProfile === 'true'){
-            privateProfile = true;
-        }else{
-            privateProfile = false;
+            var privateProfile = Session.get('private-profile');
+
+            if(privateProfile === 'true'){
+                privateProfile = true;
+            }else{
+                privateProfile = false;
+            }
+
+            var aboutMe = template.find('#about-me').value;
+
+            var firstName = template.find('#first-name').value;
+
+            var lastName = template.find('#last-name').value;
+
+            // here the result is Array -- Letapel acharkach
+            var feedType = $('#feedType').dropdown('get value');
+
+            // here the result is Array -- Letapel acharkach
+
+            var language = $('#language').dropdown('get value');
+
+            Meteor.call('updateProfile', aboutMe, privateProfile, firstName, lastName, feedType[0], language[0], function(error, result){
+                if(error){
+                    console.log("ERROR: Cant save profile setting!");
+                    return;
+                }   $('.save-settings').removeClass('loading');
+                    Session.set('formSuccess', "saved!");
+                    $('.success').show();
+            });
+
+
         }
 
-        var aboutMe = template.find('#about-me').value;
-
-        var firstName = template.find('#first-name').value;
-
-        var lastName = template.find('#last-name').value;
-
-        // here the result is Array -- Letapel acharkach
-        var feedType = $('#feedType').dropdown('get value');
-
-        // here the result is Array -- Letapel acharkach
-
-        var language = $('#language').dropdown('get value');
-
-
-
-        Meteor.call('updateProfile', aboutMe, privateProfile, firstName, lastName, feedType[0], language[0], function(error, result){
-            if(error){
-                console.log("ERROR: Cant save profile setting!");
-                return;
-            }   $('.save-settings').removeClass('loading');
-                Session.set('formSuccess', "saved!");
-                $('.success').show();
-        });
     },
     'click #discard-changes': function(){
         setTemplateValue();

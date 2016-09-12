@@ -1,0 +1,21 @@
+<template name="topGuestNavbar">
+
+        <nav class="navbar-top">
+            <div class="navbar-container">
+            <a href="/">
+                <div class="logo-top-main">
+                    <span>C</span>
+                </div>
+            </a>
+
+            {{>navbarSearch}}
+
+	        <div class="navbar-links">
+	            <a href="/login" class="tiny ui inverted button">{{_ "login"}}</a>
+                <a href="/register" class="tiny ui inverted button">{{_ "register"}}</a>
+	        </div>
+
+            </div>
+        </nav>
+
+</template>

@@ -2,6 +2,59 @@
 #top-space{
 	float:left;
 	width:100%;
-	height: 600px;
-	background:#1080f2;
+    height: 600px;
+    background: #1080f2;
+}
+
+
+.main-guest{
+	position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+}
+
+.main-splash{
+    position: absolute;
+    margin-top: 240px;
+    background: url(../images/general/main_exp.png) no-repeat;
+    height: 450px;
+    width: 900px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.main-guest-text{
+    position: absolute;
+    left: 0;
+    top: 150px;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: #fff;
+}
+
+.main-guest-text span{
+	float:left;
+	width:100%;
+}
+
+.main-guest-text .h1{
+	font-size: 50px;
+	font-weight: bold;
+}
+
+.main-guest-text .h2{
+    font-size: 32px;
+    margin-top: 40px;
+}
+
+.footer-main-guest{
+	position: absolute;
+    left: 0;
+    right: 0;
+    bottom:0;
 }

@@ -20,6 +20,7 @@
     -moz-border-radius: 4px;
     border-radius: 4px;
     text-align: center;
+    cursor: pointer;
 }
 
 .logo-top span{
@@ -27,7 +28,7 @@
     font-size: 20px;
     float: left;
     width: 100%;
-    padding-top: 7px;
+    padding-top: 6px;
 }
 
 .navbar-white{

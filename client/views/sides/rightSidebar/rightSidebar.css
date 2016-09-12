@@ -77,10 +77,6 @@
     width:100%;
 }
 
-
-
-
-
 .user-info-right-username{
     float:left;
     width:100%;
@@ -90,4 +86,12 @@
     font-weight: 600;
     line-height: normal;
     padding: 5px 0 0px 0;
+}
+
+.user-info-right-username:hover{
+    color: #423c3d;
+}
+
+.profileLink{
+    cursor: pointer;
 }

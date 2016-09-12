@@ -1,7 +1,9 @@
 <template name="commentForm">
-    <div class="comment-insert">
-        <img src="{{avatar}}">
-        <input type="text" id="comment-text" placeholder="Add Comment...">
-    </div>
+	{{#if isLoggedIn}}
+	    <div class="comment-insert">
+	        <img src="{{avatar}}">
+	        <input type="text" id="comment-text" placeholder="Add Comment...">
+	    </div>
+    {{/if}}
 
 </template>

@@ -67,28 +67,32 @@
                     {{/if}}
 
                 </div>
-
+                
                 {{#if userIsOwner}}
+
                     <div class="post-options">
                         <div class="ui top right pointing dropdown post-options">
                             <i class="sort descending icon"></i>
                             <div class="menu" style="right: -7px;top: 10px;position: absolute;">
-                                <div class="item"><i class="edit icon"></i> {{_ "edit"}}</div>
                                 <div class="item deletePost"><i class="delete icon"></i> {{_ "delete"}}</div>
                             </div>
                         </div>
                     </div>
 
                     {{else}}
+                    
+                        {{#if currentUser}}
 
-                        <div class="post-options">
-                            <div class="ui top right pointing dropdown post-options">
-                                <i class="sort descending icon"></i>
-                                <div class="menu" style="right: -7px;top: 10px;position: absolute;">
-                                    <div class="item"><i class="edit icon"></i> {{_ "report"}}</div>
+                            <div class="post-options">
+                                <div class="ui top right pointing dropdown post-options">
+                                    <i class="sort descending icon"></i>
+                                    <div class="menu" style="right: -7px;top: 10px;position: absolute;">
+                                        <div class="item"><i class="edit icon"></i> {{_ "report"}}</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+
+                        {{/if}}
 
                 {{/if}}
 

@@ -13,7 +13,7 @@ Template.login.events({
                 console.log(error.reason);
                 Session.set("formErrors", error.reason);
             } else {
-                FlowRouter.go('/');
+                FlowRouter.go('/home');
             }
         });
     }

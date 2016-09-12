@@ -13,7 +13,7 @@
   "conversationWith": "Conversation with",
   "LoadMorePosts": "טען פוסטים נוספים",
   "noPostsToShow": "אין פוסטים להצגה",
-  "noMorePostsToLoad": "אין יותר פוסטים להצגה",
+  "noMorePostsToLoad": "אין פוסטים נוספים להצגה",
   "noNotifications": "אין התראות להצגה",
   "noData": "אין מידע להצגה",
   "posts": "פוסטים",
@@ -30,7 +30,7 @@
   "message": "הודעה",
   "shared": "שותף",
   "post": "פוסט",
-  "like": "Like",
+  "like": "לייק",
   "unlike": "Unlike",
   "share": "שיתוף",
   "comments": "תגובות",
@@ -73,5 +73,6 @@
   "finishEditing": "סיים עריכה",
   "language": "שפה",
   "english": "English",
-  "hebrew": "עברית"
+  "hebrew": "עברית",
+  "main_guest_text": "רשת חברתית בזמן אמת"
 }

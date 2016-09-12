@@ -120,24 +120,26 @@ Template.profile.helpers({
                 username: username
             }) || {};
 
-        // Followers
-        if(userData.profile.followers)
-            Meteor.subscribe('BasicUsersListByID', userData.profile.followers);
+        if(JSON.stringify(userData) !== "{}"){
+            // Followers
+            if(userData.profile.followers)
+                Meteor.subscribe('BasicUsersListByID', userData.profile.followers);
 
-        // Following
-        if(userData.profile.follow)
-            Meteor.subscribe('BasicUsersListByID', userData.profile.follow);
+            // Following
+            if(userData.profile.follow)
+                Meteor.subscribe('BasicUsersListByID', userData.profile.follow);
 
-        if( _.isEmpty(userData)){
-            FlowRouter.go('/404')
+            if( _.isEmpty(userData)){
+                FlowRouter.go('/404')
+            }
+
+
+            if(userData._id == Meteor.userId()){
+                userData.userProfile = true;
+            }
+
+            return userData;
         }
-
-
-        if(userData._id == Meteor.userId()){
-            userData.userProfile = true;
-        }
-
-        return userData;
     },
     posts: function(){
         var username = FlowRouter.getParam('username');
@@ -270,6 +272,8 @@ Template.profile.helpers({
         return Session.get("coverPositionEdit");
     },
     postsCount: function(){
+
+
         //check if need to show 'Load more posts' OR 'no more posts' OR 'no posts at all'.
         if(Posts.find({createdBy: Meteor.userId()}).count() > Session.get('postsLimit')){
             return 'hasPosts'
@@ -277,11 +281,16 @@ Template.profile.helpers({
             var username = FlowRouter.getParam('username');
             var user = Meteor.users.findOne({'username': username});
 
-            if(Posts.find({createdBy: user._id}).count() === 0){
-                return 'noPostsToLoad';
-            }
-            return false
+            if(user)
+                if(JSON.stringify(user) !== "{}"){
+                    if(Posts.find({createdBy: user._id}).count() === 0){
+                        return 'noPostsToLoad';
+                    }
+                    return false;
+                }
         }
+
+
     }
 });
 

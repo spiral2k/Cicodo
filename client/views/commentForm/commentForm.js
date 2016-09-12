@@ -1,6 +1,12 @@
 Template.commentForm.helpers({
     avatar: function(){
-        return Meteor.user().profile.avatar;
+        if(Meteor.user())
+            return Meteor.user().profile.avatar;
+    },
+    isLoggedIn: function(){
+        if(Meteor.user())
+            return true;
+
     }
 
 });

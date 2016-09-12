@@ -29,6 +29,7 @@ Template.post.events({
         Meteor.call("unlikePost", this._id);
     },
     'click .share-button':function() {
+
         if (this.type === "share") {
 
             Meteor.call("sharePost", this.shared_post_id, function (error, result) {
@@ -50,6 +51,7 @@ Template.post.events({
             });
 
         }
+        
     },
     'click .deletePost': function(){
         Meteor.call("deletePost", this._id);
@@ -91,22 +93,22 @@ Template.post.helpers({
         return number_of_comment;
     },
     likedPost:function(){
-        var likes = Meteor.user().profile.posts_events.liked_posts;
 
-        if(likes)
-            for(var i = 0; i < likes.length; i++){
-                if(likes[i] === Template.instance().data._id) {
-                    return true;
+        if(Meteor.user()){
+
+            var likes = Meteor.user().profile.posts_events.liked_posts;
+
+            if(likes)
+                for(var i = 0; i < likes.length; i++){
+                    if(likes[i] === Template.instance().data._id) {
+                        return true;
+                    }
                 }
-            }
-
+        }
         return false;
     },
     // IF POST IS OF TYPE SHARED
     is_shared_post: function(){
-
-        console.log("shared: ", this);
-
         if(this.type === "share"){
             Meteor.subscribe("getOnePostById", this.shared_post_id);
             Meteor.subscribe("getUserBasicDataByPostID", this.shared_post_id);
@@ -126,32 +128,35 @@ Template.post.helpers({
     },
     userSharedPost:function(){
 
-        if(this.type === 'regular') {
-            var shared_posts = Meteor.user().profile.posts_events.shared_posts;
+        if(Meteor.user()){
 
-            for ( var i = 0; i < shared_posts.length; i++ ) {
-                if ( shared_posts[i] == this._id)
-                    return true;
+            if(this.type === 'regular') {
+                var shared_posts = Meteor.user().profile.posts_events.shared_posts;
+
+                for ( var i = 0; i < shared_posts.length; i++ ) {
+                    if ( shared_posts[i] == this._id)
+                        return true;
+                }
             }
-        }
 
-        return false;
+            return false;
+        }
 
     },
     ifThisIsUserSharePost: function(){
+        if(Meteor.user()){
+            if(this.type === 'share') {
+                var shared_posts = Meteor.user().profile.posts_events.shared_posts;
+                for ( var i = 0; i < shared_posts.length; i++ ) {
 
-        if(this.type === 'share') {
-            var shared_posts = Meteor.user().profile.posts_events.shared_posts;
-            for ( var i = 0; i < shared_posts.length; i++ ) {
+                    if (shared_posts[i] === this.shared_post_id )
+                        return true;
+                }
 
-                if (shared_posts[i] === this.shared_post_id )
-                    return true;
             }
 
+            return false;
         }
-
-        return false;
-
     },
     postLikes:function(){
 

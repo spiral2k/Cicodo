@@ -36,7 +36,7 @@ Template.register.events({
                     return;
                 }
 
-                FlowRouter.go('/');
+                FlowRouter.go('/home');
             });
 
 
