@@ -11,3 +11,16 @@
 .navbar-links a:hover{
     color:#a8b1b8;
 }
+
+
+.ui.inverted.pinky.buttons .button, .ui.inverted.pinky.button {
+    background-color: transparent;
+    box-shadow: 0px 0px 0px 2px #e03997 inset !important;
+    color: #e03997;
+}
+
+
+.ui.inverted.pinky.buttons .button:hover, .ui.inverted.pinky.button:hover {
+    background-color: #e03997;
+    color:#fff;
+}

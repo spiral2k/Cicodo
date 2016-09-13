@@ -58,16 +58,18 @@ Template.post.events({
 
     },
     'mouseover .post-wrapper': function(e,template){
-        $(template.find('.post-time')).hide();
-        $(template.find('.post-options')).show();
-
+        if(Meteor.user()){
+            $(template.find('.post-time')).hide();
+            $(template.find('.post-options')).show();
+        }
 
     },
     'mouseout .post-wrapper': function(e,template){
 
-        $(template.find('.post-time')).show();
-        $(template.find('.post-options')).hide();
-
+        if(Meteor.user()){
+            $(template.find('.post-time')).show();
+            $(template.find('.post-options')).hide();
+        }
 
     }
 });

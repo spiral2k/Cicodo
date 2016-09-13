@@ -1,9 +1,8 @@
 <template name="navbarguest">
     {{#unless loggingIn}}
         <div class="navbar-links">
-            <a href="/login">{{_ "login"}} &nbsp;</a>
-            <i class="pink small circle icon"></i>
-            <a href="/register">{{_ "register"}}</a>
+            <a href="/login" class="tiny ui inverted pinky button">{{_ "login"}}</a>
+            <a href="/register" class="tiny ui pink button">{{_ "register"}}</a>
         </div>
     {{/unless}}
 </template>

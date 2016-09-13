@@ -130,8 +130,10 @@ Template.navbaruser.events({
     //LOGOUT
     'click #logout': function(event){
         event.preventDefault();
+
         Meteor.logout();
         FlowRouter.go('/');
+        
     },
     'click .item': function(event){
         $(event.target).removeClass('selected');
