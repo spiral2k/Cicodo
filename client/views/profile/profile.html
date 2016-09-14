@@ -213,10 +213,10 @@
                     {{else}}
 
                         {{#if $eq postsCount 'noPostsToLoad'}}
-                            <button class="fluid ui disabled button">{{_ "noPostsToShow"}}</button>
+                            <button class="fluid ui disabled button" style="margin-bottom:20px;">{{_ "noPostsToShow"}}</button>
                         {{else}}
 
-                            <button class="fluid ui disabled button">{{_ "noMorePostsToLoad"}}</button>
+                            <button class="fluid ui disabled button" style="margin-bottom:20px;">{{_ "noMorePostsToLoad"}}</button>
                         {{/if}}
                     {{/if}}
 
@@ -265,7 +265,7 @@
             {{/if}}
 
         </div>
-
+        {{>footer}}
     </div>
 
     {{/with}}
@@ -275,6 +275,7 @@
     {{>loader}}
 
 {{/if}}
+
 
 
 </template>

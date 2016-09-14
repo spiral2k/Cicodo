@@ -71,6 +71,16 @@ Template.post.events({
             $(template.find('.post-options')).hide();
         }
 
+    },
+    'click .link-to-post': function(e, t){
+
+        var user =  Meteor.users.findOne(this.createdBy);
+        user = user.username;
+
+        var post_id = this._id;
+
+        FlowRouter.go('/@/' + user + '/' + post_id);
+
     }
 });
 

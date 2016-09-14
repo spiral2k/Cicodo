@@ -19,7 +19,13 @@ Template.profile.onCreated(function() {
     //////////////////////////////////////////////////////////////////////
     var username = FlowRouter.getParam('username');
     Meteor.subscribe('getUserProfileDataByUsername', username);
-    self.subscribe('getUserPostsByUsername', username, Session.get("postsLoadLimit"));
+    self.subscribe('getUserPostsByUsername', username, Session.get("postsLoadLimit"),{
+  onReady: function () {},
+  onError: function () { 
+    console.log("Error: User not found"); 
+    FlowRouter.go('/404');
+}
+});
 
 
 });

@@ -38,7 +38,7 @@ Meteor.publish("getUserProfileDataByUsername", function(username) {
     return Meteor.users.find(
         {username: username},
         {
-            fields: {'username': 1, 'profile.avatar': 1,'profile.cover': 1,'profile.cover_position': 1,'profile.followers': 1 ,'profile.follow': 1}
+            fields: {'username': 1, 'profile.posts_events': 1, 'profile.avatar': 1,'profile.cover': 1,'profile.cover_position': 1,'profile.followers': 1 ,'profile.follow': 1}
         });
 });
 

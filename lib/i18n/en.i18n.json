@@ -78,5 +78,6 @@
   "hi": "Hi",
   "whatOnYourMind":"what's on your mind?",
   "noMessagesYet": "You have no messages yet",
-  "selectConv": "Select conversation from the list."
+  "selectConv": "Select conversation from the list.",
+  "linkToPost": "Link to post"
 }

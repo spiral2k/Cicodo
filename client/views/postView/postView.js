@@ -15,6 +15,8 @@ Template.postView.onCreated(function(){
 Template.postView.helpers({
    postData: function(){
 
+   		
+
        var postid = FlowRouter.getParam('postid');
 
        return Posts.findOne({_id: postid});
