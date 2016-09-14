@@ -66,6 +66,8 @@ Template.profile.onRendered(function(){
         });
     });
 
+
+
     $("body").on('change','#CoverUpload' , function(){
 
         var filesSelected = document.getElementById("CoverUpload").files;
@@ -143,6 +145,8 @@ Template.profile.helpers({
             if(userData._id == Meteor.userId()){
                 userData.userProfile = true;
             }
+
+
 
             return userData;
         }
@@ -223,7 +227,7 @@ Template.profile.helpers({
         var followerUsers = Meteor.users.find({
             '_id': { $in: userData.profile.followers}
         },{fields: {'username': 1, 'profile.avatar': 1}}, function(err, docs){
-            console.log(docs);
+
         });
 
         return followerUsers;
@@ -238,7 +242,7 @@ Template.profile.helpers({
         var followsUsers = Meteor.users.find({
             '_id': { $in: userData.profile.follow}
         },{fields: {'username': 1, 'profile.avatar': 1}}, function(err, docs){
-            console.log(docs);
+
         });
 
         return followsUsers;
@@ -415,7 +419,7 @@ Template.profile.events({
         Meteor.subscribe('getUserProfileDataByUsername', this.username);
         Meteor.subscribe('getUserPostsByUsername', this.username, Session.get("postsLoadLimit"));
 
-        console.log(this)
+
     }
 
 });
@@ -507,7 +511,7 @@ Template.profile.onDestroyed(function(){
 
         $el.on('mousedown.dbg touchstart.dbg', function(e) {
 
-            console.log(e.target)
+
 
             if (!$(e.target).is(".profile-edit-cover-position-mask")) {
                 return;

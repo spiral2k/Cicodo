@@ -6,7 +6,7 @@
 
         {{! Cover image functionalty}}
 
-        <div id="profile-cover-image" class="{{#if coverEdit}} profile-cover-image-on {{/if}}" style="background-image: url({{profile.cover}}); background-position-y: {{profile.cover_position}}px">
+        <div id="profile-cover-image" class="{{#if coverEdit}} profile-cover-image-on {{/if}}" style="background-position: 0 {{profile.cover_position}}px;  background-image: url({{profile.cover}});">
 
         {{#if profileEdit}}
             <div class="profile-edit-cover opacity">
@@ -25,12 +25,15 @@
                 {{#if coverEdit}}
                     {{#unless coverPositionEdit}}
                         <div class="profile-edit-cover">
-                            <input id="CoverUpload" type="file" />
+
                             <div class="large ui buttons profile-cover-edit-buttons">
-                                <button class="ui button">
-                                    <label for="CoverUpload" class="coverUploadButton">{{_ "changeCoverImage"}}</label>
-                                </button>
-                                <button class="ui button positionCoverEdit">{{_ "changeCoverPosition"}}</button>
+                                <input id="CoverUpload" type="file" />
+                                <label for="CoverUpload" class="coverUploadButton">
+                                    <span class="ui button">
+                                        {{_ "changeCoverImage"}}
+                                    </span>
+                                </label>
+                                <span class="ui button positionCoverEdit">{{_ "changeCoverPosition"}}</span>
                             </div>
                         </div>
                     {{/unless}}

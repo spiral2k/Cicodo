@@ -40,8 +40,3 @@ Template.mainPosts.helpers({
     }
 
 });
-
-
-Template.mainPosts.onDestroyed(function(){
-
-});
