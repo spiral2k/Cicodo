@@ -1,1 +1,1 @@
-repo fot meteor tests
+Real time social network in meteor.
