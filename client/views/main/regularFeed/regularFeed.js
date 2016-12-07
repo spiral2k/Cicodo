@@ -63,9 +63,8 @@ Template.regularFeed.helpers({
         //subscribe to Meteor.user() posts.
         Template.instance().posts = Template.instance().subscribe('postsFollowedByUser', Meteor.userId(), Session.get('mainPostsSERVERLoadLimit'), new Date());
 
-        var postsList = Posts.find({},{limit: Session.get('mainPostsLoadLimit'), sort:{'createdAt': -1}});
+        return Posts.find({},{limit: Session.get('mainPostsLoadLimit'), sort:{'createdAt': -1}});
 
-        return postsList;
     },
     postsCount: function(){
         //check if need to show 'Load more posts'.

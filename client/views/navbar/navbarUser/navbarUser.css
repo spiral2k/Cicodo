@@ -197,8 +197,10 @@
 }
 
 .no-messages i{
-    width:100%;
+    width: 100%;
+    float: left;
     text-align: center;
+    margin: 15px 0 0px 0;
 }
 
 .no-messages span{

@@ -15,7 +15,7 @@ Meteor.publish("getUserPostsByUsername", function(username, limit) {
 Meteor.publish("postsFollowedByUser", function(postsByID, limit, date) {
     limit = limit || 5;
     date = date || new Date();
-    console.log("hap")
+    console.log("hap");
     return Posts.find({createdBy: postsByID, 'createdAt': {$lte: date} }, {sort: {'createdAt': -1}, limit: limit});
 });
 
@@ -88,9 +88,8 @@ Meteor.publish("getUserBasicDataByPostID", function(postID) {
 
     var post = Posts.findOne({_id: postID});
 
-    var user = Meteor.users.find({_id: post.createdBy}, {fields: {'username': 1, 'profile.avatar': 1}});
+    return Meteor.users.find({_id: post.createdBy}, {fields: {'username': 1, 'profile.avatar': 1}});
 
-    return user;
 });
 
 
