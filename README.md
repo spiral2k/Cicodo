@@ -2,7 +2,7 @@ Real time social network in Meteor.
 
 ![alt tag](https://s29.postimg.org/y9ff4cq5v/image08.png)
 
-<img src="https://s29.postimg.org/y9ff4cq5v/image08.png" width="100%">
+<img src="https://s29.postimg.org/y9ff4cq5v/image08.png" width="500px">
 
 ![alt tag](https://s29.postimg.org/3t9i684mr/image12.png)
 
