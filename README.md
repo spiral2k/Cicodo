@@ -1,13 +1,13 @@
 Real time social network in Meteor.
 
-![alt tag](https://s29.postimg.org/y9ff4cq5v/image08.png)
-
 <img src="https://s27.postimg.org/6is8j3qhf/image08.png" width="100%">
 
-![alt tag](https://s29.postimg.org/3t9i684mr/image12.png)
+<img src="https://s27.postimg.org/9e5bpyuhf/image12.png" width="100%">
 
-![alt tag](https://s29.postimg.org/hbgeiigs3/image13.png)
+<img src="https://s27.postimg.org/440cyoa8j/image13.png" width="100%">
 
-![alt tag](https://s29.postimg.org/xnqg88v3n/image14.png)
+<img src="https://s27.postimg.org/x7okuwyc3/image14.png" width="100%">
 
-![alt tag](https://s29.postimg.org/y1wdll4kz/image15.png)
+<img src="https://s27.postimg.org/ljuj0d977/image15.png" width="100%">
+
+
